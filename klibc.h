@@ -131,10 +131,15 @@ typedef unsigned long long klibc_uintmax_t;
 typedef signed long long klibc_intptr_t;
 typedef unsigned long long klibc_uintptr_t;
 
-typedef signed long long klibc_ptrdiff_t;
+// KLIBC_STDDEF_H
+
+#define KLIBC_NULL ((void *)0)
 
 typedef int klibc_wchar_t;
-typedef int klibc_wint_t;
+typedef unsigned long long klibc_size_t;
+typedef signed long long klibc_ptrdiff_t;
+
+#define KLIBC_OFFSETOF(t, m) ((klibc_size_t) & (((t *)0)->m))
 
 // KLIBC_MATH_H
 // clang-format off
