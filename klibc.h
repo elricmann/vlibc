@@ -80,6 +80,15 @@
 #define KLIBC_INTPTR_MAX KLIBC_INT64_MAX
 #define KLIBC_UINTPTR_MAX KLIBC_UINT64_MAX
 
+#define KLIBC_PTRDIFF_MIN KLIBC_INT64_MIN
+#define KLIBC_PTRDIFF_MAX KLIBC_INT64_MAX
+
+#define KLIBC_WCHAR_MIN KLIBC_INT32_MIN
+#define KLIBC_WCHAR_MAX KLIBC_INT32_MAX
+
+#define KLIBC_WINT_MIN KLIBC_INT32_MIN
+#define KLIBC_WINT_MAX KLIBC_INT32_MAX
+
 typedef signed char klibc_int8_t;
 typedef unsigned char klibc_uint8_t;
 
@@ -121,6 +130,11 @@ typedef unsigned long long klibc_uintmax_t;
 
 typedef signed long long klibc_intptr_t;
 typedef unsigned long long klibc_uintptr_t;
+
+typedef signed long long klibc_ptrdiff_t;
+
+typedef int klibc_wchar_t;
+typedef int klibc_wint_t;
 
 // KLIBC_MATH_H
 // clang-format off
