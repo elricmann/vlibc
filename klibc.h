@@ -80,11 +80,11 @@
 #define KLIBC_INTPTR_MAX KLIBC_INT64_MAX
 #define KLIBC_UINTPTR_MAX KLIBC_UINT64_MAX
 
-#define klibc_int8_t signed char
-#define klibc_uint8_t unsigned char
+typedef signed char klibc_int8_t;
+typedef unsigned char klibc_uint8_t;
 
-#define klibc_int16_t signed short
-#define klibc_uint16_t unsigned short
+typedef signed short klibc_int16_t;
+typedef unsigned short klibc_uint16_t;
 
 typedef signed int klibc_int32_t;
 typedef unsigned int klibc_uint32_t;
