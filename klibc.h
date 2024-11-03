@@ -141,6 +141,46 @@ typedef signed long long klibc_ptrdiff_t;
 
 #define KLIBC_OFFSETOF(t, m) ((klibc_size_t) & (((t *)0)->m))
 
+// KLIBC_LIMITS_H
+
+#define KLIBC_BOOL_WIDTH 1  // since (C23)
+#define KLIBC_CHAR_BIT 8
+#define KLIBC_MB_LEN_MAX 4
+#define KLIBC_CHAR_WIDTH KLIBC_CHAR_BIT  // since (C23)
+
+#define KLIBC_CHAR_MIN (-128)
+#define KLIBC_CHAR_MAX 127
+
+#define KLIBC_SCHAR_WIDTH 8   // since (C23)
+#define KLIBC_SHRT_WIDTH 16   // since (C23)
+#define KLIBC_INT_WIDTH 32    // since (C23)
+#define KLIBC_LONG_WIDTH 64   // since (C23)
+#define KLIBC_LLONG_WIDTH 64  // since (C23)
+
+#define KLIBC_SCHAR_MIN (-128)
+#define KLIBC_SHRT_MIN (-32768)
+#define KLIBC_INT_MIN (-2147483648)
+#define KLIBC_LONG_MIN (-9223372036854775808L)
+#define KLIBC_LLONG_MIN (-9223372036854775808LL)  // since (C99)
+
+#define KLIBC_SCHAR_MAX 127
+#define KLIBC_SHRT_MAX 32767
+#define KLIBC_INT_MAX 2147483647
+#define KLIBC_LONG_MAX 9223372036854775807L
+#define KLIBC_LLONG_MAX 9223372036854775807LL
+
+#define KLIBC_UCHAR_WIDTH 8
+#define KLIBC_USHRT_WIDTH 16
+#define KLIBC_UINT_WIDTH 32
+#define KLIBC_ULONG_WIDTH 64
+#define KLIBC_ULLONG_WIDTH 64
+
+#define KLIBC_UCHAR_MAX 255
+#define KLIBC_USHRT_MAX 65535
+#define KLIBC_UINT_MAX 4294967295U
+#define KLIBC_ULONG_MAX 18446744073709551615UL
+#define KLIBC_ULLONG_MAX 18446744073709551615ULL  // since (C99)
+
 // KLIBC_MATH_H
 // clang-format off
 // @todo klibc no prefix
