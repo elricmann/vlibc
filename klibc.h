@@ -239,10 +239,12 @@ double klibc_fmod(double x, double y);
 
 // clang-format on
 
-/// @brief Computes the square root of a given non-negative number using the
-/// Newton-Raphson method.
-/// @param x The input value.
-/// @return The square root of `x`, or `KLIBC_NAN` if `x` is negative.
+/**
+ * @brief Computes the square root of a given non-negative number using the
+ * Newton-Raphson method.
+ * @param x The input value.
+ * @return The square root of `x`, or `KLIBC_NAN` if `x` is negative.
+ */
 double klibc_sqrt(double x) {
   if (x < 0.0) return KLIBC_NAN;
   if (x == 0.0) return 0.0;
@@ -256,21 +258,14 @@ double klibc_sqrt(double x) {
   return n;
 }
 
-/// @brief Computes the sine of a given angle in radians using the Taylor series
-/// expansion.
-/// @param x The angle in radians.
-/// @return The sine of `x`.
+/**
+ * @brief Computes the sine of a given angle in radians using the Taylor series
+ * expansion.
+ * @param x The angle in radians.
+ * @return The sine of `x`.
+ */
 double klibc_sin(double x) {
   x = klibc_fmod(x, 2 * KLIBC_M_PI);
-  // if (x < 0) x += 360.0;
-  // x = x * KLIBC_M_PI / 180.0;
-  // if (x > 180.0) x -= 360.0;
-  // if (x > 90.0)
-  //   x = 180.0 - x;
-  // else if (x < -90.0)
-  //   x = -180.0 - x;
-
-  // if (x < 0) x += 360.0;
 
   double acc = 0.0, t = x, x2 = x * x;
   int n = 1;
@@ -284,10 +279,12 @@ double klibc_sin(double x) {
   return acc;
 }
 
-/// @brief Computes the cosine of a given angle in radians using the Taylor
-/// series expansion.
-/// @param x The angle in radians.
-/// @return The cosine of `x`.
+/**
+ * @brief Computes the cosine of a given angle in radians using the Taylor
+ * series expansion.
+ * @param x The angle in radians.
+ * @return The cosine of `x`.
+ */
 double klibc_cos(double x) {
   x = klibc_fmod(x, 2 * KLIBC_M_PI);
 
@@ -310,13 +307,17 @@ double klibc_cos(double x) {
  */
 double klibc_tan(double x) { return klibc_sin(x) / klibc_cos(x); }
 
-/// @brief Computes the absolute value of a given number.
-/// @param x The input value.
-/// @return The absolute value of `x`.
+/**
+ * @brief Computes the absolute value of a given number.
+ * @param x The input value.
+ * @return The absolute value of `x`.
+ */
 double klibc_fabs(double x) { return (x < 0) ? -x : x; }
 
-/// @brief Computes the floating-point remainder of the division of `x` by `y`.
-/// @param x The dividend.
-/// @param y The divisor.
-/// @return The remainder when `x` is divided by `y`.
+/**
+ * @brief Computes the floating-point remainder of the division of `x` by `y`.
+ * @param x The dividend.
+ * @param y The divisor.
+ * @return The remainder when `x` is divided by `y`.
+ */
 double klibc_fmod(double x, double y) { return x - y * (int)(x / y); }
