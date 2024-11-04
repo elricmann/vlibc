@@ -382,6 +382,72 @@ double klibc_exp(double x) {
 }
 
 /**
+ * @brief Computes the natural logarithm of a given positive value using a series expansion.
+ * @param x The input value. Must be positive.
+ * @return The natural logarithm of `x`, or `KLIBC_NAN` if `x` is non-positive.
+ */
+double klibc_log(double x) {
+  if (x <= 0.0)
+    return KLIBC_NAN;
+
+  double acc = 0.0, t = (x - 1) / (x + 1), x2 = t * t;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    acc += t / (2 * n - 1);
+    t *= x2;
+    n++;
+  }
+
+  return 2 * acc;
+}
+
+/**
+ * @brief Computes the base-10 logarithm of a given positive value.
+ * @param x The input value. Must be positive.
+ * @return The base-10 logarithm of `x`, or `KLIBC_NAN` if `x` is non-positive.
+ */
+double klibc_log10(double x) { return klibc_log(x) / KLIBC_M_LN10; }
+
+/**
+ * @brief Computes the power of a given base raised to a specified exponent.
+ * @param base The base value.
+ * @param exp The exponent.
+ * @return The result of `base` raised to `exp`.
+ *
+ * @note Returns 0 if `base` is 0, and 1 if `exp` is 0.
+ */
+double klibc_pow(double base, double exp) {
+  if (base == 0.0)
+    return 0.0;
+
+  if (exp == 0.0)
+    return 1.0;
+
+  return klibc_exp(exp * klibc_log(base));
+}
+
+/**
+ * @brief Computes the ceiling of a given value, rounding up to the nearest integer.
+ * @param x The input value.
+ * @return The smallest integer greater than or equal to `x`.
+ */
+double klibc_ceil(double x) {
+  int i = (int)x;
+  return (x > (double)i) ? i + 1 : i;
+}
+
+/**
+ * @brief Computes the floor of a given value, rounding down to the nearest integer.
+ * @param x The input value.
+ * @return The largest integer less than or equal to `x`.
+ */
+double klibc_floor(double x) {
+  int i = (int)x;
+  return (x < (double)i) ? i - 1 : i;
+}
+
+/**
  * @brief Computes the absolute value of a given number.
  * @param x The input value.
  * @return The absolute value of `x`.
