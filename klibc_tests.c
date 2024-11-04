@@ -28,5 +28,12 @@ int main(int argc, char const *argv[]) {
   klibc_memmove(data + 4, data, 3);
   printf("%s\n", data);
 
+  char dest1[20];
+  char dest2[20];
+  klibc_strcpy(dest1, "test klibc_strcpy");
+  printf("%s\n", dest1);
+  klibc_strncpy(dest2, "test klibc_strncpy", 10);
+  printf("%s\n", dest2);
+
   return 0;
 }

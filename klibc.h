@@ -525,3 +525,38 @@ void *klibc_memmove(void *dest, const void *src, klibc_size_t n) {
 
   return dest;
 }
+
+/**
+ * @brief Copies the string pointed to by `src` to `dest`, including the terminating null byte.
+ * @param dest Pointer to the destination buffer.
+ * @param src Pointer to the source null-terminated string.
+ * @return Pointer to the destination buffer.
+ */
+char *klibc_strcpy(char *dest, const char *src) {
+  char *d = dest;
+
+  while ((*d++ = *src++))
+    ;
+
+  return dest;
+}
+
+/**
+ * @brief Copies up to `n` characters from the string pointed to by `src` to `dest`.
+ * If `src` is shorter than `n`, the remaining characters in `dest` will be null-padded.
+ * @param dest Pointer to the destination buffer.
+ * @param src Pointer to the source null-terminated string.
+ * @param n Maximum number of characters to copy.
+ * @return Pointer to the destination buffer.
+ */
+char *klibc_strncpy(char *dest, const char *src, klibc_size_t n) {
+  char *d = dest;
+
+  while (n && (*d++ = *src++))
+    n--;
+
+  while (n--)
+    *d++ = '\0';
+
+  return dest;
+}
