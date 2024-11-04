@@ -364,6 +364,24 @@ double klibc_atan(double x) {
 }
 
 /**
+ * @brief Computes the exponential function \( e^x \) using the Taylor series expansion.
+ * @param x The exponent to which \( e \) is raised.
+ * @return The value of \( e^x \).
+ */
+double klibc_exp(double x) {
+  double acc = 1.0, t = 1.0;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    t *= x / n;
+    acc += t;
+    n++;
+  }
+
+  return acc;
+}
+
+/**
  * @brief Computes the absolute value of a given number.
  * @param x The input value.
  * @return The absolute value of `x`.
