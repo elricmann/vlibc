@@ -18,5 +18,10 @@ int main(int argc, char const *argv[]) {
   printf("klibc_pow(7.0, 2.0): %f\n", klibc_pow(7.0, 2.0));
   printf("klibc_ceil(2.3): %f\n", klibc_ceil(2.3));
   printf("klibc_floor(2.3): %f\n", klibc_floor(2.3));
+
+  char src[] = "test klibc";
+  char dest[20];
+  klibc_memcpy(dest, src, sizeof(src));
+  printf("%s\n", dest);
   return 0;
 }

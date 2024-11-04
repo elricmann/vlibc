@@ -483,3 +483,20 @@ char *klibc_strpbrk(const char *s, const char *accept);
 char *klibc_strstr(const char *haystack, const char *needle);
 char *klibc_strdup(const char *s);
 char *klibc_strtok(char *str, const char *delim);
+
+/**
+ * @brief Copies `n` bytes from the source memory area to the destination memory area.
+ * @param dest Pointer to the destination memory area.
+ * @param src Pointer to the source memory area.
+ * @param n Number of bytes to copy.
+ * @return Pointer to the destination memory area.
+ */
+void *klibc_memcpy(void *dest, const void *src, klibc_size_t n) {
+  unsigned char *d = (unsigned char *)dest;
+  const unsigned char *s = (const unsigned char *)src;
+
+  while (n--)
+    *d++ = *s++;
+
+  return dest;
+}
