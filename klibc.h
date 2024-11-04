@@ -181,6 +181,24 @@ typedef signed long long klibc_ptrdiff_t;
 #define KLIBC_ULONG_MAX 18446744073709551615UL
 #define KLIBC_ULLONG_MAX 18446744073709551615ULL  // since (C99)
 
+// KLIBC_STDBOOL_H
+
+#define bool _Bool                       // since (C99), removed in (C23)
+#define true 1                           // since (C99), removed in (C23)
+#define false 0                          // since (C99), removed in (C23)
+#define __bool_true_false_are_defined 1  // since (C99), deprecated in (C23)
+
+// KLIBC_STDALIGN_H
+
+#define alignas _Alignas        // since (C11), removed in (C23)
+#define alignof _Alignof        // since (C11), removed in (C23)
+#define __alignas_is_defined 1  // since (C11), removed in (C23)
+#define __alignof_is_defined 1  // since (C11), removed in (C23)
+
+// KLIBC_STDNORETURN_H
+
+#define noreturn _Noreturn  // since (C11), deprecated in (C23)
+
 // KLIBC_MATH_H
 // clang-format off
 // @todo klibc no prefix
