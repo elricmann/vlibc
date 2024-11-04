@@ -284,6 +284,25 @@ double klibc_sin(double x) {
   return acc;
 }
 
+/// @brief Computes the cosine of a given angle in radians using the Taylor
+/// series expansion.
+/// @param x The angle in radians.
+/// @return The cosine of `x`.
+double klibc_cos(double x) {
+  x = klibc_fmod(x, 2 * KLIBC_M_PI);
+
+  double acc = 1.0, t = 1.0, x2 = x * x;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    t *= -x2 / ((2 * n - 1) * (2 * n));
+    acc += t;
+    n++;
+  }
+
+  return acc;
+}
+
 /// @brief Computes the absolute value of a given number.
 /// @param x The input value.
 /// @return The absolute value of `x`.

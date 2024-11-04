@@ -8,5 +8,6 @@ int main(int argc, char const *argv[]) {
          KLIBC_M_SQRT2);
   printf("klibc_sqrt(4.0): %f\n", klibc_sqrt(4.0f));
   printf("klibc_sin((KLIBC_M_PI/2)): %f\n", klibc_sin((KLIBC_M_PI/2)));
+  printf("klibc_cos((90.0)): %f\n", klibc_cos((90.0)));
   return 0;
 }
