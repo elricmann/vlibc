@@ -78,12 +78,20 @@ int main(int argc, char const *argv[]) {
   printf("strchr not found result: %s\n", not_found ? not_found : "NULL"); // expected NULL
 
   const char *str1 = "test klibc_strrchr example";
-  char *last_e = klibc_strrchr(str, 'e');
+  char *last_e = klibc_strrchr(str1, 'e');
   if (last_e) {
     printf("last occurrence of 'e': %c\n", *last_e); // expected 'e'
   } else {
     printf("character not found\n");
   }
+
+  const char *str3 = "test klibc_strspn and klibc_strcspn examples";
+  const char *accept = "te";
+  const char *reject = " ";
+  klibc_size_t span_length = klibc_strspn(str3, accept);
+  printf("length of initial segment containing only 't' or 'e': %llu\n", span_length); // expected 2
+  klibc_size_t cspan_length = klibc_strcspn(str3, reject);
+  printf("length of initial segment not containing a space: %llu\n", cspan_length); // expected 4
 
   return 0;
 }

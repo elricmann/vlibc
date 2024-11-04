@@ -728,3 +728,33 @@ char *klibc_strrchr(const char *s, int c) {
 
   return NULL;
 }
+
+/**
+ * @brief Calculates the length of the initial segment of `s` that consists entirely of characters in `accept`.
+ * @param s Pointer to the null-terminated string to be checked.
+ * @param accept Pointer to a null-terminated string containing characters to match in `s`.
+ * @return The number of characters in the initial segment of `s` which consist only of characters from `accept`.
+ */
+klibc_size_t klibc_strspn(const char *s, const char *accept) {
+  const char *p = s;
+
+  while (*p && klibc_strchr(accept, *p))
+    p++;
+
+  return p - s;
+}
+
+/**
+ * @brief Calculates the length of the initial segment of `s` that consists entirely of characters not in `reject`.
+ * @param s Pointer to the null-terminated string to be checked.
+ * @param reject Pointer to a null-terminated string containing characters to exclude from `s`.
+ * @return The number of characters in the initial segment of `s` which do not contain any characters from `reject`.
+ */
+klibc_size_t klibc_strcspn(const char *s, const char *reject) {
+  const char *p = s;
+
+  while (*p && !klibc_strchr(reject, *p))
+    p++;
+
+  return p - s;
+}
