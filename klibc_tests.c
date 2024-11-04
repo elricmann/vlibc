@@ -93,5 +93,13 @@ int main(int argc, char const *argv[]) {
   klibc_size_t cspan_length = klibc_strcspn(str3, reject);
   printf("length of initial segment not containing a space: %llu\n", cspan_length); // expected 4
 
+  const char *str4 = "test klibc_strpbrk and klibc_strstr examples";
+  const char *accept2 = "aeiou";
+  const char *needle = "klibc_strstr";
+  char *first_vowel = klibc_strpbrk(str4, accept2);
+  printf("first vowel in string: %c\n", first_vowel ? *first_vowel : 'N'); // expected 'e'
+  char *substr = klibc_strstr(str4, needle);
+  printf("substring: %s\n", substr ? substr : "NULL"); // expected "klibc_strstr examples"
+
   return 0;
 }

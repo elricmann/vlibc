@@ -758,3 +758,39 @@ klibc_size_t klibc_strcspn(const char *s, const char *reject) {
 
   return p - s;
 }
+
+/**
+ * @brief Searches for the first occurrence of any character from the string `accept` in the string `s`.
+ * @param s Pointer to the null-terminated string to be searched.
+ * @param accept Pointer to a null-terminated string containing characters to match.
+ * @return A pointer to the first occurrence in `s` of any character from `accept`, or `NULL` if none are found.
+ */
+char *klibc_strpbrk(const char *s, const char *accept) {
+  while (*s) {
+    if (klibc_strchr(accept, *s))
+      return (char *)s;
+
+    s++;
+  }
+
+  return NULL;
+}
+
+/**
+ * @brief Searches for the first occurrence of the substring `needle` in the string `haystack`.
+ * @param haystack Pointer to the null-terminated string to be searched.
+ * @param needle Pointer to the null-terminated substring to search for.
+ * @return A pointer to the first occurrence of `needle` in `haystack`, or `NULL` if `needle` is not found.
+ */
+char *klibc_strstr(const char *haystack, const char *needle) {
+  klibc_size_t needle_len = klibc_strlen(needle);
+
+  while (*haystack) {
+    if (!klibc_strncmp(haystack, needle, needle_len))
+      return (char *)haystack;
+
+    haystack++;
+  }
+
+  return NULL;
+}
