@@ -500,3 +500,28 @@ void *klibc_memcpy(void *dest, const void *src, klibc_size_t n) {
 
   return dest;
 }
+
+/**
+ * @brief Moves `n` bytes from the source memory area to the destination memory area, handling overlapping regions safely.
+ * @param dest Pointer to the destination memory area.
+ * @param src Pointer to the source memory area.
+ * @param n Number of bytes to move.
+ * @return Pointer to the destination memory area.
+ */
+void *klibc_memmove(void *dest, const void *src, klibc_size_t n) {
+  unsigned char *d = (unsigned char *)dest;
+  const unsigned char *s = (const unsigned char *)src;
+
+  if (d < s)
+    while (n--)
+      *d++ = *s++;
+  else {
+    d += n;
+    s += n;
+
+    while (n--)
+      *--d = *--s;
+  }
+
+  return dest;
+}
