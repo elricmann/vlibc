@@ -661,3 +661,51 @@ int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n) {
 
   return n ? *(unsigned char *)s1 - *(unsigned char *)s2 : 0;
 }
+
+/**
+ * @brief Fills the first `n` bytes of the memory area pointed to by `s` with the constant byte `c`.
+ * @param s Pointer to the memory area to be filled.
+ * @param c The byte to be set in each byte of the memory area.
+ * @param n Number of bytes to set.
+ * @return Pointer to the memory area `s`.
+ */
+void *klibc_memset(void *s, int c, klibc_size_t n) {
+  unsigned char *p = (unsigned char *)s;
+
+  while (n--)
+    *p++ = (unsigned char)c;
+
+  return s;
+}
+
+/**
+ * @brief Computes the length of a null-terminated string.
+ * @param s Pointer to the null-terminated string.
+ * @return The number of characters in the string, excluding the null terminator.
+ */
+klibc_size_t klibc_strlen(const char *s) {
+  const char *p = s;
+
+  while (*p)
+    p++;
+
+  return p - s;
+}
+
+/**
+ * @brief Searches for the first occurrence of the character `c` in the string pointed to by `s`.
+ * @param s Pointer to the null-terminated string to be searched.
+ * @param c The character to locate (converted to an unsigned char).
+ * @return A pointer to the first occurrence of `c` in the string, or `NULL` if not found. If `c`
+ *         is `'\0'`, returns a pointer to the null terminator.
+ */
+char *klibc_strchr(const char *s, int c) {
+  while (*s) {
+    if (*s == (char)c)
+      return (char *)s;
+
+    s++;
+  }
+
+  return c == '\0' ? (char *)s : NULL;
+}

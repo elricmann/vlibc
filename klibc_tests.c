@@ -60,5 +60,22 @@ int main(int argc, char const *argv[]) {
   printf("strncmp (a1 vs a3, 10): %d\n", klibc_strncmp(a1, a3, 10)); // expected 0
   printf("strncmp (a1 vs a3, 15): %d\n", klibc_strncmp(a1, a3, 15)); // expected non-zero
 
+  char buf[20];
+
+  klibc_memset(buf, '*', 10);
+  buf[10] = '\0';
+  printf("memset result: %s\n", buf); // expected **********
+
+  const char *str = "test klibc_strlen";
+  klibc_size_t len = klibc_strlen(str);
+  printf("strlen result: %llu\n", len); // expected length of "test klibc_strlen" & null char
+
+  const char *str2 = "test klibc_strchr";
+  char *found = klibc_strchr(str2, 'c');
+  printf("strchr result: %s\n", found); // expected "c_strchr"
+
+  char *not_found = klibc_strchr(str2, 'z');
+  printf("strchr not found result: %s\n", not_found ? not_found : "NULL"); // expected NULL
+
   return 0;
 }
