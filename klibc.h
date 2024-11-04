@@ -461,3 +461,25 @@ double klibc_fabs(double x) { return (x < 0) ? -x : x; }
  * @return The remainder when `x` is divided by `y`.
  */
 double klibc_fmod(double x, double y) { return x - y * (int)(x / y); }
+
+// KLIBC_STRING_H
+
+void *klibc_memcpy(void *dest, const void *src, klibc_size_t n);
+void *klibc_memmove(void *dest, const void *src, klibc_size_t n);
+char *klibc_strcpy(char *dest, const char *src);
+char *klibc_strncpy(char *dest, const char *src, klibc_size_t n);
+char *klibc_strcat(char *dest, const char *src);
+char *klibc_strncat(char *dest, const char *src, klibc_size_t n);
+int klibc_memcmp(const void *s1, const void *s2, klibc_size_t n);
+int klibc_strcmp(const char *s1, const char *s2);
+int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n);
+void *klibc_memset(void *s, int c, klibc_size_t n);
+klibc_size_t klibc_strlen(const char *s);
+char *klibc_strchr(const char *s, int c);
+char *klibc_strrchr(const char *s, int c);
+klibc_size_t klibc_strspn(const char *s, const char *accept);
+klibc_size_t klibc_strcspn(const char *s, const char *reject);
+char *klibc_strpbrk(const char *s, const char *accept);
+char *klibc_strstr(const char *haystack, const char *needle);
+char *klibc_strdup(const char *s);
+char *klibc_strtok(char *str, const char *delim);
