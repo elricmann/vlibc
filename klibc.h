@@ -303,6 +303,13 @@ double klibc_cos(double x) {
   return acc;
 }
 
+/**
+ * @brief Computes the tangent of a given angle in radians.
+ * @param x The angle in radians.
+ * @return The tangent of `x`, calculated as the ratio of `sin(x)` to `cos(x)`.
+ */
+double klibc_tan(double x) { return klibc_sin(x) / klibc_cos(x); }
+
 /// @brief Computes the absolute value of a given number.
 /// @param x The input value.
 /// @return The absolute value of `x`.
