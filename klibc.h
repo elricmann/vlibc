@@ -627,3 +627,37 @@ int klibc_memcmp(const void *s1, const void *s2, klibc_size_t n) {
 
   return 0;
 }
+
+/**
+ * @brief Compares two null-terminated strings lexicographically.
+ * @param s1 Pointer to the first string.
+ * @param s2 Pointer to the second string.
+ * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
+ *         to be less than, equal to, or greater than `s2`.
+ */
+int klibc_strcmp(const char *s1, const char *s2) {
+  while (*s1 && (*s1 == *s2)) {
+    s1++;
+    s2++;
+  }
+
+  return *(unsigned char *)s1 - *(unsigned char *)s2;
+}
+
+/**
+ * @brief Compares up to `n` characters of two null-terminated strings lexicographically.
+ * @param s1 Pointer to the first string.
+ * @param s2 Pointer to the second string.
+ * @param n Maximum number of characters to compare.
+ * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
+ *         to be less than, equal to, or greater than `s2` within the first `n` characters.
+ */
+int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n) {
+  while (n && *s1 && (*s1 == *s2)) {
+    s1++;
+    s2++;
+    n--;
+  }
+
+  return n ? *(unsigned char *)s1 - *(unsigned char *)s2 : 0;
+}

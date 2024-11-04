@@ -52,5 +52,13 @@ int main(int argc, char const *argv[]) {
   int out2 = klibc_memcmp(buffer1, buffer3, sizeof(buffer3));
   printf("comparison of buffer1 and buffer3: %d\n", out2);
 
+  const char *a1 = "test klibc_strcmp";
+  const char *a2 = "test klibc_strcmp";
+  const char *a3 = "test klibc_str";
+  printf("strcmp (a1 vs a2): %d\n", klibc_strcmp(a1, a2));           // expected 0
+  printf("strcmp (a1 vs a3): %d\n", klibc_strcmp(a1, a3));           // expected non-zero
+  printf("strncmp (a1 vs a3, 10): %d\n", klibc_strncmp(a1, a3, 10)); // expected 0
+  printf("strncmp (a1 vs a3, 15): %d\n", klibc_strncmp(a1, a3, 15)); // expected non-zero
+
   return 0;
 }
