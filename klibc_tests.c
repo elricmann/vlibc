@@ -42,5 +42,15 @@ int main(int argc, char const *argv[]) {
   klibc_strncat(dest2, "appending partial string", 9);
   printf("%s\n", dest2);
 
+  char buffer1[] = "test klibc_memcmp";
+  char buffer2[] = "test klibc_memcmp";
+  char buffer3[] = "test klibc_mem";
+  // identical buffers (ASCII value cmp)
+  int out1 = klibc_memcmp(buffer1, buffer2, sizeof(buffer1));
+  printf("comparison of buffer1 and buffer2: %d\n", out1);
+  // different buffers (ASCII value cmp)
+  int out2 = klibc_memcmp(buffer1, buffer3, sizeof(buffer3));
+  printf("comparison of buffer1 and buffer3: %d\n", out2);
+
   return 0;
 }
