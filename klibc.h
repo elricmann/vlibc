@@ -560,3 +560,45 @@ char *klibc_strncpy(char *dest, const char *src, klibc_size_t n) {
 
   return dest;
 }
+
+/**
+ * @brief Concatenates the string pointed to by `src` to the end of the string pointed to by `dest`.
+ * The destination buffer must be large enough to hold both strings and the terminating null byte.
+ * @param dest Pointer to the destination buffer containing the initial string.
+ * @param src Pointer to the source null-terminated string to append.
+ * @return Pointer to the destination buffer.
+ */
+char *klibc_strcat(char *dest, const char *src) {
+  char *d = dest;
+
+  while (*d)
+    d++;
+
+  while ((*d++ = *src++))
+    ;
+
+  return dest;
+}
+
+/**
+ * @brief Concatenates up to `n` characters from the string pointed to by `src` to the end of
+ * the string pointed to by `dest`. The destination buffer must be large enough to hold the
+ * result, including the terminating null byte.
+ * @param dest Pointer to the destination buffer containing the initial string.
+ * @param src Pointer to the source null-terminated string to append.
+ * @param n Maximum number of characters to append from `src`.
+ * @return Pointer to the destination buffer.
+ */
+char *klibc_strncat(char *dest, const char *src, klibc_size_t n) {
+  char *d = dest;
+
+  while (*d)
+    d++;
+
+  while (n-- && (*d++ = *src++))
+    ;
+
+  *d = '\0';
+
+  return dest;
+}

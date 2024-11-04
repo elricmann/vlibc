@@ -35,5 +35,12 @@ int main(int argc, char const *argv[]) {
   klibc_strncpy(dest2, "test klibc_strncpy", 10);
   printf("%s\n", dest2);
 
+  char dest3[50] = "test klibc_strcat: ";
+  char dest4[50] = "test klibc_strncat: ";
+  klibc_strcat(dest1, "appending full string");
+  printf("%s\n", dest1);
+  klibc_strncat(dest2, "appending partial string", 9);
+  printf("%s\n", dest2);
+
   return 0;
 }
