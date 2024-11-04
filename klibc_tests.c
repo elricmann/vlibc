@@ -101,5 +101,13 @@ int main(int argc, char const *argv[]) {
   char *substr = klibc_strstr(str4, needle);
   printf("substring: %s\n", substr ? substr : "NULL"); // expected "klibc_strstr examples"
 
+  char str5[] = "test,klibc,strtok,example";
+  const char *delim = ",";
+  char *token = klibc_strtok(str5, delim);
+  while (token) {
+    printf("token: %s\n", token);
+    token = klibc_strtok(NULL, delim);
+  }
+
   return 0;
 }

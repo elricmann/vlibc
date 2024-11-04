@@ -481,7 +481,7 @@ klibc_size_t klibc_strspn(const char *s, const char *accept);
 klibc_size_t klibc_strcspn(const char *s, const char *reject);
 char *klibc_strpbrk(const char *s, const char *accept);
 char *klibc_strstr(const char *haystack, const char *needle);
-char *klibc_strdup(const char *s);
+char *klibc_strdup(const char *s); // requires alloc
 char *klibc_strtok(char *str, const char *delim);
 
 /**
@@ -793,4 +793,41 @@ char *klibc_strstr(const char *haystack, const char *needle) {
   }
 
   return NULL;
+}
+
+/**
+ * @brief Splits a string into tokens based on the specified delimiter characters.
+ * Successive calls with `str` set to `NULL` will continue tokenizing the same string.
+ * @param str Pointer to the null-terminated string to be tokenized, or `NULL` to continue tokenizing
+ *            the previous string.
+ * @param delim Pointer to a null-terminated string containing delimiter characters.
+ * @return A pointer to the next token found in `str`, or `NULL` if no more tokens are found.
+ *
+ * @note This function modifies the input string by inserting null characters at delimiter positions.
+ *       It maintains internal state, so it is NOT thread-safe!
+ */
+char *klibc_strtok(char *str, const char *delim) {
+  static char *last;
+
+  if (!str)
+    str = last;
+
+  if (!str)
+    return NULL;
+
+  str += klibc_strspn(str, delim);
+
+  if (!*str) {
+    last = NULL;
+    return NULL;
+  }
+
+  char *end = str + klibc_strcspn(str, delim);
+
+  if (*end)
+    *end++ = '\0';
+
+  last = end;
+
+  return str;
 }
