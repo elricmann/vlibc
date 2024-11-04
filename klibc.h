@@ -143,25 +143,25 @@ typedef signed long long klibc_ptrdiff_t;
 
 // KLIBC_LIMITS_H
 
-#define KLIBC_BOOL_WIDTH 1  // since (C23)
+#define KLIBC_BOOL_WIDTH 1 // since (C23)
 #define KLIBC_CHAR_BIT 8
 #define KLIBC_MB_LEN_MAX 4
-#define KLIBC_CHAR_WIDTH KLIBC_CHAR_BIT  // since (C23)
+#define KLIBC_CHAR_WIDTH KLIBC_CHAR_BIT // since (C23)
 
 #define KLIBC_CHAR_MIN (-128)
 #define KLIBC_CHAR_MAX 127
 
-#define KLIBC_SCHAR_WIDTH 8   // since (C23)
-#define KLIBC_SHRT_WIDTH 16   // since (C23)
-#define KLIBC_INT_WIDTH 32    // since (C23)
-#define KLIBC_LONG_WIDTH 64   // since (C23)
-#define KLIBC_LLONG_WIDTH 64  // since (C23)
+#define KLIBC_SCHAR_WIDTH 8  // since (C23)
+#define KLIBC_SHRT_WIDTH 16  // since (C23)
+#define KLIBC_INT_WIDTH 32   // since (C23)
+#define KLIBC_LONG_WIDTH 64  // since (C23)
+#define KLIBC_LLONG_WIDTH 64 // since (C23)
 
 #define KLIBC_SCHAR_MIN (-128)
 #define KLIBC_SHRT_MIN (-32768)
 #define KLIBC_INT_MIN (-2147483648)
 #define KLIBC_LONG_MIN (-9223372036854775808L)
-#define KLIBC_LLONG_MIN (-9223372036854775808LL)  // since (C99)
+#define KLIBC_LLONG_MIN (-9223372036854775808LL) // since (C99)
 
 #define KLIBC_SCHAR_MAX 127
 #define KLIBC_SHRT_MAX 32767
@@ -179,25 +179,25 @@ typedef signed long long klibc_ptrdiff_t;
 #define KLIBC_USHRT_MAX 65535
 #define KLIBC_UINT_MAX 4294967295U
 #define KLIBC_ULONG_MAX 18446744073709551615UL
-#define KLIBC_ULLONG_MAX 18446744073709551615ULL  // since (C99)
+#define KLIBC_ULLONG_MAX 18446744073709551615ULL // since (C99)
 
 // KLIBC_STDBOOL_H
 
-#define bool _Bool                       // since (C99), removed in (C23)
-#define true 1                           // since (C99), removed in (C23)
-#define false 0                          // since (C99), removed in (C23)
-#define __bool_true_false_are_defined 1  // since (C99), deprecated in (C23)
+#define bool _Bool                      // since (C99), removed in (C23)
+#define true 1                          // since (C99), removed in (C23)
+#define false 0                         // since (C99), removed in (C23)
+#define __bool_true_false_are_defined 1 // since (C99), deprecated in (C23)
 
 // KLIBC_STDALIGN_H
 
-#define alignas _Alignas        // since (C11), removed in (C23)
-#define alignof _Alignof        // since (C11), removed in (C23)
-#define __alignas_is_defined 1  // since (C11), removed in (C23)
-#define __alignof_is_defined 1  // since (C11), removed in (C23)
+#define alignas _Alignas       // since (C11), removed in (C23)
+#define alignof _Alignof       // since (C11), removed in (C23)
+#define __alignas_is_defined 1 // since (C11), removed in (C23)
+#define __alignof_is_defined 1 // since (C11), removed in (C23)
 
 // KLIBC_STDNORETURN_H
 
-#define noreturn _Noreturn  // since (C11), deprecated in (C23)
+#define noreturn _Noreturn // since (C11), deprecated in (C23)
 
 // KLIBC_MATH_H
 // clang-format off
@@ -240,14 +240,15 @@ double klibc_fmod(double x, double y);
 // clang-format on
 
 /**
- * @brief Computes the square root of a given non-negative number using the
- * Newton-Raphson method.
+ * @brief Computes the square root of a given non-negative number using the Newton-Raphson method.
  * @param x The input value.
  * @return The square root of `x`, or `KLIBC_NAN` if `x` is negative.
  */
 double klibc_sqrt(double x) {
-  if (x < 0.0) return KLIBC_NAN;
-  if (x == 0.0) return 0.0;
+  if (x < 0.0)
+    return KLIBC_NAN;
+  if (x == 0.0)
+    return 0.0;
 
   double n = x, epsilon = 1e-10;
 
@@ -259,8 +260,7 @@ double klibc_sqrt(double x) {
 }
 
 /**
- * @brief Computes the sine of a given angle in radians using the Taylor series
- * expansion.
+ * @brief Computes the sine of a given angle in radians using the Taylor series expansion.
  * @param x The angle in radians.
  * @return The sine of `x`.
  */
@@ -280,8 +280,7 @@ double klibc_sin(double x) {
 }
 
 /**
- * @brief Computes the cosine of a given angle in radians using the Taylor
- * series expansion.
+ * @brief Computes the cosine of a given angle in radians using the Taylor series expansion.
  * @param x The angle in radians.
  * @return The cosine of `x`.
  */
@@ -306,6 +305,29 @@ double klibc_cos(double x) {
  * @return The tangent of `x`, calculated as the ratio of `sin(x)` to `cos(x)`.
  */
 double klibc_tan(double x) { return klibc_sin(x) / klibc_cos(x); }
+
+/**
+ * @brief Computes the arcsine (inverse sine) of a given value using the Taylor series expansion.
+ * @param x The input value. Must be within the range [-1, 1].
+ * @return The arcsine of `x` in radians, or `KLIBC_NAN` if `x` is outside the valid range.
+ */
+double klibc_asin(double x) {
+  if (x < -1.0 || x > 1.0)
+    return KLIBC_NAN;
+
+  // x = klibc_fmod(x, 2 * KLIBC_M_PI);
+
+  double acc = x, t = x, x2 = x * x;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    t *= (2.0 * n - 1) * x2 / (2.0 * n);
+    acc += t / (2 * n + 1);
+    n++;
+  }
+
+  return acc;
+}
 
 /**
  * @brief Computes the absolute value of a given number.
