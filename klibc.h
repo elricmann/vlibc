@@ -238,3 +238,25 @@ double klibc_fabs(double x);
 double klibc_fmod(double x, double y);
 
 // clang-format on
+
+/// @brief Computes the square root of a given non-negative number using the
+/// Newton-Raphson method.
+/// @param x The input value.
+/// @return The square root of `x`, or `KLIBC_NAN` if `x` is negative.
+double klibc_sqrt(double x) {
+  if (x < 0.0) return KLIBC_NAN;
+  if (x == 0.0) return 0.0;
+
+  double n = x, epsilon = 1e-10;
+
+  while (klibc_fabs(n * n - x) > epsilon) {
+    n = (n + x / n) * 0.5;
+  }
+
+  return n;
+}
+
+/// @brief Computes the absolute value of a given number.
+/// @param x The input value.
+/// @return The absolute value of `x`.
+double klibc_fabs(double x) { return (x < 0) ? -x : x; }
