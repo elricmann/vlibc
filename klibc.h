@@ -709,3 +709,22 @@ char *klibc_strchr(const char *s, int c) {
 
   return c == '\0' ? (char *)s : NULL;
 }
+
+/**
+ * @brief Searches for the last occurrence of the character `c` in the string pointed to by `s`.
+ * @param s Pointer to the null-terminated string to be searched.
+ * @param c The character to locate (converted to an unsigned char).
+ * @return A pointer to the last occurrence of `c` in the string, or `NULL` if not found.
+ */
+char *klibc_strrchr(const char *s, int c) {
+  const char *p = s + klibc_strlen(s);
+
+  while (p >= s) {
+    if (*p == (char)c)
+      return (char *)p;
+
+    p--;
+  }
+
+  return NULL;
+}

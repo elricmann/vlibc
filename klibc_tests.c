@@ -77,5 +77,13 @@ int main(int argc, char const *argv[]) {
   char *not_found = klibc_strchr(str2, 'z');
   printf("strchr not found result: %s\n", not_found ? not_found : "NULL"); // expected NULL
 
+  const char *str1 = "test klibc_strrchr example";
+  char *last_e = klibc_strrchr(str, 'e');
+  if (last_e) {
+    printf("last occurrence of 'e': %c\n", *last_e); // expected 'e'
+  } else {
+    printf("character not found\n");
+  }
+
   return 0;
 }
