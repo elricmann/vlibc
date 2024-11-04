@@ -256,7 +256,41 @@ double klibc_sqrt(double x) {
   return n;
 }
 
+/// @brief Computes the sine of a given angle in radians using the Taylor series
+/// expansion.
+/// @param x The angle in radians.
+/// @return The sine of `x`.
+double klibc_sin(double x) {
+  x = klibc_fmod(x, 2 * KLIBC_M_PI);
+  // if (x < 0) x += 360.0;
+  // x = x * KLIBC_M_PI / 180.0;
+  // if (x > 180.0) x -= 360.0;
+  // if (x > 90.0)
+  //   x = 180.0 - x;
+  // else if (x < -90.0)
+  //   x = -180.0 - x;
+
+  // if (x < 0) x += 360.0;
+
+  double acc = 0.0, t = x, x2 = x * x;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    acc += t;
+    t *= -x2 / ((2 * n) * (2 * n + 1));
+    n++;
+  }
+
+  return acc;
+}
+
 /// @brief Computes the absolute value of a given number.
 /// @param x The input value.
 /// @return The absolute value of `x`.
 double klibc_fabs(double x) { return (x < 0) ? -x : x; }
+
+/// @brief Computes the floating-point remainder of the division of `x` by `y`.
+/// @param x The dividend.
+/// @param y The divisor.
+/// @return The remainder when `x` is divided by `y`.
+double klibc_fmod(double x, double y) { return x - y * (int)(x / y); }
