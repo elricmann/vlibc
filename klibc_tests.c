@@ -12,5 +12,6 @@ int main(int argc, char const *argv[]) {
   printf("klibc_tan((60.0)): %f\n", klibc_tan((60.0)));
   printf("klibc_asin((0.5)): %f\n", klibc_asin((0.5)));
   printf("klibc_acos((0.5)): %f\n", klibc_acos((0.5)));
+  printf("klibc_atan((0.5)): %f\n", klibc_atan((0.5)));
   return 0;
 }

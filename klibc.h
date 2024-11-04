@@ -339,6 +339,31 @@ double klibc_asin(double x) {
 double klibc_acos(double x) { return KLIBC_M_PI_2 - klibc_asin(x); }
 
 /**
+ * @brief Computes the arctangent (inverse tangent) of a given value using the Taylor series expansion.
+ * @param x The input value.
+ * @return The arctangent of `x` in radians.
+ *
+ * @note For values of x > 1, this function uses the identity: atan(x) = π/2 - atan(1/x) to
+ *       improve convergence. The series expansion is applied directly for values of `x` within
+ *       the range [-1, 1] for accuracy (each approach mitigates floating-point errors).
+ */
+double klibc_atan(double x) {
+  if (x > 1.0)
+    return KLIBC_M_PI_2 - klibc_atan(1.0 / x);
+
+  double acc = x, t = x, x2 = x * x;
+  int n = 1;
+
+  while (klibc_fabs(t) > 1e-10) {
+    t *= -x2;
+    acc += t / (2 * n + 1);
+    n++;
+  }
+
+  return acc;
+}
+
+/**
  * @brief Computes the absolute value of a given number.
  * @param x The input value.
  * @return The absolute value of `x`.
