@@ -330,6 +330,15 @@ double klibc_asin(double x) {
 }
 
 /**
+ * @brief Computes the arccosine (inverse cosine) of a given value.
+ * @param x The input value. Must be within the range [-1, 1].
+ * @return The arccosine of `x` in radians, or `KLIBC_NAN` if `x` is outside the valid range.
+ *
+ * @note This function computes arccosine using the identity: acos(x) = π/2 - asin(x).
+ */
+double klibc_acos(double x) { return KLIBC_M_PI_2 - klibc_asin(x); }
+
+/**
  * @brief Computes the absolute value of a given number.
  * @param x The input value.
  * @return The absolute value of `x`.
