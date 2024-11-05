@@ -478,30 +478,95 @@ int klibc_isxdigit(int c);
 int klibc_tolower(int c);
 int klibc_toupper(int c);
 
+/**
+ * @brief Checks if the given character is alphanumeric (a letter or a digit).
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is alphanumeric, zero otherwise.
+ */
 int klibc_isalnum(int c) { return klibc_isalpha(c) || klibc_isdigit(c); }
 
+/**
+ * @brief Checks if the given character is an alphabetic letter (uppercase or lowercase).
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is alphabetic, zero otherwise.
+ */
 int klibc_isalpha(int c) { return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'); }
 
+/**
+ * @brief Checks if the given character is a control character.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is a control character, zero otherwise.
+ */
 int klibc_iscntrl(int c) { return (c >= 0 && c <= 0x1F) || c == 0x7F; }
 
+/**
+ * @brief Checks if the given character is a decimal digit.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is a digit, zero otherwise.
+ */
 int klibc_isdigit(int c) { return (c >= '0' && c <= '9'); }
 
+/**
+ * @brief Checks if the given character has a graphical representation other than space.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is a graphic character, zero otherwise.
+ */
 int klibc_isgraph(int c) { return c > 0x20 && c < 0x7F; }
 
+/**
+ * @brief Checks if the given character is a lowercase letter.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is lowercase, zero otherwise.
+ */
 int klibc_islower(int c) { return (c >= 'a' && c <= 'z'); }
 
+/**
+ * @brief Checks if the given character is printable, including space.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is printable, zero otherwise.
+ */
 int klibc_isprint(int c) { return c >= 0x20 && c < 0x7F; }
 
+/**
+ * @brief Checks if the given character is a punctuation mark.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is a punctuation character, zero otherwise.
+ */
 int klibc_ispunct(int c) { return klibc_isgraph(c) && !klibc_isalnum(c); }
 
+/**
+ * @brief Checks if the given character is a whitespace character (space, tab, newline, etc.).
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is whitespace, zero otherwise.
+ */
 int klibc_isspace(int c) { return c == ' ' || (c >= '\t' && c <= '\r'); }
 
+/**
+ * @brief Checks if the given character is an uppercase letter.
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is uppercase, zero otherwise.
+ */
 int klibc_isupper(int c) { return (c >= 'A' && c <= 'Z'); }
 
+/**
+ * @brief Checks if the given character is a hexadecimal digit (0-9, A-F, a-f).
+ * @param c Character to be checked.
+ * @return Non-zero if `c` is a hexadecimal digit, zero otherwise.
+ */
 int klibc_isxdigit(int c) { return klibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'); }
 
+/**
+ * @brief Converts an uppercase letter to its lowercase equivalent.
+ * @param c Character to be converted.
+ * @return Lowercase equivalent of `c` if it is uppercase; otherwise, returns `c`.
+ */
 int klibc_tolower(int c) { return klibc_isupper(c) ? c + 32 : c; }
 
+/**
+ * @brief Converts a lowercase letter to its uppercase equivalent.
+ * @param c Character to be converted.
+ * @return Uppercase equivalent of `c` if it is lowercase; otherwise, returns `c`.
+ */
 int klibc_toupper(int c) { return klibc_islower(c) ? c - 32 : c; }
 
 // KLIBC_STRING_H
