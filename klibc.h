@@ -462,6 +462,48 @@ double klibc_fabs(double x) { return (x < 0) ? -x : x; }
  */
 double klibc_fmod(double x, double y) { return x - y * (int)(x / y); }
 
+// KLIBC_CTYPE_H
+
+int klibc_isalnum(int c);
+int klibc_isalpha(int c);
+int klibc_iscntrl(int c);
+int klibc_isdigit(int c);
+int klibc_isgraph(int c);
+int klibc_islower(int c);
+int klibc_isprint(int c);
+int klibc_ispunct(int c);
+int klibc_isspace(int c);
+int klibc_isupper(int c);
+int klibc_isxdigit(int c);
+int klibc_tolower(int c);
+int klibc_toupper(int c);
+
+int klibc_isalnum(int c) { return klibc_isalpha(c) || klibc_isdigit(c); }
+
+int klibc_isalpha(int c) { return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'); }
+
+int klibc_iscntrl(int c) { return (c >= 0 && c <= 0x1F) || c == 0x7F; }
+
+int klibc_isdigit(int c) { return (c >= '0' && c <= '9'); }
+
+int klibc_isgraph(int c) { return c > 0x20 && c < 0x7F; }
+
+int klibc_islower(int c) { return (c >= 'a' && c <= 'z'); }
+
+int klibc_isprint(int c) { return c >= 0x20 && c < 0x7F; }
+
+int klibc_ispunct(int c) { return klibc_isgraph(c) && !klibc_isalnum(c); }
+
+int klibc_isspace(int c) { return c == ' ' || (c >= '\t' && c <= '\r'); }
+
+int klibc_isupper(int c) { return (c >= 'A' && c <= 'Z'); }
+
+int klibc_isxdigit(int c) { return klibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'); }
+
+int klibc_tolower(int c) { return klibc_isupper(c) ? c + 32 : c; }
+
+int klibc_toupper(int c) { return klibc_islower(c) ? c - 32 : c; }
+
 // KLIBC_STRING_H
 
 void *klibc_memcpy(void *dest, const void *src, klibc_size_t n);

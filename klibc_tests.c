@@ -109,5 +109,10 @@ int main(int argc, char const *argv[]) {
     token = klibc_strtok(NULL, delim);
   }
 
+  printf("char upper: %c\n", klibc_toupper('k'));
+  printf("is alpha: %d\n", klibc_isalpha('k'));
+  printf("is num: %d\n", klibc_isdigit('9'));
+  printf("is alphanum: %d\n", klibc_isalnum('2'));
+
   return 0;
 }
