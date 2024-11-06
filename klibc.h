@@ -1094,3 +1094,64 @@ syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
 #endif // __linux__
 
 // clang-format on
+
+#ifdef __linux__
+#ifdef __x86_64__
+
+typedef klibc_int64_t klibc_off_t;
+typedef klibc_int32_t klibc_pid_t;
+typedef klibc_uint32_t klibc_mode_t;
+
+// KLIBC_FCNTL_H
+
+// file access modes
+#define KLIBC_O_RDONLY 0x0000
+#define KLIBC_O_WRONLY 0x0001
+#define KLIBC_O_RDWR 0x0002
+#define KLIBC_O_APPEND 0x0008
+#define KLIBC_O_CREAT 0x0100
+#define KLIBC_O_TRUNC 0x0200
+#define KLIBC_O_EXCL 0x0400
+#define KLIBC_O_NONBLOCK 0x0800
+#define KLIBC_O_SYNC 0x101000
+#define KLIBC_O_DSYNC 0x1000
+#define KLIBC_O_RSYNC 0x101000
+#define KLIBC_O_NOCTTY 0x2000
+#define KLIBC_O_CLOEXEC 0x4000
+
+// file descriptor flags
+#define KLIBC_FD_CLOEXEC 1
+
+// fcntl commands
+#define KLIBC_F_DUPFD 0
+#define KLIBC_F_GETFD 1
+#define KLIBC_F_SETFD 2
+#define KLIBC_F_GETFL 3
+#define KLIBC_F_SETFL 4
+#define KLIBC_F_GETOWN 5
+#define KLIBC_F_SETOWN 6
+#define KLIBC_F_GETLK 7
+#define KLIBC_F_SETLK 8
+#define KLIBC_F_SETLKW 9
+
+// file lock types
+#define KLIBC_F_RDLCK 0
+#define KLIBC_F_WRLCK 1
+#define KLIBC_F_UNLCK 2
+
+// file locking
+struct klibc_flock {
+  klibc_int16_t l_type;
+  klibc_int16_t l_whence;
+  klibc_off_t l_start;
+  klibc_off_t l_len;
+  klibc_pid_t l_pid;
+};
+
+// fcntl & unistd prototypes
+int klibc_open(const char *pathname, int flags, klibc_mode_t mode);
+int klibc_creat(const char *pathname, klibc_mode_t mode);
+int klibc_fcntl(int fd, int cmd, ...);
+
+#endif // __x86_64__
+#endif // __linux__
