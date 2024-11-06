@@ -979,17 +979,48 @@ klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
                 klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, 
                 klibc_int64_t arg6);
 
-static inline klibc_int64_t syscall_0(klibc_int64_t n) {
-    klibc_int64_t out;
+// https://gist.github.com/elricmann/f3ccbf01454f8ebce0934081a50969bb
+
+static inline klibc_int64_t
+syscall_0(klibc_int64_t n) {
+    klibc_int64_t __out;
 
     __asm__ __volatile__ (
         "syscall;\n"
-        : "=a" (out)
+        : "=a" (__out)
         : "a" (n)
         : "%rcx", "%r11" // preserve
     );
 
-    return out;
+    return __out;
+}
+
+static inline klibc_int64_t
+syscall_1(klibc_int64_t n, klibc_int64_t arg1) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1)
+        : "%rcx", "%r11"
+    );
+
+    return __out;
+}
+
+static inline klibc_int64_t
+syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1), "S" (arg2)
+        : "%rcx", "%r11"
+    );
+
+    return __out;
 }
 
 #endif // __x86_64__
