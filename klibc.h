@@ -981,7 +981,7 @@ klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
 
 // https://gist.github.com/elricmann/f3ccbf01454f8ebce0934081a50969bb
 
-static inline klibc_int64_t
+static __klibc_force_inline klibc_int64_t
 syscall_0(klibc_int64_t n) {
     klibc_int64_t __out;
 
@@ -995,7 +995,7 @@ syscall_0(klibc_int64_t n) {
     return __out;
 }
 
-static inline klibc_int64_t
+static __klibc_force_inline klibc_int64_t
 syscall_1(klibc_int64_t n, klibc_int64_t arg1) {
     klibc_int64_t __out;
 
@@ -1009,7 +1009,7 @@ syscall_1(klibc_int64_t n, klibc_int64_t arg1) {
     return __out;
 }
 
-static inline klibc_int64_t
+static __klibc_force_inline klibc_int64_t
 syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2) {
     klibc_int64_t __out;
 
@@ -1018,6 +1018,73 @@ syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2) {
         : "=a" (__out)
         : "a" (n), "D" (arg1), "S" (arg2)
         : "%rcx", "%r11"
+    );
+
+    return __out;
+}
+
+static __klibc_force_inline klibc_int64_t
+syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
+          klibc_int64_t arg3) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1), "S" (arg2), "d" (arg3)
+        : "%rcx", "%r11"
+    );
+
+    return __out;
+}
+
+static __klibc_force_inline klibc_int64_t
+syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
+          klibc_int64_t arg3, klibc_int64_t arg4) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "movq %5, %%r10;\n"
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1), "S" (arg2), "d" (arg3), "r" (arg4)
+        : "%r10", "%rcx", "%r11"
+    );
+
+    return __out;
+}
+
+static __klibc_force_inline klibc_int64_t
+syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
+          klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "movq %5, %%r10;\n"
+        "movq %6, %%r8;\n"
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1), "S" (arg2), "d" (arg3), "r" (arg4), "r" (arg5)
+        : "%r10", "%r8", "%rcx", "%r11"
+    );
+
+    return __out;
+}
+
+static __klibc_force_inline klibc_int64_t
+syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
+          klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5,
+          klibc_int64_t arg6) {
+    klibc_int64_t __out;
+
+    __asm__ __volatile__ (
+        "movq %5, %%r10;\n"
+        "movq %6, %%r8;\n"
+        "movq %7, %%r9;\n"
+        "syscall;\n"
+        : "=a" (__out)
+        : "a" (n), "D" (arg1), "S" (arg2), "d" (arg3), "r" (arg4), "r" (arg5), "r" (arg6)
+        : "%r10", "%r8", "%r9", "%rcx", "%r11"
     );
 
     return __out;

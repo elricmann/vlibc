@@ -114,7 +114,7 @@ int main(int argc, char const *argv[]) {
   // printf("is num: %d\n", klibc_isdigit('9'));
   // printf("is alphanum: %d\n", klibc_isalnum('2'));
 
-#ifdef __linux__ && __x86_64__
+#ifdef __linux__
 #ifdef __x86_64__
   printf("we are on linux & x86-64");
 #endif
