@@ -941,6 +941,7 @@ char *klibc_strtok(char *str, const char *delim) {
 
 // ps: most of the functionality from this point are specific to kernel space routines,
 // e.g. syscalls & ABI compatibility, we will not document non-user-facing library functions
+// clang-format off
 
 #if defined(__GNUC__) || defined(__clang__)
 #define __klibc_force_inline __attribute__((always_inline)) inline
@@ -950,10 +951,34 @@ char *klibc_strtok(char *str, const char *delim) {
 #define __klibc_force_inline inline
 #endif
 
-static __klibc_force_inline klibc_int64_t klibc_syscall_0(klibc_int64_t n);
-static __klibc_force_inline klibc_int64_t klibc_syscall_1(klibc_int64_t n, klibc_int64_t arg1);
-static __klibc_force_inline klibc_int64_t klibc_syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2);
-static __klibc_force_inline klibc_int64_t klibc_syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3);
-static __klibc_force_inline klibc_int64_t klibc_syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4);
-static __klibc_force_inline klibc_int64_t klibc_syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5);
-static __klibc_force_inline klibc_int64_t klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, klibc_int64_t arg6);
+#ifdef __linux__
+#ifdef __x86_64__
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_0(klibc_int64_t n);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_1(klibc_int64_t n, klibc_int64_t arg1);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
+                klibc_int64_t arg3);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
+                klibc_int64_t arg3, klibc_int64_t arg4);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
+                klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5);
+
+static __klibc_force_inline klibc_int64_t 
+klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
+                klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, 
+                klibc_int64_t arg6);
+#endif // __x86_64__
+#endif // __linux__
+
+// clang-format on
