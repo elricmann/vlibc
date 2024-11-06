@@ -938,3 +938,14 @@ char *klibc_strtok(char *str, const char *delim) {
 
   return str;
 }
+
+// ps: most of the functionality from this point are specific to kernel space routines,
+// e.g. syscalls & ABI compatibility, we will not document non-user-facing library functions
+
+static inline klibc_int64_t klibc_syscall_0(klibc_int64_t n);
+static inline klibc_int64_t klibc_syscall_1(klibc_int64_t n, klibc_int64_t arg1);
+static inline klibc_int64_t klibc_syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2);
+static inline klibc_int64_t klibc_syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3);
+static inline klibc_int64_t klibc_syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4);
+static inline klibc_int64_t klibc_syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5);
+static inline klibc_int64_t klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, klibc_int64_t arg6);
