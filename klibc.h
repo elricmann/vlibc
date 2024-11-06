@@ -978,6 +978,20 @@ static __klibc_force_inline klibc_int64_t
 klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
                 klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, 
                 klibc_int64_t arg6);
+
+static inline klibc_int64_t syscall_0(klibc_int64_t n) {
+    klibc_int64_t out;
+
+    __asm__ __volatile__ (
+        "syscall;\n"
+        : "=a" (out)
+        : "a" (n)
+        : "%rcx", "%r11" // preserve
+    );
+
+    return out;
+}
+
 #endif // __x86_64__
 #endif // __linux__
 
