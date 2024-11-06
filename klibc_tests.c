@@ -114,11 +114,10 @@ int main(int argc, char const *argv[]) {
   // printf("is num: %d\n", klibc_isdigit('9'));
   // printf("is alphanum: %d\n", klibc_isalnum('2'));
 
-#ifdef __linux__
-#ifdef __x86_64__
-  printf("we are on linux & x86-64");
-#endif
-#endif
+  int fd = klibc_open(".gitignore", KLIBC_O_RDONLY, 0);
+  printf(".gitignore fd: %d\n", fd);
+  int fd2 = klibc_open("doesntexist.txt", KLIBC_O_RDONLY, 0);
+  printf("doesntexist.txt fd: %d", fd2);
 
   return 0;
 }

@@ -1153,5 +1153,9 @@ int klibc_open(const char *pathname, int flags, klibc_mode_t mode);
 int klibc_creat(const char *pathname, klibc_mode_t mode);
 int klibc_fcntl(int fd, int cmd, ...);
 
+int klibc_open(const char *pathname, int flags, klibc_mode_t mode) {
+  return (int)syscall_3(2, (klibc_int64_t)pathname, (klibc_int64_t)flags, (klibc_int64_t)mode);
+}
+
 #endif // __x86_64__
 #endif // __linux__
