@@ -951,6 +951,16 @@ char *vlibc_strtok(char *str, const char *delim) {
 #define __vlibc_force_inline inline
 #endif
 
+#if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 202311L)
+  #define __vlibc_deprecated [[deprecated]]
+#elif defined(__GNUC__) || defined(__clang__)
+  #define __vlibc_deprecated __attribute__((deprecated))
+#elif defined(_MSC_VER)
+  #define __vlibc_deprecated __declspec(deprecated)
+#else
+  #define __vlibc_deprecated
+#endif
+
 #ifdef __linux__
 #ifdef __x86_64__
 static __vlibc_force_inline vlibc_int64_t 
@@ -1151,11 +1161,18 @@ struct vlibc_flock {
 // fcntl & unistd prototypes
 int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode);
 int vlibc_creat(const char *pathname, vlibc_mode_t mode);
-int vlibc_fcntl(int fd, int cmd, ...);
+int vlibc_fcntl(int fd, int cmd, ...); // requires va_args (stdarg.h)
+// clang-format off
 
 int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode) {
   return (int)syscall_3(2, (vlibc_int64_t)pathname, (vlibc_int64_t)flags, (vlibc_int64_t)mode);
 }
+
+__vlibc_deprecated int vlibc_creat(const char *pathname, vlibc_mode_t mode) {
+  return vlibc_open(pathname, VLIBC_O_WRONLY | VLIBC_O_CREAT | VLIBC_O_TRUNC, mode);
+}
+
+// clang-format on
 
 #endif // __x86_64__
 #endif // __linux__
