@@ -1100,6 +1100,35 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
     return __out;
 }
 
+// syscall numbers <sys/syscall.h>
+#define VLIBC_SYS_read        0
+#define VLIBC_SYS_write       1
+#define VLIBC_SYS_open        2
+#define VLIBC_SYS_close       3
+#define VLIBC_SYS_stat        4
+#define VLIBC_SYS_fstat       5
+#define VLIBC_SYS_lseek       8
+#define VLIBC_SYS_mmap        9
+#define VLIBC_SYS_mprotect    10
+#define VLIBC_SYS_munmap      11
+#define VLIBC_SYS_brk         12
+#define VLIBC_SYS_sigaction   13
+#define VLIBC_SYS_ioctl       16
+#define VLIBC_SYS_pipe        22
+#define VLIBC_SYS_nanosleep   35
+#define VLIBC_SYS_dup         32
+#define VLIBC_SYS_dup2        33
+#define VLIBC_SYS_fork        57
+#define VLIBC_SYS_execve      59
+#define VLIBC_SYS_exit        60
+#define VLIBC_SYS_wait4       61
+#define VLIBC_SYS_kill        62
+#define VLIBC_SYS_uname       63
+#define VLIBC_SYS_getpid      39
+#define VLIBC_SYS_getuid      102
+#define VLIBC_SYS_getgid      104
+#define VLIBC_SYS_gettimeofday 96
+
 #endif // __x86_64__
 #endif // __linux__
 
@@ -1165,7 +1194,7 @@ int vlibc_fcntl(int fd, int cmd, ...); // requires va_args (stdarg.h)
 // clang-format off
 
 int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode) {
-  return (int)syscall_3(2, (vlibc_int64_t)pathname, (vlibc_int64_t)flags, (vlibc_int64_t)mode);
+  return (int)syscall_3(VLIBC_SYS_open, (vlibc_int64_t)pathname, (vlibc_int64_t)flags, (vlibc_int64_t)mode);
 }
 
 __vlibc_deprecated int vlibc_creat(const char *pathname, vlibc_mode_t mode) {
