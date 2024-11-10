@@ -199,8 +199,17 @@ typedef signed long long vlibc_ptrdiff_t;
 
 #define noreturn _Noreturn // since (C11), deprecated in (C23)
 
-// VLIBC_MATH_H
+// VLIBC_STDARG_H
 // clang-format off
+
+typedef __builtin_va_list vlibc_va_list;
+
+#define vlibc_va_start(ap, last) __builtin_va_start(ap, last)
+#define vlibc_va_end(ap)         __builtin_va_end(ap)
+#define vlibc_va_arg(ap, type)   __builtin_va_arg(ap, type)
+#define vlibc_va_copy(dest, src) __builtin_va_copy(dest, src)
+
+// VLIBC_MATH_H
 // @todo vlibc no prefix
 
 #define VLIBC_M_E        2.71828182845904523536
