@@ -22,237 +22,237 @@
 
 #pragma once
 
-// KLIBC_STDINT_H
+// VLIBC_STDINT_H
 
-#define KLIBC_INT8_MIN -128
-#define KLIBC_INT8_MAX 127
-#define KLIBC_UINT8_MAX 255
+#define VLIBC_INT8_MIN -128
+#define VLIBC_INT8_MAX 127
+#define VLIBC_UINT8_MAX 255
 
-#define KLIBC_INT16_MIN -32768
-#define KLIBC_INT16_MAX 32767
-#define KLIBC_UINT16_MAX 65535
+#define VLIBC_INT16_MIN -32768
+#define VLIBC_INT16_MAX 32767
+#define VLIBC_UINT16_MAX 65535
 
-#define KLIBC_INT32_MIN -2147483648
-#define KLIBC_INT32_MAX 2147483647
-#define KLIBC_UINT32_MAX 4294967295U
+#define VLIBC_INT32_MIN -2147483648
+#define VLIBC_INT32_MAX 2147483647
+#define VLIBC_UINT32_MAX 4294967295U
 
-#define KLIBC_INT64_MIN -9223372036854775808LL
-#define KLIBC_INT64_MAX 9223372036854775807LL
-#define KLIBC_UINT64_MAX 18446744073709551615ULL
+#define VLIBC_INT64_MIN -9223372036854775808LL
+#define VLIBC_INT64_MAX 9223372036854775807LL
+#define VLIBC_UINT64_MAX 18446744073709551615ULL
 
-#define KLIBC_INT_FAST8_MIN KLIBC_INT8_MIN
-#define KLIBC_INT_FAST8_MAX KLIBC_INT8_MAX
-#define KLIBC_UINT_FAST8_MAX KLIBC_UINT8_MAX
+#define VLIBC_INT_FAST8_MIN VLIBC_INT8_MIN
+#define VLIBC_INT_FAST8_MAX VLIBC_INT8_MAX
+#define VLIBC_UINT_FAST8_MAX VLIBC_UINT8_MAX
 
-#define KLIBC_INT_FAST16_MIN KLIBC_INT16_MIN
-#define KLIBC_INT_FAST16_MAX KLIBC_INT16_MAX
-#define KLIBC_UINT_FAST16_MAX KLIBC_UINT16_MAX
+#define VLIBC_INT_FAST16_MIN VLIBC_INT16_MIN
+#define VLIBC_INT_FAST16_MAX VLIBC_INT16_MAX
+#define VLIBC_UINT_FAST16_MAX VLIBC_UINT16_MAX
 
-#define KLIBC_INT_FAST32_MIN KLIBC_INT32_MIN
-#define KLIBC_INT_FAST32_MAX KLIBC_INT32_MAX
-#define KLIBC_UINT_FAST32_MAX KLIBC_UINT32_MAX
+#define VLIBC_INT_FAST32_MIN VLIBC_INT32_MIN
+#define VLIBC_INT_FAST32_MAX VLIBC_INT32_MAX
+#define VLIBC_UINT_FAST32_MAX VLIBC_UINT32_MAX
 
-#define KLIBC_INT_FAST64_MIN KLIBC_INT64_MIN
-#define KLIBC_INT_FAST64_MAX KLIBC_INT64_MAX
-#define KLIBC_UINT_FAST64_MAX KLIBC_UINT64_MAX
+#define VLIBC_INT_FAST64_MIN VLIBC_INT64_MIN
+#define VLIBC_INT_FAST64_MAX VLIBC_INT64_MAX
+#define VLIBC_UINT_FAST64_MAX VLIBC_UINT64_MAX
 
-#define KLIBC_INT_LEAST8_MIN KLIBC_INT8_MIN
-#define KLIBC_INT_LEAST8_MAX KLIBC_INT8_MAX
-#define KLIBC_UINT_LEAST8_MAX KLIBC_UINT8_MAX
+#define VLIBC_INT_LEAST8_MIN VLIBC_INT8_MIN
+#define VLIBC_INT_LEAST8_MAX VLIBC_INT8_MAX
+#define VLIBC_UINT_LEAST8_MAX VLIBC_UINT8_MAX
 
-#define KLIBC_INT_LEAST16_MIN KLIBC_INT16_MIN
-#define KLIBC_INT_LEAST16_MAX KLIBC_INT16_MAX
-#define KLIBC_UINT_LEAST16_MAX KLIBC_UINT16_MAX
+#define VLIBC_INT_LEAST16_MIN VLIBC_INT16_MIN
+#define VLIBC_INT_LEAST16_MAX VLIBC_INT16_MAX
+#define VLIBC_UINT_LEAST16_MAX VLIBC_UINT16_MAX
 
-#define KLIBC_INT_LEAST32_MIN KLIBC_INT32_MIN
-#define KLIBC_INT_LEAST32_MAX KLIBC_INT32_MAX
-#define KLIBC_UINT_LEAST32_MAX KLIBC_UINT32_MAX
+#define VLIBC_INT_LEAST32_MIN VLIBC_INT32_MIN
+#define VLIBC_INT_LEAST32_MAX VLIBC_INT32_MAX
+#define VLIBC_UINT_LEAST32_MAX VLIBC_UINT32_MAX
 
-#define KLIBC_INT_LEAST64_MIN KLIBC_INT64_MIN
-#define KLIBC_INT_LEAST64_MAX KLIBC_INT64_MAX
-#define KLIBC_UINT_LEAST64_MAX KLIBC_UINT64_MAX
+#define VLIBC_INT_LEAST64_MIN VLIBC_INT64_MIN
+#define VLIBC_INT_LEAST64_MAX VLIBC_INT64_MAX
+#define VLIBC_UINT_LEAST64_MAX VLIBC_UINT64_MAX
 
-#define KLIBC_INTMAX_MIN KLIBC_INT64_MIN
-#define KLIBC_INTMAX_MAX KLIBC_INT64_MAX
-#define KLIBC_UINTMAX_MAX KLIBC_UINT64_MAX
+#define VLIBC_INTMAX_MIN VLIBC_INT64_MIN
+#define VLIBC_INTMAX_MAX VLIBC_INT64_MAX
+#define VLIBC_UINTMAX_MAX VLIBC_UINT64_MAX
 
-#define KLIBC_INTPTR_MIN KLIBC_INT64_MIN
-#define KLIBC_INTPTR_MAX KLIBC_INT64_MAX
-#define KLIBC_UINTPTR_MAX KLIBC_UINT64_MAX
+#define VLIBC_INTPTR_MIN VLIBC_INT64_MIN
+#define VLIBC_INTPTR_MAX VLIBC_INT64_MAX
+#define VLIBC_UINTPTR_MAX VLIBC_UINT64_MAX
 
-#define KLIBC_PTRDIFF_MIN KLIBC_INT64_MIN
-#define KLIBC_PTRDIFF_MAX KLIBC_INT64_MAX
+#define VLIBC_PTRDIFF_MIN VLIBC_INT64_MIN
+#define VLIBC_PTRDIFF_MAX VLIBC_INT64_MAX
 
-#define KLIBC_WCHAR_MIN KLIBC_INT32_MIN
-#define KLIBC_WCHAR_MAX KLIBC_INT32_MAX
+#define VLIBC_WCHAR_MIN VLIBC_INT32_MIN
+#define VLIBC_WCHAR_MAX VLIBC_INT32_MAX
 
-#define KLIBC_WINT_MIN KLIBC_INT32_MIN
-#define KLIBC_WINT_MAX KLIBC_INT32_MAX
+#define VLIBC_WINT_MIN VLIBC_INT32_MIN
+#define VLIBC_WINT_MAX VLIBC_INT32_MAX
 
-typedef signed char klibc_int8_t;
-typedef unsigned char klibc_uint8_t;
+typedef signed char vlibc_int8_t;
+typedef unsigned char vlibc_uint8_t;
 
-typedef signed short klibc_int16_t;
-typedef unsigned short klibc_uint16_t;
+typedef signed short vlibc_int16_t;
+typedef unsigned short vlibc_uint16_t;
 
-typedef signed int klibc_int32_t;
-typedef unsigned int klibc_uint32_t;
+typedef signed int vlibc_int32_t;
+typedef unsigned int vlibc_uint32_t;
 
-typedef signed long long klibc_int64_t;
-typedef unsigned long long klibc_uint64_t;
+typedef signed long long vlibc_int64_t;
+typedef unsigned long long vlibc_uint64_t;
 
-typedef signed char klibc_int_fast8_t;
-typedef unsigned char klibc_uint_fast8_t;
+typedef signed char vlibc_int_fast8_t;
+typedef unsigned char vlibc_uint_fast8_t;
 
-typedef signed short klibc_int_fast16_t;
-typedef unsigned short klibc_uint_fast16_t;
+typedef signed short vlibc_int_fast16_t;
+typedef unsigned short vlibc_uint_fast16_t;
 
-typedef signed int klibc_int_fast32_t;
-typedef unsigned int klibc_uint_fast32_t;
+typedef signed int vlibc_int_fast32_t;
+typedef unsigned int vlibc_uint_fast32_t;
 
-typedef signed long long klibc_int_fast64_t;
-typedef unsigned long long klibc_uint_fast64_t;
+typedef signed long long vlibc_int_fast64_t;
+typedef unsigned long long vlibc_uint_fast64_t;
 
-typedef signed char klibc_int_least8_t;
-typedef unsigned char klibc_uint_least8_t;
+typedef signed char vlibc_int_least8_t;
+typedef unsigned char vlibc_uint_least8_t;
 
-typedef signed short klibc_int_least16_t;
-typedef unsigned short klibc_uint_least16_t;
+typedef signed short vlibc_int_least16_t;
+typedef unsigned short vlibc_uint_least16_t;
 
-typedef signed int klibc_int_least32_t;
-typedef unsigned int klibc_uint_least32_t;
+typedef signed int vlibc_int_least32_t;
+typedef unsigned int vlibc_uint_least32_t;
 
-typedef signed long long klibc_int_least64_t;
-typedef unsigned long long klibc_uint_least64_t;
+typedef signed long long vlibc_int_least64_t;
+typedef unsigned long long vlibc_uint_least64_t;
 
-typedef signed long long klibc_intmax_t;
-typedef unsigned long long klibc_uintmax_t;
+typedef signed long long vlibc_intmax_t;
+typedef unsigned long long vlibc_uintmax_t;
 
-typedef signed long long klibc_intptr_t;
-typedef unsigned long long klibc_uintptr_t;
+typedef signed long long vlibc_intptr_t;
+typedef unsigned long long vlibc_uintptr_t;
 
-// KLIBC_STDDEF_H
+// VLIBC_STDDEF_H
 
-#define KLIBC_NULL ((void *)0)
+#define VLIBC_NULL ((void *)0)
 
-typedef int klibc_wchar_t;
-typedef unsigned long long klibc_size_t;
-typedef signed long long klibc_ptrdiff_t;
+typedef int vlibc_wchar_t;
+typedef unsigned long long vlibc_size_t;
+typedef signed long long vlibc_ptrdiff_t;
 
-#define KLIBC_OFFSETOF(t, m) ((klibc_size_t) & (((t *)0)->m))
+#define VLIBC_OFFSETOF(t, m) ((vlibc_size_t) & (((t *)0)->m))
 
-// KLIBC_LIMITS_H
+// VLIBC_LIMITS_H
 
-#define KLIBC_BOOL_WIDTH 1 // since (C23)
-#define KLIBC_CHAR_BIT 8
-#define KLIBC_MB_LEN_MAX 4
-#define KLIBC_CHAR_WIDTH KLIBC_CHAR_BIT // since (C23)
+#define VLIBC_BOOL_WIDTH 1 // since (C23)
+#define VLIBC_CHAR_BIT 8
+#define VLIBC_MB_LEN_MAX 4
+#define VLIBC_CHAR_WIDTH VLIBC_CHAR_BIT // since (C23)
 
-#define KLIBC_CHAR_MIN (-128)
-#define KLIBC_CHAR_MAX 127
+#define VLIBC_CHAR_MIN (-128)
+#define VLIBC_CHAR_MAX 127
 
-#define KLIBC_SCHAR_WIDTH 8  // since (C23)
-#define KLIBC_SHRT_WIDTH 16  // since (C23)
-#define KLIBC_INT_WIDTH 32   // since (C23)
-#define KLIBC_LONG_WIDTH 64  // since (C23)
-#define KLIBC_LLONG_WIDTH 64 // since (C23)
+#define VLIBC_SCHAR_WIDTH 8  // since (C23)
+#define VLIBC_SHRT_WIDTH 16  // since (C23)
+#define VLIBC_INT_WIDTH 32   // since (C23)
+#define VLIBC_LONG_WIDTH 64  // since (C23)
+#define VLIBC_LLONG_WIDTH 64 // since (C23)
 
-#define KLIBC_SCHAR_MIN (-128)
-#define KLIBC_SHRT_MIN (-32768)
-#define KLIBC_INT_MIN (-2147483648)
-#define KLIBC_LONG_MIN (-9223372036854775808L)
-#define KLIBC_LLONG_MIN (-9223372036854775808LL) // since (C99)
+#define VLIBC_SCHAR_MIN (-128)
+#define VLIBC_SHRT_MIN (-32768)
+#define VLIBC_INT_MIN (-2147483648)
+#define VLIBC_LONG_MIN (-9223372036854775808L)
+#define VLIBC_LLONG_MIN (-9223372036854775808LL) // since (C99)
 
-#define KLIBC_SCHAR_MAX 127
-#define KLIBC_SHRT_MAX 32767
-#define KLIBC_INT_MAX 2147483647
-#define KLIBC_LONG_MAX 9223372036854775807L
-#define KLIBC_LLONG_MAX 9223372036854775807LL
+#define VLIBC_SCHAR_MAX 127
+#define VLIBC_SHRT_MAX 32767
+#define VLIBC_INT_MAX 2147483647
+#define VLIBC_LONG_MAX 9223372036854775807L
+#define VLIBC_LLONG_MAX 9223372036854775807LL
 
-#define KLIBC_UCHAR_WIDTH 8
-#define KLIBC_USHRT_WIDTH 16
-#define KLIBC_UINT_WIDTH 32
-#define KLIBC_ULONG_WIDTH 64
-#define KLIBC_ULLONG_WIDTH 64
+#define VLIBC_UCHAR_WIDTH 8
+#define VLIBC_USHRT_WIDTH 16
+#define VLIBC_UINT_WIDTH 32
+#define VLIBC_ULONG_WIDTH 64
+#define VLIBC_ULLONG_WIDTH 64
 
-#define KLIBC_UCHAR_MAX 255
-#define KLIBC_USHRT_MAX 65535
-#define KLIBC_UINT_MAX 4294967295U
-#define KLIBC_ULONG_MAX 18446744073709551615UL
-#define KLIBC_ULLONG_MAX 18446744073709551615ULL // since (C99)
+#define VLIBC_UCHAR_MAX 255
+#define VLIBC_USHRT_MAX 65535
+#define VLIBC_UINT_MAX 4294967295U
+#define VLIBC_ULONG_MAX 18446744073709551615UL
+#define VLIBC_ULLONG_MAX 18446744073709551615ULL // since (C99)
 
-// KLIBC_STDBOOL_H
+// VLIBC_STDBOOL_H
 
 #define bool _Bool                      // since (C99), removed in (C23)
 #define true 1                          // since (C99), removed in (C23)
 #define false 0                         // since (C99), removed in (C23)
 #define __bool_true_false_are_defined 1 // since (C99), deprecated in (C23)
 
-// KLIBC_STDALIGN_H
+// VLIBC_STDALIGN_H
 
 #define alignas _Alignas       // since (C11), removed in (C23)
 #define alignof _Alignof       // since (C11), removed in (C23)
 #define __alignas_is_defined 1 // since (C11), removed in (C23)
 #define __alignof_is_defined 1 // since (C11), removed in (C23)
 
-// KLIBC_STDNORETURN_H
+// VLIBC_STDNORETURN_H
 
 #define noreturn _Noreturn // since (C11), deprecated in (C23)
 
-// KLIBC_MATH_H
+// VLIBC_MATH_H
 // clang-format off
-// @todo klibc no prefix
+// @todo vlibc no prefix
 
-#define KLIBC_M_E        2.71828182845904523536
-#define KLIBC_M_LOG2E    1.44269504088896340736
-#define KLIBC_M_LOG10E   0.43429448190325182765
-#define KLIBC_M_LN2      0.69314718055994530942
-#define KLIBC_M_LN10     2.30258509299404568402
-#define KLIBC_M_PI       3.14159265358979323846
-#define KLIBC_M_PI_2     1.57079632679489661923
-#define KLIBC_M_PI_4     0.78539816339744830962
-#define KLIBC_M_1_PI     0.31830988618379067154
-#define KLIBC_M_2_PI     0.63661977236758134308
-#define KLIBC_M_2_SQRTPI 1.12837916709551257390
-#define KLIBC_M_SQRT2    1.41421356237309504880
-#define KLIBC_M_SQRT1_2  0.70710678118654752440
-#define KLIBC_HUGE_VAL   (1.0/0.0)
-#define KLIBC_INFINITY   (1.0/0.0)
-#define KLIBC_NAN        (0.0/0.0)
+#define VLIBC_M_E        2.71828182845904523536
+#define VLIBC_M_LOG2E    1.44269504088896340736
+#define VLIBC_M_LOG10E   0.43429448190325182765
+#define VLIBC_M_LN2      0.69314718055994530942
+#define VLIBC_M_LN10     2.30258509299404568402
+#define VLIBC_M_PI       3.14159265358979323846
+#define VLIBC_M_PI_2     1.57079632679489661923
+#define VLIBC_M_PI_4     0.78539816339744830962
+#define VLIBC_M_1_PI     0.31830988618379067154
+#define VLIBC_M_2_PI     0.63661977236758134308
+#define VLIBC_M_2_SQRTPI 1.12837916709551257390
+#define VLIBC_M_SQRT2    1.41421356237309504880
+#define VLIBC_M_SQRT1_2  0.70710678118654752440
+#define VLIBC_HUGE_VAL   (1.0/0.0)
+#define VLIBC_INFINITY   (1.0/0.0)
+#define VLIBC_NAN        (0.0/0.0)
 
-double klibc_sqrt(double x);
-double klibc_sin(double x);
-double klibc_cos(double x);
-double klibc_tan(double x);
-double klibc_asin(double x);
-double klibc_acos(double x);
-double klibc_atan(double x);
-double klibc_atan2(double y, double x);
-double klibc_exp(double x);
-double klibc_log(double x);
-double klibc_log10(double x);
-double klibc_pow(double base, double exp);
-double klibc_ceil(double x);
-double klibc_floor(double x);
-double klibc_fabs(double x);
-double klibc_fmod(double x, double y);
+double vlibc_sqrt(double x);
+double vlibc_sin(double x);
+double vlibc_cos(double x);
+double vlibc_tan(double x);
+double vlibc_asin(double x);
+double vlibc_acos(double x);
+double vlibc_atan(double x);
+double vlibc_atan2(double y, double x);
+double vlibc_exp(double x);
+double vlibc_log(double x);
+double vlibc_log10(double x);
+double vlibc_pow(double base, double exp);
+double vlibc_ceil(double x);
+double vlibc_floor(double x);
+double vlibc_fabs(double x);
+double vlibc_fmod(double x, double y);
 
 // clang-format on
 
 /**
  * @brief Computes the square root of a given non-negative number using the Newton-Raphson method.
  * @param x The input value.
- * @return The square root of `x`, or `KLIBC_NAN` if `x` is negative.
+ * @return The square root of `x`, or `VLIBC_NAN` if `x` is negative.
  */
-double klibc_sqrt(double x) {
+double vlibc_sqrt(double x) {
   if (x < 0.0)
-    return KLIBC_NAN;
+    return VLIBC_NAN;
   if (x == 0.0)
     return 0.0;
 
   double n = x, epsilon = 1e-10;
 
-  while (klibc_fabs(n * n - x) > epsilon) {
+  while (vlibc_fabs(n * n - x) > epsilon) {
     n = (n + x / n) * 0.5;
   }
 
@@ -264,13 +264,13 @@ double klibc_sqrt(double x) {
  * @param x The angle in radians.
  * @return The sine of `x`.
  */
-double klibc_sin(double x) {
-  x = klibc_fmod(x, 2 * KLIBC_M_PI);
+double vlibc_sin(double x) {
+  x = vlibc_fmod(x, 2 * VLIBC_M_PI);
 
   double acc = 0.0, t = x, x2 = x * x;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     acc += t;
     t *= -x2 / ((2 * n) * (2 * n + 1));
     n++;
@@ -284,13 +284,13 @@ double klibc_sin(double x) {
  * @param x The angle in radians.
  * @return The cosine of `x`.
  */
-double klibc_cos(double x) {
-  x = klibc_fmod(x, 2 * KLIBC_M_PI);
+double vlibc_cos(double x) {
+  x = vlibc_fmod(x, 2 * VLIBC_M_PI);
 
   double acc = 1.0, t = 1.0, x2 = x * x;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     t *= -x2 / ((2 * n - 1) * (2 * n));
     acc += t;
     n++;
@@ -304,23 +304,23 @@ double klibc_cos(double x) {
  * @param x The angle in radians.
  * @return The tangent of `x`, calculated as the ratio of `sin(x)` to `cos(x)`.
  */
-double klibc_tan(double x) { return klibc_sin(x) / klibc_cos(x); }
+double vlibc_tan(double x) { return vlibc_sin(x) / vlibc_cos(x); }
 
 /**
  * @brief Computes the arcsine (inverse sine) of a given value using the Taylor series expansion.
  * @param x The input value. Must be within the range [-1, 1].
- * @return The arcsine of `x` in radians, or `KLIBC_NAN` if `x` is outside the valid range.
+ * @return The arcsine of `x` in radians, or `VLIBC_NAN` if `x` is outside the valid range.
  */
-double klibc_asin(double x) {
+double vlibc_asin(double x) {
   if (x < -1.0 || x > 1.0)
-    return KLIBC_NAN;
+    return VLIBC_NAN;
 
-  // x = klibc_fmod(x, 2 * KLIBC_M_PI);
+  // x = vlibc_fmod(x, 2 * VLIBC_M_PI);
 
   double acc = x, t = x, x2 = x * x;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     t *= (2.0 * n - 1) * x2 / (2.0 * n);
     acc += t / (2 * n + 1);
     n++;
@@ -332,11 +332,11 @@ double klibc_asin(double x) {
 /**
  * @brief Computes the arccosine (inverse cosine) of a given value.
  * @param x The input value. Must be within the range [-1, 1].
- * @return The arccosine of `x` in radians, or `KLIBC_NAN` if `x` is outside the valid range.
+ * @return The arccosine of `x` in radians, or `VLIBC_NAN` if `x` is outside the valid range.
  *
  * @note This function computes arccosine using the identity: acos(x) = π/2 - asin(x).
  */
-double klibc_acos(double x) { return KLIBC_M_PI_2 - klibc_asin(x); }
+double vlibc_acos(double x) { return VLIBC_M_PI_2 - vlibc_asin(x); }
 
 /**
  * @brief Computes the arctangent (inverse tangent) of a given value using the Taylor series expansion.
@@ -347,14 +347,14 @@ double klibc_acos(double x) { return KLIBC_M_PI_2 - klibc_asin(x); }
  *       improve convergence. The series expansion is applied directly for values of `x` within
  *       the range [-1, 1] for accuracy (each approach mitigates floating-point errors).
  */
-double klibc_atan(double x) {
+double vlibc_atan(double x) {
   if (x > 1.0)
-    return KLIBC_M_PI_2 - klibc_atan(1.0 / x);
+    return VLIBC_M_PI_2 - vlibc_atan(1.0 / x);
 
   double acc = x, t = x, x2 = x * x;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     t *= -x2;
     acc += t / (2 * n + 1);
     n++;
@@ -368,11 +368,11 @@ double klibc_atan(double x) {
  * @param x The exponent to which \( e \) is raised.
  * @return The value of \( e^x \).
  */
-double klibc_exp(double x) {
+double vlibc_exp(double x) {
   double acc = 1.0, t = 1.0;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     t *= x / n;
     acc += t;
     n++;
@@ -384,16 +384,16 @@ double klibc_exp(double x) {
 /**
  * @brief Computes the natural logarithm of a given positive value using a series expansion.
  * @param x The input value. Must be positive.
- * @return The natural logarithm of `x`, or `KLIBC_NAN` if `x` is non-positive.
+ * @return The natural logarithm of `x`, or `VLIBC_NAN` if `x` is non-positive.
  */
-double klibc_log(double x) {
+double vlibc_log(double x) {
   if (x <= 0.0)
-    return KLIBC_NAN;
+    return VLIBC_NAN;
 
   double acc = 0.0, t = (x - 1) / (x + 1), x2 = t * t;
   int n = 1;
 
-  while (klibc_fabs(t) > 1e-10) {
+  while (vlibc_fabs(t) > 1e-10) {
     acc += t / (2 * n - 1);
     t *= x2;
     n++;
@@ -405,9 +405,9 @@ double klibc_log(double x) {
 /**
  * @brief Computes the base-10 logarithm of a given positive value.
  * @param x The input value. Must be positive.
- * @return The base-10 logarithm of `x`, or `KLIBC_NAN` if `x` is non-positive.
+ * @return The base-10 logarithm of `x`, or `VLIBC_NAN` if `x` is non-positive.
  */
-double klibc_log10(double x) { return klibc_log(x) / KLIBC_M_LN10; }
+double vlibc_log10(double x) { return vlibc_log(x) / VLIBC_M_LN10; }
 
 /**
  * @brief Computes the power of a given base raised to a specified exponent.
@@ -417,14 +417,14 @@ double klibc_log10(double x) { return klibc_log(x) / KLIBC_M_LN10; }
  *
  * @note Returns 0 if `base` is 0, and 1 if `exp` is 0.
  */
-double klibc_pow(double base, double exp) {
+double vlibc_pow(double base, double exp) {
   if (base == 0.0)
     return 0.0;
 
   if (exp == 0.0)
     return 1.0;
 
-  return klibc_exp(exp * klibc_log(base));
+  return vlibc_exp(exp * vlibc_log(base));
 }
 
 /**
@@ -432,7 +432,7 @@ double klibc_pow(double base, double exp) {
  * @param x The input value.
  * @return The smallest integer greater than or equal to `x`.
  */
-double klibc_ceil(double x) {
+double vlibc_ceil(double x) {
   int i = (int)x;
   return (x > (double)i) ? i + 1 : i;
 }
@@ -442,7 +442,7 @@ double klibc_ceil(double x) {
  * @param x The input value.
  * @return The largest integer less than or equal to `x`.
  */
-double klibc_floor(double x) {
+double vlibc_floor(double x) {
   int i = (int)x;
   return (x < (double)i) ? i - 1 : i;
 }
@@ -452,7 +452,7 @@ double klibc_floor(double x) {
  * @param x The input value.
  * @return The absolute value of `x`.
  */
-double klibc_fabs(double x) { return (x < 0) ? -x : x; }
+double vlibc_fabs(double x) { return (x < 0) ? -x : x; }
 
 /**
  * @brief Computes the floating-point remainder of the division of `x` by `y`.
@@ -460,136 +460,136 @@ double klibc_fabs(double x) { return (x < 0) ? -x : x; }
  * @param y The divisor.
  * @return The remainder when `x` is divided by `y`.
  */
-double klibc_fmod(double x, double y) { return x - y * (int)(x / y); }
+double vlibc_fmod(double x, double y) { return x - y * (int)(x / y); }
 
-// KLIBC_CTYPE_H
+// VLIBC_CTYPE_H
 
-int klibc_isalnum(int c);
-int klibc_isalpha(int c);
-int klibc_iscntrl(int c);
-int klibc_isdigit(int c);
-int klibc_isgraph(int c);
-int klibc_islower(int c);
-int klibc_isprint(int c);
-int klibc_ispunct(int c);
-int klibc_isspace(int c);
-int klibc_isupper(int c);
-int klibc_isxdigit(int c);
-int klibc_tolower(int c);
-int klibc_toupper(int c);
+int vlibc_isalnum(int c);
+int vlibc_isalpha(int c);
+int vlibc_iscntrl(int c);
+int vlibc_isdigit(int c);
+int vlibc_isgraph(int c);
+int vlibc_islower(int c);
+int vlibc_isprint(int c);
+int vlibc_ispunct(int c);
+int vlibc_isspace(int c);
+int vlibc_isupper(int c);
+int vlibc_isxdigit(int c);
+int vlibc_tolower(int c);
+int vlibc_toupper(int c);
 
 /**
  * @brief Checks if the given character is alphanumeric (a letter or a digit).
  * @param c Character to be checked.
  * @return Non-zero if `c` is alphanumeric, zero otherwise.
  */
-int klibc_isalnum(int c) { return klibc_isalpha(c) || klibc_isdigit(c); }
+int vlibc_isalnum(int c) { return vlibc_isalpha(c) || vlibc_isdigit(c); }
 
 /**
  * @brief Checks if the given character is an alphabetic letter (uppercase or lowercase).
  * @param c Character to be checked.
  * @return Non-zero if `c` is alphabetic, zero otherwise.
  */
-int klibc_isalpha(int c) { return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'); }
+int vlibc_isalpha(int c) { return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'); }
 
 /**
  * @brief Checks if the given character is a control character.
  * @param c Character to be checked.
  * @return Non-zero if `c` is a control character, zero otherwise.
  */
-int klibc_iscntrl(int c) { return (c >= 0 && c <= 0x1F) || c == 0x7F; }
+int vlibc_iscntrl(int c) { return (c >= 0 && c <= 0x1F) || c == 0x7F; }
 
 /**
  * @brief Checks if the given character is a decimal digit.
  * @param c Character to be checked.
  * @return Non-zero if `c` is a digit, zero otherwise.
  */
-int klibc_isdigit(int c) { return (c >= '0' && c <= '9'); }
+int vlibc_isdigit(int c) { return (c >= '0' && c <= '9'); }
 
 /**
  * @brief Checks if the given character has a graphical representation other than space.
  * @param c Character to be checked.
  * @return Non-zero if `c` is a graphic character, zero otherwise.
  */
-int klibc_isgraph(int c) { return c > 0x20 && c < 0x7F; }
+int vlibc_isgraph(int c) { return c > 0x20 && c < 0x7F; }
 
 /**
  * @brief Checks if the given character is a lowercase letter.
  * @param c Character to be checked.
  * @return Non-zero if `c` is lowercase, zero otherwise.
  */
-int klibc_islower(int c) { return (c >= 'a' && c <= 'z'); }
+int vlibc_islower(int c) { return (c >= 'a' && c <= 'z'); }
 
 /**
  * @brief Checks if the given character is printable, including space.
  * @param c Character to be checked.
  * @return Non-zero if `c` is printable, zero otherwise.
  */
-int klibc_isprint(int c) { return c >= 0x20 && c < 0x7F; }
+int vlibc_isprint(int c) { return c >= 0x20 && c < 0x7F; }
 
 /**
  * @brief Checks if the given character is a punctuation mark.
  * @param c Character to be checked.
  * @return Non-zero if `c` is a punctuation character, zero otherwise.
  */
-int klibc_ispunct(int c) { return klibc_isgraph(c) && !klibc_isalnum(c); }
+int vlibc_ispunct(int c) { return vlibc_isgraph(c) && !vlibc_isalnum(c); }
 
 /**
  * @brief Checks if the given character is a whitespace character (space, tab, newline, etc.).
  * @param c Character to be checked.
  * @return Non-zero if `c` is whitespace, zero otherwise.
  */
-int klibc_isspace(int c) { return c == ' ' || (c >= '\t' && c <= '\r'); }
+int vlibc_isspace(int c) { return c == ' ' || (c >= '\t' && c <= '\r'); }
 
 /**
  * @brief Checks if the given character is an uppercase letter.
  * @param c Character to be checked.
  * @return Non-zero if `c` is uppercase, zero otherwise.
  */
-int klibc_isupper(int c) { return (c >= 'A' && c <= 'Z'); }
+int vlibc_isupper(int c) { return (c >= 'A' && c <= 'Z'); }
 
 /**
  * @brief Checks if the given character is a hexadecimal digit (0-9, A-F, a-f).
  * @param c Character to be checked.
  * @return Non-zero if `c` is a hexadecimal digit, zero otherwise.
  */
-int klibc_isxdigit(int c) { return klibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'); }
+int vlibc_isxdigit(int c) { return vlibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'); }
 
 /**
  * @brief Converts an uppercase letter to its lowercase equivalent.
  * @param c Character to be converted.
  * @return Lowercase equivalent of `c` if it is uppercase; otherwise, returns `c`.
  */
-int klibc_tolower(int c) { return klibc_isupper(c) ? c + 32 : c; }
+int vlibc_tolower(int c) { return vlibc_isupper(c) ? c + 32 : c; }
 
 /**
  * @brief Converts a lowercase letter to its uppercase equivalent.
  * @param c Character to be converted.
  * @return Uppercase equivalent of `c` if it is lowercase; otherwise, returns `c`.
  */
-int klibc_toupper(int c) { return klibc_islower(c) ? c - 32 : c; }
+int vlibc_toupper(int c) { return vlibc_islower(c) ? c - 32 : c; }
 
-// KLIBC_STRING_H
+// VLIBC_STRING_H
 
-void *klibc_memcpy(void *dest, const void *src, klibc_size_t n);
-void *klibc_memmove(void *dest, const void *src, klibc_size_t n);
-char *klibc_strcpy(char *dest, const char *src);
-char *klibc_strncpy(char *dest, const char *src, klibc_size_t n);
-char *klibc_strcat(char *dest, const char *src);
-char *klibc_strncat(char *dest, const char *src, klibc_size_t n);
-int klibc_memcmp(const void *s1, const void *s2, klibc_size_t n);
-int klibc_strcmp(const char *s1, const char *s2);
-int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n);
-void *klibc_memset(void *s, int c, klibc_size_t n);
-klibc_size_t klibc_strlen(const char *s);
-char *klibc_strchr(const char *s, int c);
-char *klibc_strrchr(const char *s, int c);
-klibc_size_t klibc_strspn(const char *s, const char *accept);
-klibc_size_t klibc_strcspn(const char *s, const char *reject);
-char *klibc_strpbrk(const char *s, const char *accept);
-char *klibc_strstr(const char *haystack, const char *needle);
-char *klibc_strdup(const char *s); // requires alloc
-char *klibc_strtok(char *str, const char *delim);
+void *vlibc_memcpy(void *dest, const void *src, vlibc_size_t n);
+void *vlibc_memmove(void *dest, const void *src, vlibc_size_t n);
+char *vlibc_strcpy(char *dest, const char *src);
+char *vlibc_strncpy(char *dest, const char *src, vlibc_size_t n);
+char *vlibc_strcat(char *dest, const char *src);
+char *vlibc_strncat(char *dest, const char *src, vlibc_size_t n);
+int vlibc_memcmp(const void *s1, const void *s2, vlibc_size_t n);
+int vlibc_strcmp(const char *s1, const char *s2);
+int vlibc_strncmp(const char *s1, const char *s2, vlibc_size_t n);
+void *vlibc_memset(void *s, int c, vlibc_size_t n);
+vlibc_size_t vlibc_strlen(const char *s);
+char *vlibc_strchr(const char *s, int c);
+char *vlibc_strrchr(const char *s, int c);
+vlibc_size_t vlibc_strspn(const char *s, const char *accept);
+vlibc_size_t vlibc_strcspn(const char *s, const char *reject);
+char *vlibc_strpbrk(const char *s, const char *accept);
+char *vlibc_strstr(const char *haystack, const char *needle);
+char *vlibc_strdup(const char *s); // requires alloc
+char *vlibc_strtok(char *str, const char *delim);
 
 /**
  * @brief Copies `n` bytes from the source memory area to the destination memory area.
@@ -598,7 +598,7 @@ char *klibc_strtok(char *str, const char *delim);
  * @param n Number of bytes to copy.
  * @return Pointer to the destination memory area.
  */
-void *klibc_memcpy(void *dest, const void *src, klibc_size_t n) {
+void *vlibc_memcpy(void *dest, const void *src, vlibc_size_t n) {
   unsigned char *d = (unsigned char *)dest;
   const unsigned char *s = (const unsigned char *)src;
 
@@ -615,7 +615,7 @@ void *klibc_memcpy(void *dest, const void *src, klibc_size_t n) {
  * @param n Number of bytes to move.
  * @return Pointer to the destination memory area.
  */
-void *klibc_memmove(void *dest, const void *src, klibc_size_t n) {
+void *vlibc_memmove(void *dest, const void *src, vlibc_size_t n) {
   unsigned char *d = (unsigned char *)dest;
   const unsigned char *s = (const unsigned char *)src;
 
@@ -639,7 +639,7 @@ void *klibc_memmove(void *dest, const void *src, klibc_size_t n) {
  * @param src Pointer to the source null-terminated string.
  * @return Pointer to the destination buffer.
  */
-char *klibc_strcpy(char *dest, const char *src) {
+char *vlibc_strcpy(char *dest, const char *src) {
   char *d = dest;
 
   while ((*d++ = *src++))
@@ -656,7 +656,7 @@ char *klibc_strcpy(char *dest, const char *src) {
  * @param n Maximum number of characters to copy.
  * @return Pointer to the destination buffer.
  */
-char *klibc_strncpy(char *dest, const char *src, klibc_size_t n) {
+char *vlibc_strncpy(char *dest, const char *src, vlibc_size_t n) {
   char *d = dest;
 
   while (n && (*d++ = *src++))
@@ -675,7 +675,7 @@ char *klibc_strncpy(char *dest, const char *src, klibc_size_t n) {
  * @param src Pointer to the source null-terminated string to append.
  * @return Pointer to the destination buffer.
  */
-char *klibc_strcat(char *dest, const char *src) {
+char *vlibc_strcat(char *dest, const char *src) {
   char *d = dest;
 
   while (*d)
@@ -696,7 +696,7 @@ char *klibc_strcat(char *dest, const char *src) {
  * @param n Maximum number of characters to append from `src`.
  * @return Pointer to the destination buffer.
  */
-char *klibc_strncat(char *dest, const char *src, klibc_size_t n) {
+char *vlibc_strncat(char *dest, const char *src, vlibc_size_t n) {
   char *d = dest;
 
   while (*d)
@@ -720,7 +720,7 @@ char *klibc_strncat(char *dest, const char *src, klibc_size_t n) {
  *
  * @note The comparison is done byte-by-byte and stops at the first difference found or after `n` bytes.
  */
-int klibc_memcmp(const void *s1, const void *s2, klibc_size_t n) {
+int vlibc_memcmp(const void *s1, const void *s2, vlibc_size_t n) {
   const unsigned char *p1 = (const unsigned char *)s1;
   const unsigned char *p2 = (const unsigned char *)s2;
 
@@ -742,7 +742,7 @@ int klibc_memcmp(const void *s1, const void *s2, klibc_size_t n) {
  * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
  *         to be less than, equal to, or greater than `s2`.
  */
-int klibc_strcmp(const char *s1, const char *s2) {
+int vlibc_strcmp(const char *s1, const char *s2) {
   while (*s1 && (*s1 == *s2)) {
     s1++;
     s2++;
@@ -759,7 +759,7 @@ int klibc_strcmp(const char *s1, const char *s2) {
  * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
  *         to be less than, equal to, or greater than `s2` within the first `n` characters.
  */
-int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n) {
+int vlibc_strncmp(const char *s1, const char *s2, vlibc_size_t n) {
   while (n && *s1 && (*s1 == *s2)) {
     s1++;
     s2++;
@@ -776,7 +776,7 @@ int klibc_strncmp(const char *s1, const char *s2, klibc_size_t n) {
  * @param n Number of bytes to set.
  * @return Pointer to the memory area `s`.
  */
-void *klibc_memset(void *s, int c, klibc_size_t n) {
+void *vlibc_memset(void *s, int c, vlibc_size_t n) {
   unsigned char *p = (unsigned char *)s;
 
   while (n--)
@@ -790,7 +790,7 @@ void *klibc_memset(void *s, int c, klibc_size_t n) {
  * @param s Pointer to the null-terminated string.
  * @return The number of characters in the string, excluding the null terminator.
  */
-klibc_size_t klibc_strlen(const char *s) {
+vlibc_size_t vlibc_strlen(const char *s) {
   const char *p = s;
 
   while (*p)
@@ -806,7 +806,7 @@ klibc_size_t klibc_strlen(const char *s) {
  * @return A pointer to the first occurrence of `c` in the string, or `NULL` if not found. If `c`
  *         is `'\0'`, returns a pointer to the null terminator.
  */
-char *klibc_strchr(const char *s, int c) {
+char *vlibc_strchr(const char *s, int c) {
   while (*s) {
     if (*s == (char)c)
       return (char *)s;
@@ -823,8 +823,8 @@ char *klibc_strchr(const char *s, int c) {
  * @param c The character to locate (converted to an unsigned char).
  * @return A pointer to the last occurrence of `c` in the string, or `NULL` if not found.
  */
-char *klibc_strrchr(const char *s, int c) {
-  const char *p = s + klibc_strlen(s);
+char *vlibc_strrchr(const char *s, int c) {
+  const char *p = s + vlibc_strlen(s);
 
   while (p >= s) {
     if (*p == (char)c)
@@ -842,10 +842,10 @@ char *klibc_strrchr(const char *s, int c) {
  * @param accept Pointer to a null-terminated string containing characters to match in `s`.
  * @return The number of characters in the initial segment of `s` which consist only of characters from `accept`.
  */
-klibc_size_t klibc_strspn(const char *s, const char *accept) {
+vlibc_size_t vlibc_strspn(const char *s, const char *accept) {
   const char *p = s;
 
-  while (*p && klibc_strchr(accept, *p))
+  while (*p && vlibc_strchr(accept, *p))
     p++;
 
   return p - s;
@@ -857,10 +857,10 @@ klibc_size_t klibc_strspn(const char *s, const char *accept) {
  * @param reject Pointer to a null-terminated string containing characters to exclude from `s`.
  * @return The number of characters in the initial segment of `s` which do not contain any characters from `reject`.
  */
-klibc_size_t klibc_strcspn(const char *s, const char *reject) {
+vlibc_size_t vlibc_strcspn(const char *s, const char *reject) {
   const char *p = s;
 
-  while (*p && !klibc_strchr(reject, *p))
+  while (*p && !vlibc_strchr(reject, *p))
     p++;
 
   return p - s;
@@ -872,9 +872,9 @@ klibc_size_t klibc_strcspn(const char *s, const char *reject) {
  * @param accept Pointer to a null-terminated string containing characters to match.
  * @return A pointer to the first occurrence in `s` of any character from `accept`, or `NULL` if none are found.
  */
-char *klibc_strpbrk(const char *s, const char *accept) {
+char *vlibc_strpbrk(const char *s, const char *accept) {
   while (*s) {
-    if (klibc_strchr(accept, *s))
+    if (vlibc_strchr(accept, *s))
       return (char *)s;
 
     s++;
@@ -889,11 +889,11 @@ char *klibc_strpbrk(const char *s, const char *accept) {
  * @param needle Pointer to the null-terminated substring to search for.
  * @return A pointer to the first occurrence of `needle` in `haystack`, or `NULL` if `needle` is not found.
  */
-char *klibc_strstr(const char *haystack, const char *needle) {
-  klibc_size_t needle_len = klibc_strlen(needle);
+char *vlibc_strstr(const char *haystack, const char *needle) {
+  vlibc_size_t needle_len = vlibc_strlen(needle);
 
   while (*haystack) {
-    if (!klibc_strncmp(haystack, needle, needle_len))
+    if (!vlibc_strncmp(haystack, needle, needle_len))
       return (char *)haystack;
 
     haystack++;
@@ -913,7 +913,7 @@ char *klibc_strstr(const char *haystack, const char *needle) {
  * @note This function modifies the input string by inserting null characters at delimiter positions.
  *       It maintains internal state, so it is NOT thread-safe!
  */
-char *klibc_strtok(char *str, const char *delim) {
+char *vlibc_strtok(char *str, const char *delim) {
   static char *last;
 
   if (!str)
@@ -922,14 +922,14 @@ char *klibc_strtok(char *str, const char *delim) {
   if (!str)
     return NULL;
 
-  str += klibc_strspn(str, delim);
+  str += vlibc_strspn(str, delim);
 
   if (!*str) {
     last = NULL;
     return NULL;
   }
 
-  char *end = str + klibc_strcspn(str, delim);
+  char *end = str + vlibc_strcspn(str, delim);
 
   if (*end)
     *end++ = '\0';
@@ -944,46 +944,46 @@ char *klibc_strtok(char *str, const char *delim) {
 // clang-format off
 
 #if defined(__GNUC__) || defined(__clang__)
-#define __klibc_force_inline __attribute__((always_inline)) inline
+#define __vlibc_force_inline __attribute__((always_inline)) inline
 #elif defined(_MSC_VER)
-#define __klibc_force_inline __forceinline
+#define __vlibc_force_inline __forceinline
 #else
-#define __klibc_force_inline inline
+#define __vlibc_force_inline inline
 #endif
 
 #ifdef __linux__
 #ifdef __x86_64__
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_0(klibc_int64_t n);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_0(vlibc_int64_t n);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_1(klibc_int64_t n, klibc_int64_t arg1);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_1(vlibc_int64_t n, vlibc_int64_t arg1);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_2(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
-                klibc_int64_t arg3);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_3(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2, 
+                vlibc_int64_t arg3);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
-                klibc_int64_t arg3, klibc_int64_t arg4);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_4(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2, 
+                vlibc_int64_t arg3, vlibc_int64_t arg4);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
-                klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_5(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2, 
+                vlibc_int64_t arg3, vlibc_int64_t arg4, vlibc_int64_t arg5);
 
-static __klibc_force_inline klibc_int64_t 
-klibc_syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2, 
-                klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5, 
-                klibc_int64_t arg6);
+static __vlibc_force_inline vlibc_int64_t 
+vlibc_syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2, 
+                vlibc_int64_t arg3, vlibc_int64_t arg4, vlibc_int64_t arg5, 
+                vlibc_int64_t arg6);
 
 // https://gist.github.com/elricmann/f3ccbf01454f8ebce0934081a50969bb
 
-static __klibc_force_inline klibc_int64_t
-syscall_0(klibc_int64_t n) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_0(vlibc_int64_t n) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "syscall;\n"
@@ -995,9 +995,9 @@ syscall_0(klibc_int64_t n) {
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_1(klibc_int64_t n, klibc_int64_t arg1) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_1(vlibc_int64_t n, vlibc_int64_t arg1) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "syscall;\n"
@@ -1009,9 +1009,9 @@ syscall_1(klibc_int64_t n, klibc_int64_t arg1) {
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_2(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "syscall;\n"
@@ -1023,10 +1023,10 @@ syscall_2(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2) {
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
-          klibc_int64_t arg3) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_3(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
+          vlibc_int64_t arg3) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "syscall;\n"
@@ -1038,10 +1038,10 @@ syscall_3(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
-          klibc_int64_t arg3, klibc_int64_t arg4) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_4(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
+          vlibc_int64_t arg3, vlibc_int64_t arg4) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "movq %5, %%r10;\n"
@@ -1054,10 +1054,10 @@ syscall_4(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
-          klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_5(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
+          vlibc_int64_t arg3, vlibc_int64_t arg4, vlibc_int64_t arg5) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "movq %5, %%r10;\n"
@@ -1071,11 +1071,11 @@ syscall_5(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
     return __out;
 }
 
-static __klibc_force_inline klibc_int64_t
-syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
-          klibc_int64_t arg3, klibc_int64_t arg4, klibc_int64_t arg5,
-          klibc_int64_t arg6) {
-    klibc_int64_t __out;
+static __vlibc_force_inline vlibc_int64_t
+syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
+          vlibc_int64_t arg3, vlibc_int64_t arg4, vlibc_int64_t arg5,
+          vlibc_int64_t arg6) {
+    vlibc_int64_t __out;
 
     __asm__ __volatile__ (
         "movq %5, %%r10;\n"
@@ -1098,63 +1098,63 @@ syscall_6(klibc_int64_t n, klibc_int64_t arg1, klibc_int64_t arg2,
 #ifdef __linux__
 #ifdef __x86_64__
 
-typedef klibc_int64_t klibc_off_t;
-typedef klibc_int32_t klibc_pid_t;
-typedef klibc_uint32_t klibc_mode_t;
+typedef vlibc_int64_t vlibc_off_t;
+typedef vlibc_int32_t vlibc_pid_t;
+typedef vlibc_uint32_t vlibc_mode_t;
 
-// KLIBC_FCNTL_H
+// VLIBC_FCNTL_H
 
 // file access modes
-#define KLIBC_O_RDONLY 0x0000
-#define KLIBC_O_WRONLY 0x0001
-#define KLIBC_O_RDWR 0x0002
-#define KLIBC_O_APPEND 0x0008
-#define KLIBC_O_CREAT 0x0100
-#define KLIBC_O_TRUNC 0x0200
-#define KLIBC_O_EXCL 0x0400
-#define KLIBC_O_NONBLOCK 0x0800
-#define KLIBC_O_SYNC 0x101000
-#define KLIBC_O_DSYNC 0x1000
-#define KLIBC_O_RSYNC 0x101000
-#define KLIBC_O_NOCTTY 0x2000
-#define KLIBC_O_CLOEXEC 0x4000
+#define VLIBC_O_RDONLY 0x0000
+#define VLIBC_O_WRONLY 0x0001
+#define VLIBC_O_RDWR 0x0002
+#define VLIBC_O_APPEND 0x0008
+#define VLIBC_O_CREAT 0x0100
+#define VLIBC_O_TRUNC 0x0200
+#define VLIBC_O_EXCL 0x0400
+#define VLIBC_O_NONBLOCK 0x0800
+#define VLIBC_O_SYNC 0x101000
+#define VLIBC_O_DSYNC 0x1000
+#define VLIBC_O_RSYNC 0x101000
+#define VLIBC_O_NOCTTY 0x2000
+#define VLIBC_O_CLOEXEC 0x4000
 
 // file descriptor flags
-#define KLIBC_FD_CLOEXEC 1
+#define VLIBC_FD_CLOEXEC 1
 
 // fcntl commands
-#define KLIBC_F_DUPFD 0
-#define KLIBC_F_GETFD 1
-#define KLIBC_F_SETFD 2
-#define KLIBC_F_GETFL 3
-#define KLIBC_F_SETFL 4
-#define KLIBC_F_GETOWN 5
-#define KLIBC_F_SETOWN 6
-#define KLIBC_F_GETLK 7
-#define KLIBC_F_SETLK 8
-#define KLIBC_F_SETLKW 9
+#define VLIBC_F_DUPFD 0
+#define VLIBC_F_GETFD 1
+#define VLIBC_F_SETFD 2
+#define VLIBC_F_GETFL 3
+#define VLIBC_F_SETFL 4
+#define VLIBC_F_GETOWN 5
+#define VLIBC_F_SETOWN 6
+#define VLIBC_F_GETLK 7
+#define VLIBC_F_SETLK 8
+#define VLIBC_F_SETLKW 9
 
 // file lock types
-#define KLIBC_F_RDLCK 0
-#define KLIBC_F_WRLCK 1
-#define KLIBC_F_UNLCK 2
+#define VLIBC_F_RDLCK 0
+#define VLIBC_F_WRLCK 1
+#define VLIBC_F_UNLCK 2
 
 // file locking
-struct klibc_flock {
-  klibc_int16_t l_type;
-  klibc_int16_t l_whence;
-  klibc_off_t l_start;
-  klibc_off_t l_len;
-  klibc_pid_t l_pid;
+struct vlibc_flock {
+  vlibc_int16_t l_type;
+  vlibc_int16_t l_whence;
+  vlibc_off_t l_start;
+  vlibc_off_t l_len;
+  vlibc_pid_t l_pid;
 };
 
 // fcntl & unistd prototypes
-int klibc_open(const char *pathname, int flags, klibc_mode_t mode);
-int klibc_creat(const char *pathname, klibc_mode_t mode);
-int klibc_fcntl(int fd, int cmd, ...);
+int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode);
+int vlibc_creat(const char *pathname, vlibc_mode_t mode);
+int vlibc_fcntl(int fd, int cmd, ...);
 
-int klibc_open(const char *pathname, int flags, klibc_mode_t mode) {
-  return (int)syscall_3(2, (klibc_int64_t)pathname, (klibc_int64_t)flags, (klibc_int64_t)mode);
+int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode) {
+  return (int)syscall_3(2, (vlibc_int64_t)pathname, (vlibc_int64_t)flags, (vlibc_int64_t)mode);
 }
 
 #endif // __x86_64__
