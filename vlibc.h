@@ -833,7 +833,7 @@ char *vlibc_strrchr(const char *s, int c) {
     p--;
   }
 
-  return NULL;
+  return VLIBC_NULL;
 }
 
 /**
@@ -880,7 +880,7 @@ char *vlibc_strpbrk(const char *s, const char *accept) {
     s++;
   }
 
-  return NULL;
+  return VLIBC_NULL;
 }
 
 /**
@@ -899,7 +899,7 @@ char *vlibc_strstr(const char *haystack, const char *needle) {
     haystack++;
   }
 
-  return NULL;
+  return VLIBC_NULL;
 }
 
 /**
@@ -920,13 +920,13 @@ char *vlibc_strtok(char *str, const char *delim) {
     str = last;
 
   if (!str)
-    return NULL;
+    return VLIBC_NULL;
 
   str += vlibc_strspn(str, delim);
 
   if (!*str) {
     last = NULL;
-    return NULL;
+    return VLIBC_NULL;
   }
 
   char *end = str + vlibc_strcspn(str, delim);
