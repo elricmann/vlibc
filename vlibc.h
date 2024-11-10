@@ -1125,6 +1125,7 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #define VLIBC_SYS_kill        62
 #define VLIBC_SYS_uname       63
 #define VLIBC_SYS_getpid      39
+#define VLIBC_SYS_chown       92
 #define VLIBC_SYS_getuid      102
 #define VLIBC_SYS_getgid      104
 #define VLIBC_SYS_gettimeofday 96
@@ -1137,9 +1138,13 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #ifdef __linux__
 #ifdef __x86_64__
 
+// POSIX-specific types (minimum sizes)
 typedef vlibc_int64_t vlibc_off_t;
 typedef vlibc_int32_t vlibc_pid_t;
 typedef vlibc_uint32_t vlibc_mode_t;
+typedef vlibc_uint32_t vlibc_uid_t;
+typedef vlibc_uint32_t vlibc_gid_t;
+typedef vlibc_int64_t vlibc_ssize_t;
 
 // VLIBC_FCNTL_H
 
@@ -1202,6 +1207,54 @@ __vlibc_deprecated int vlibc_creat(const char *pathname, vlibc_mode_t mode) {
 }
 
 // clang-format on
+
+// VLIBC_UNISTD_H
+
+// standard fds
+#define VLIBC_STDIN_FILENO 0
+#define VLIBC_STDOUT_FILENO 1
+#define VLIBC_STDERR_FILENO 2
+
+// seek constants
+#define VLIBC_SEEK_SET 0
+#define VLIBC_SEEK_CUR 1
+#define VLIBC_SEEK_END 2
+
+// function prototypes
+int vlibc_access(const char *pathname, int mode);
+void *vlibc_brk(void *addr);
+int vlibc_chdir(const char *path);
+int vlibc_chmod(const char *pathname, vlibc_mode_t mode);
+int vlibc_chown(const char *pathname, vlibc_uid_t owner, vlibc_gid_t group);
+int vlibc_close(int fd);
+int vlibc_dup(int oldfd);
+int vlibc_dup2(int oldfd, int newfd);
+int vlibc_execve(const char *pathname, char *const argv[], char *const envp[]);
+void vlibc_exit(int status);
+vlibc_pid_t vlibc_fork(void);
+int vlibc_fsync(int fd);
+int vlibc_ftruncate(int fd, vlibc_off_t length);
+char *vlibc_getcwd(char *buf, vlibc_size_t size);
+vlibc_gid_t vlibc_getegid(void);
+vlibc_uid_t vlibc_geteuid(void);
+vlibc_gid_t vlibc_getgid(void);
+vlibc_pid_t vlibc_getpid(void);
+vlibc_pid_t vlibc_getppid(void);
+vlibc_uid_t vlibc_getuid(void);
+int vlibc_isatty(int fd);
+int vlibc_kill(vlibc_pid_t pid, int sig);
+vlibc_off_t vlibc_lseek(int fd, vlibc_off_t offset, int whence);
+int vlibc_mkdir(const char *pathname, vlibc_mode_t mode);
+int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode);
+int vlibc_pipe(int pipefd[2]);
+vlibc_ssize_t vlibc_read(int fd, void *buf, vlibc_size_t count);
+int vlibc_rmdir(const char *pathname);
+int vlibc_setgid(vlibc_gid_t gid);
+int vlibc_setuid(vlibc_uid_t uid);
+unsigned int vlibc_sleep(unsigned int seconds);
+int vlibc_unlink(const char *pathname);
+vlibc_pid_t vlibc_waitpid(vlibc_pid_t pid, int *wstatus, int options);
+vlibc_ssize_t vlibc_write(int fd, const void *buf, vlibc_size_t count);
 
 #endif // __x86_64__
 #endif // __linux__
