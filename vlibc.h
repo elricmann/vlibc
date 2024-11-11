@@ -1135,6 +1135,7 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #define VLIBC_SYS_uname       63
 #define VLIBC_SYS_getpid      39
 #define VLIBC_SYS_chown       92
+#define VLIBC_SYS_fcntl       72
 #define VLIBC_SYS_getuid      102
 #define VLIBC_SYS_getgid      104
 #define VLIBC_SYS_gettimeofday 96
@@ -1186,6 +1187,7 @@ typedef vlibc_int64_t vlibc_ssize_t;
 #define VLIBC_F_GETLK 7
 #define VLIBC_F_SETLK 8
 #define VLIBC_F_SETLKW 9
+#define VLIBC_F_DUPFD_CLOEXEC 1030
 
 // file lock types
 #define VLIBC_F_RDLCK 0
@@ -1213,6 +1215,51 @@ int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode) {
 
 __vlibc_deprecated int vlibc_creat(const char *pathname, vlibc_mode_t mode) {
   return vlibc_open(pathname, VLIBC_O_WRONLY | VLIBC_O_CREAT | VLIBC_O_TRUNC, mode);
+}
+
+int vlibc_fcntl(int fd, int cmd, ...) {
+  vlibc_va_list args;
+  vlibc_va_start(args, cmd);
+  vlibc_int64_t out; /* @todo vlibc_flock unpack */
+
+  switch (cmd) {
+    case VLIBC_F_DUPFD:
+    case VLIBC_F_DUPFD_CLOEXEC:
+      out = syscall_2(VLIBC_SYS_fcntl, fd, vlibc_va_arg(args, int));
+      break;
+
+    case VLIBC_F_GETFD:
+    case VLIBC_F_GETFL:
+      out = syscall_1(VLIBC_SYS_fcntl, fd);
+      break;
+
+    case VLIBC_F_SETFD:
+    case VLIBC_F_SETFL:
+      out = syscall_2(VLIBC_SYS_fcntl, fd, vlibc_va_arg(args, int));
+      break;
+
+    case VLIBC_F_GETOWN:
+      out = syscall_1(VLIBC_SYS_fcntl, fd);
+      break;
+
+    case VLIBC_F_SETOWN:
+      out = syscall_2(VLIBC_SYS_fcntl, fd, vlibc_va_arg(args, vlibc_int32_t));
+      break;
+
+    // case VLIBC_F_GETLK:
+    // case VLIBC_F_SETLK:
+    // case VLIBC_F_SETLKW:
+    //   out = syscall_3(
+    //     VLIBC_SYS_fcntl, fd, cmd,
+    //     (vlibc_int64_t)vlibc_va_arg(args, struct vlibc_flock *));
+    //   break;
+
+    default:
+      out = -1;
+  }
+
+  vlibc_va_end(args);
+  return (int)out;
 }
 
 // clang-format on
