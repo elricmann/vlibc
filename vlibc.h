@@ -1319,6 +1319,14 @@ vlibc_ssize_t vlibc_read(int fd, void *buf, vlibc_size_t count) {
     VLIBC_SYS_read, (vlibc_int64_t)fd, (vlibc_int64_t)buf, (vlibc_int64_t)count);
 }
 
+vlibc_ssize_t vlibc_write(int fd, const void *buf, vlibc_size_t count) {
+  return (vlibc_ssize_t)syscall_3(VLIBC_SYS_write, (vlibc_int64_t)fd, (vlibc_int64_t)buf, (vlibc_int64_t)count);
+}
+
+int vlibc_close(int fd) {
+  return (int)syscall_1(VLIBC_SYS_close, (vlibc_int64_t)fd);
+}
+
 // clang-format on
 
 #endif // __x86_64__

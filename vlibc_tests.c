@@ -119,7 +119,7 @@ int main(int argc, char const *argv[]) {
   int fd2 = vlibc_open("doesntexist.txt", VLIBC_O_RDONLY, 0);
   printf("doesntexist.txt fd: %d\n", fd2);
 
-  int fd = vlibc_open("README.md", VLIBC_O_RDONLY, 0);
+  int fd = vlibc_open("README.md", VLIBC_O_RDWR | VLIBC_O_APPEND, 0);
   if (fd >= 0) {
     char buffer[128];
     vlibc_ssize_t bytes_read = vlibc_read(fd, buffer, sizeof(buffer) - 1);
@@ -127,6 +127,14 @@ int main(int argc, char const *argv[]) {
       buffer[bytes_read] = '\0';
       printf("%s", buffer);
     }
+
+    const char *write_data = "write data";
+    vlibc_ssize_t bytes_written = vlibc_write(fd, write_data, vlibc_strlen(write_data));
+    if (bytes_written > 0) {
+      printf("wrote: %s\n", write_data);
+    }
+
+    vlibc_close(fd);
   }
 
   return 0;
