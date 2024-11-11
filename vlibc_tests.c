@@ -114,10 +114,20 @@ int main(int argc, char const *argv[]) {
   // printf("is num: %d\n", vlibc_isdigit('9'));
   // printf("is alphanum: %d\n", vlibc_isalnum('2'));
 
-  int fd = vlibc_open(".gitignore", VLIBC_O_RDONLY, 0);
-  printf(".gitignore fd: %d\n", fd);
+  int _fd = vlibc_open(".gitignore", VLIBC_O_RDONLY, 0);
+  printf(".gitignore fd: %d\n", _fd);
   int fd2 = vlibc_open("doesntexist.txt", VLIBC_O_RDONLY, 0);
-  printf("doesntexist.txt fd: %d", fd2);
+  printf("doesntexist.txt fd: %d\n", fd2);
+
+  int fd = vlibc_open("README.md", VLIBC_O_RDONLY, 0);
+  if (fd >= 0) {
+    char buffer[128];
+    vlibc_ssize_t bytes_read = vlibc_read(fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read > 0) {
+      buffer[bytes_read] = '\0';
+      printf("%s", buffer);
+    }
+  }
 
   return 0;
 }

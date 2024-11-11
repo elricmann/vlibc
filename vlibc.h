@@ -1312,5 +1312,14 @@ int vlibc_unlink(const char *pathname);
 vlibc_pid_t vlibc_waitpid(vlibc_pid_t pid, int *wstatus, int options);
 vlibc_ssize_t vlibc_write(int fd, const void *buf, vlibc_size_t count);
 
+// clang-format off
+
+vlibc_ssize_t vlibc_read(int fd, void *buf, vlibc_size_t count) {
+  return (vlibc_ssize_t)syscall_3(
+    VLIBC_SYS_read, (vlibc_int64_t)fd, (vlibc_int64_t)buf, (vlibc_int64_t)count);
+}
+
+// clang-format on
+
 #endif // __x86_64__
 #endif // __linux__
