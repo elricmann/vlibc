@@ -1716,10 +1716,29 @@ long long vlibc_strtoll(const char *nptr, char **endptr, int base);
 unsigned long vlibc_strtoul(const char *nptr, char **endptr, int base);
 unsigned long long vlibc_strtoull(const char *nptr, char **endptr, int base);
 
+struct vlibc_div_t {
+  int quot;
+  int rem;
+};
+
+struct vlibc_ldiv_t {
+  long quot;
+  long rem;
+};
+
+struct vlibc_lldiv_t {
+  long long quot;
+  long long rem;
+};
+
+struct vlibc_div_t vlibc_div(int numer, int denom);
+struct vlibc_ldiv_t vlibc_ldiv(long numer, long denom);
+struct vlibc_lldiv_t vlibc_lldiv(long long numer, long long denom);
+
 #ifdef __linux__
 #ifdef __x86_64__
 
-  // clang-format off
+// clang-format off
 
 #endif  // __x86_64__
 #endif  // __linux__
