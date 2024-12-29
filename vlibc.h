@@ -1154,7 +1154,11 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #define VLIBC_SYS_wait4       61
 #define VLIBC_SYS_kill        62
 #define VLIBC_SYS_uname       63
+#define VLIBC_SYS_fsync       74
 #define VLIBC_SYS_chdir       80
+#define VLIBC_SYS_mkdir       83
+#define VLIBC_SYS_rmdir       84
+#define VLIBC_SYS_unlink      87
 #define VLIBC_SYS_getpid      39
 #define VLIBC_SYS_chown       92
 #define VLIBC_SYS_fcntl       72
@@ -1548,6 +1552,133 @@ int vlibc_chmod(const char *pathname, vlibc_mode_t mode) {
 int vlibc_chown(const char *pathname, vlibc_uid_t owner, vlibc_gid_t group) {
   return (int)syscall_3(VLIBC_SYS_chown, (vlibc_int64_t)pathname,
                         (vlibc_int64_t)owner, (vlibc_int64_t)group);
+}
+
+int vlibc_fsync(int fd) {
+  struct vlibc_stat st;
+  if (vlibc_fstat(fd, &st) < 0) {
+    return -1;
+  }
+
+  return syscall_1(VLIBC_SYS_fsync, (vlibc_int64_t)fd);
+}
+
+int vlibc_ftruncate(int fd, vlibc_off_t length) {
+  struct vlibc_stat st;
+  if (vlibc_fstat(fd, &st) < 0) {
+    return -1;
+  }
+
+  if (!S_ISREG(st.st_mode) && !S_ISFIFO(st.st_mode)) {
+    return -1;
+  }
+
+  st.st_size = length;
+
+  return vlibc_fstat(fd, &st);
+}
+
+char *vlibc_getcwd(char *buf, vlibc_size_t size) {
+  struct vlibc_stat st;
+  if (vlibc_stat(".", &st) < 0) {
+    return VLIBC_NULL;
+  }
+
+  if (size < 2) {
+    return VLIBC_NULL;
+  }
+
+  char path[4096];
+  vlibc_int64_t len = 0;
+
+  do {
+    if (vlibc_stat("..", &st) < 0) {
+      return VLIBC_NULL;
+    }
+
+    if (len + 3 >= sizeof(path)) {
+      return VLIBC_NULL;
+    }
+
+    path[len++] = '/';
+    path[len++] = '.';
+    path[len++] = '.';
+    path[len] = '\0';
+
+    if (vlibc_chdir("..") < 0) {
+      return VLIBC_NULL;
+    }
+  } while (st.st_ino != 2);
+
+  if (len >= size) {
+    return VLIBC_NULL;
+  }
+
+  for (vlibc_int64_t i = 0; i < len; i++) {
+    buf[i] = path[len - 1 - i];
+  }
+
+  buf[len] = '\0';
+
+  return buf;
+}
+
+vlibc_uid_t vlibc_geteuid(void) {
+  struct vlibc_stat st;
+  if (vlibc_stat("/proc/self", &st) < 0) {
+    return vlibc_getuid();
+  }
+
+  return st.st_uid;
+}
+
+vlibc_gid_t vlibc_getegid(void) {
+  struct vlibc_stat st;
+  if (vlibc_stat("/proc/self", &st) < 0) {
+    return vlibc_getgid();
+  }
+
+  return st.st_gid;
+}
+
+int vlibc_isatty(int fd) {
+  struct vlibc_stat st;
+  if (vlibc_fstat(fd, &st) < 0) {
+    return 0;
+  }
+
+  return S_ISCHR(st.st_mode);
+}
+
+int vlibc_mkdir(const char *pathname, vlibc_mode_t mode) {
+  return syscall_2(VLIBC_SYS_mkdir, (vlibc_int64_t)pathname,
+                   (vlibc_int64_t)mode);
+}
+
+int vlibc_rmdir(const char *pathname) {
+  struct vlibc_stat st;
+  if (vlibc_stat(pathname, &st) < 0) {
+    return -1;
+  }
+
+  if (!S_ISDIR(st.st_mode)) {
+    return -1;
+  }
+
+  return syscall_1(VLIBC_SYS_rmdir, (vlibc_int64_t)pathname);
+}
+
+int vlibc_unlink(const char *pathname) {
+  struct vlibc_stat st;
+  if (vlibc_stat(pathname, &st) < 0) {
+    return -1;
+  }
+
+  if (S_ISDIR(st.st_mode)) {
+    return -1;
+  }
+
+  return syscall_1(VLIBC_SYS_unlink, (vlibc_int64_t)pathname);
 }
 
 #endif  // __x86_64__
