@@ -143,25 +143,25 @@ typedef signed long long vlibc_ptrdiff_t;
 
 // VLIBC_LIMITS_H
 
-#define VLIBC_BOOL_WIDTH 1 // since (C23)
+#define VLIBC_BOOL_WIDTH 1  // since (C23)
 #define VLIBC_CHAR_BIT 8
 #define VLIBC_MB_LEN_MAX 4
-#define VLIBC_CHAR_WIDTH VLIBC_CHAR_BIT // since (C23)
+#define VLIBC_CHAR_WIDTH VLIBC_CHAR_BIT  // since (C23)
 
 #define VLIBC_CHAR_MIN (-128)
 #define VLIBC_CHAR_MAX 127
 
-#define VLIBC_SCHAR_WIDTH 8  // since (C23)
-#define VLIBC_SHRT_WIDTH 16  // since (C23)
-#define VLIBC_INT_WIDTH 32   // since (C23)
-#define VLIBC_LONG_WIDTH 64  // since (C23)
-#define VLIBC_LLONG_WIDTH 64 // since (C23)
+#define VLIBC_SCHAR_WIDTH 8   // since (C23)
+#define VLIBC_SHRT_WIDTH 16   // since (C23)
+#define VLIBC_INT_WIDTH 32    // since (C23)
+#define VLIBC_LONG_WIDTH 64   // since (C23)
+#define VLIBC_LLONG_WIDTH 64  // since (C23)
 
 #define VLIBC_SCHAR_MIN (-128)
 #define VLIBC_SHRT_MIN (-32768)
 #define VLIBC_INT_MIN (-2147483648)
 #define VLIBC_LONG_MIN (-9223372036854775808L)
-#define VLIBC_LLONG_MIN (-9223372036854775808LL) // since (C99)
+#define VLIBC_LLONG_MIN (-9223372036854775808LL)  // since (C99)
 
 #define VLIBC_SCHAR_MAX 127
 #define VLIBC_SHRT_MAX 32767
@@ -179,25 +179,25 @@ typedef signed long long vlibc_ptrdiff_t;
 #define VLIBC_USHRT_MAX 65535
 #define VLIBC_UINT_MAX 4294967295U
 #define VLIBC_ULONG_MAX 18446744073709551615UL
-#define VLIBC_ULLONG_MAX 18446744073709551615ULL // since (C99)
+#define VLIBC_ULLONG_MAX 18446744073709551615ULL  // since (C99)
 
 // VLIBC_STDBOOL_H
 
-#define bool _Bool                      // since (C99), removed in (C23)
-#define true 1                          // since (C99), removed in (C23)
-#define false 0                         // since (C99), removed in (C23)
-#define __bool_true_false_are_defined 1 // since (C99), deprecated in (C23)
+#define bool _Bool                       // since (C99), removed in (C23)
+#define true 1                           // since (C99), removed in (C23)
+#define false 0                          // since (C99), removed in (C23)
+#define __bool_true_false_are_defined 1  // since (C99), deprecated in (C23)
 
 // VLIBC_STDALIGN_H
 
-#define alignas _Alignas       // since (C11), removed in (C23)
-#define alignof _Alignof       // since (C11), removed in (C23)
-#define __alignas_is_defined 1 // since (C11), removed in (C23)
-#define __alignof_is_defined 1 // since (C11), removed in (C23)
+#define alignas _Alignas        // since (C11), removed in (C23)
+#define alignof _Alignof        // since (C11), removed in (C23)
+#define __alignas_is_defined 1  // since (C11), removed in (C23)
+#define __alignof_is_defined 1  // since (C11), removed in (C23)
 
 // VLIBC_STDNORETURN_H
 
-#define noreturn _Noreturn // since (C11), deprecated in (C23)
+#define noreturn _Noreturn  // since (C11), deprecated in (C23)
 
 // VLIBC_STDARG_H
 // clang-format off
@@ -249,15 +249,14 @@ double vlibc_fmod(double x, double y);
 // clang-format on
 
 /**
- * @brief Computes the square root of a given non-negative number using the Newton-Raphson method.
+ * @brief Computes the square root of a given non-negative number using the
+ * Newton-Raphson method.
  * @param x The input value.
  * @return The square root of `x`, or `VLIBC_NAN` if `x` is negative.
  */
 double vlibc_sqrt(double x) {
-  if (x < 0.0)
-    return VLIBC_NAN;
-  if (x == 0.0)
-    return 0.0;
+  if (x < 0.0) return VLIBC_NAN;
+  if (x == 0.0) return 0.0;
 
   double n = x, epsilon = 1e-10;
 
@@ -269,7 +268,8 @@ double vlibc_sqrt(double x) {
 }
 
 /**
- * @brief Computes the sine of a given angle in radians using the Taylor series expansion.
+ * @brief Computes the sine of a given angle in radians using the Taylor series
+ * expansion.
  * @param x The angle in radians.
  * @return The sine of `x`.
  */
@@ -289,7 +289,8 @@ double vlibc_sin(double x) {
 }
 
 /**
- * @brief Computes the cosine of a given angle in radians using the Taylor series expansion.
+ * @brief Computes the cosine of a given angle in radians using the Taylor
+ * series expansion.
  * @param x The angle in radians.
  * @return The cosine of `x`.
  */
@@ -316,13 +317,14 @@ double vlibc_cos(double x) {
 double vlibc_tan(double x) { return vlibc_sin(x) / vlibc_cos(x); }
 
 /**
- * @brief Computes the arcsine (inverse sine) of a given value using the Taylor series expansion.
+ * @brief Computes the arcsine (inverse sine) of a given value using the Taylor
+ * series expansion.
  * @param x The input value. Must be within the range [-1, 1].
- * @return The arcsine of `x` in radians, or `VLIBC_NAN` if `x` is outside the valid range.
+ * @return The arcsine of `x` in radians, or `VLIBC_NAN` if `x` is outside the
+ * valid range.
  */
 double vlibc_asin(double x) {
-  if (x < -1.0 || x > 1.0)
-    return VLIBC_NAN;
+  if (x < -1.0 || x > 1.0) return VLIBC_NAN;
 
   // x = vlibc_fmod(x, 2 * VLIBC_M_PI);
 
@@ -341,24 +343,27 @@ double vlibc_asin(double x) {
 /**
  * @brief Computes the arccosine (inverse cosine) of a given value.
  * @param x The input value. Must be within the range [-1, 1].
- * @return The arccosine of `x` in radians, or `VLIBC_NAN` if `x` is outside the valid range.
+ * @return The arccosine of `x` in radians, or `VLIBC_NAN` if `x` is outside the
+ * valid range.
  *
- * @note This function computes arccosine using the identity: acos(x) = π/2 - asin(x).
+ * @note This function computes arccosine using the identity: acos(x) = π/2 -
+ * asin(x).
  */
 double vlibc_acos(double x) { return VLIBC_M_PI_2 - vlibc_asin(x); }
 
 /**
- * @brief Computes the arctangent (inverse tangent) of a given value using the Taylor series expansion.
+ * @brief Computes the arctangent (inverse tangent) of a given value using the
+ * Taylor series expansion.
  * @param x The input value.
  * @return The arctangent of `x` in radians.
  *
- * @note For values of x > 1, this function uses the identity: atan(x) = π/2 - atan(1/x) to
- *       improve convergence. The series expansion is applied directly for values of `x` within
- *       the range [-1, 1] for accuracy (each approach mitigates floating-point errors).
+ * @note For values of x > 1, this function uses the identity: atan(x) = π/2 -
+ * atan(1/x) to improve convergence. The series expansion is applied directly
+ * for values of `x` within the range [-1, 1] for accuracy (each approach
+ * mitigates floating-point errors).
  */
 double vlibc_atan(double x) {
-  if (x > 1.0)
-    return VLIBC_M_PI_2 - vlibc_atan(1.0 / x);
+  if (x > 1.0) return VLIBC_M_PI_2 - vlibc_atan(1.0 / x);
 
   double acc = x, t = x, x2 = x * x;
   int n = 1;
@@ -373,7 +378,8 @@ double vlibc_atan(double x) {
 }
 
 /**
- * @brief Computes the exponential function \( e^x \) using the Taylor series expansion.
+ * @brief Computes the exponential function \( e^x \) using the Taylor series
+ * expansion.
  * @param x The exponent to which \( e \) is raised.
  * @return The value of \( e^x \).
  */
@@ -391,13 +397,13 @@ double vlibc_exp(double x) {
 }
 
 /**
- * @brief Computes the natural logarithm of a given positive value using a series expansion.
+ * @brief Computes the natural logarithm of a given positive value using a
+ * series expansion.
  * @param x The input value. Must be positive.
  * @return The natural logarithm of `x`, or `VLIBC_NAN` if `x` is non-positive.
  */
 double vlibc_log(double x) {
-  if (x <= 0.0)
-    return VLIBC_NAN;
+  if (x <= 0.0) return VLIBC_NAN;
 
   double acc = 0.0, t = (x - 1) / (x + 1), x2 = t * t;
   int n = 1;
@@ -427,17 +433,16 @@ double vlibc_log10(double x) { return vlibc_log(x) / VLIBC_M_LN10; }
  * @note Returns 0 if `base` is 0, and 1 if `exp` is 0.
  */
 double vlibc_pow(double base, double exp) {
-  if (base == 0.0)
-    return 0.0;
+  if (base == 0.0) return 0.0;
 
-  if (exp == 0.0)
-    return 1.0;
+  if (exp == 0.0) return 1.0;
 
   return vlibc_exp(exp * vlibc_log(base));
 }
 
 /**
- * @brief Computes the ceiling of a given value, rounding up to the nearest integer.
+ * @brief Computes the ceiling of a given value, rounding up to the nearest
+ * integer.
  * @param x The input value.
  * @return The smallest integer greater than or equal to `x`.
  */
@@ -447,7 +452,8 @@ double vlibc_ceil(double x) {
 }
 
 /**
- * @brief Computes the floor of a given value, rounding down to the nearest integer.
+ * @brief Computes the floor of a given value, rounding down to the nearest
+ * integer.
  * @param x The input value.
  * @return The largest integer less than or equal to `x`.
  */
@@ -495,11 +501,14 @@ int vlibc_toupper(int c);
 int vlibc_isalnum(int c) { return vlibc_isalpha(c) || vlibc_isdigit(c); }
 
 /**
- * @brief Checks if the given character is an alphabetic letter (uppercase or lowercase).
+ * @brief Checks if the given character is an alphabetic letter (uppercase or
+ * lowercase).
  * @param c Character to be checked.
  * @return Non-zero if `c` is alphabetic, zero otherwise.
  */
-int vlibc_isalpha(int c) { return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'); }
+int vlibc_isalpha(int c) {
+  return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+}
 
 /**
  * @brief Checks if the given character is a control character.
@@ -516,7 +525,8 @@ int vlibc_iscntrl(int c) { return (c >= 0 && c <= 0x1F) || c == 0x7F; }
 int vlibc_isdigit(int c) { return (c >= '0' && c <= '9'); }
 
 /**
- * @brief Checks if the given character has a graphical representation other than space.
+ * @brief Checks if the given character has a graphical representation other
+ * than space.
  * @param c Character to be checked.
  * @return Non-zero if `c` is a graphic character, zero otherwise.
  */
@@ -544,7 +554,8 @@ int vlibc_isprint(int c) { return c >= 0x20 && c < 0x7F; }
 int vlibc_ispunct(int c) { return vlibc_isgraph(c) && !vlibc_isalnum(c); }
 
 /**
- * @brief Checks if the given character is a whitespace character (space, tab, newline, etc.).
+ * @brief Checks if the given character is a whitespace character (space, tab,
+ * newline, etc.).
  * @param c Character to be checked.
  * @return Non-zero if `c` is whitespace, zero otherwise.
  */
@@ -562,19 +573,23 @@ int vlibc_isupper(int c) { return (c >= 'A' && c <= 'Z'); }
  * @param c Character to be checked.
  * @return Non-zero if `c` is a hexadecimal digit, zero otherwise.
  */
-int vlibc_isxdigit(int c) { return vlibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'); }
+int vlibc_isxdigit(int c) {
+  return vlibc_isdigit(c) || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f');
+}
 
 /**
  * @brief Converts an uppercase letter to its lowercase equivalent.
  * @param c Character to be converted.
- * @return Lowercase equivalent of `c` if it is uppercase; otherwise, returns `c`.
+ * @return Lowercase equivalent of `c` if it is uppercase; otherwise, returns
+ * `c`.
  */
 int vlibc_tolower(int c) { return vlibc_isupper(c) ? c + 32 : c; }
 
 /**
  * @brief Converts a lowercase letter to its uppercase equivalent.
  * @param c Character to be converted.
- * @return Uppercase equivalent of `c` if it is lowercase; otherwise, returns `c`.
+ * @return Uppercase equivalent of `c` if it is lowercase; otherwise, returns
+ * `c`.
  */
 int vlibc_toupper(int c) { return vlibc_islower(c) ? c - 32 : c; }
 
@@ -597,11 +612,12 @@ vlibc_size_t vlibc_strspn(const char *s, const char *accept);
 vlibc_size_t vlibc_strcspn(const char *s, const char *reject);
 char *vlibc_strpbrk(const char *s, const char *accept);
 char *vlibc_strstr(const char *haystack, const char *needle);
-char *vlibc_strdup(const char *s); // requires alloc
+char *vlibc_strdup(const char *s);  // requires alloc
 char *vlibc_strtok(char *str, const char *delim);
 
 /**
- * @brief Copies `n` bytes from the source memory area to the destination memory area.
+ * @brief Copies `n` bytes from the source memory area to the destination memory
+ * area.
  * @param dest Pointer to the destination memory area.
  * @param src Pointer to the source memory area.
  * @param n Number of bytes to copy.
@@ -611,14 +627,14 @@ void *vlibc_memcpy(void *dest, const void *src, vlibc_size_t n) {
   unsigned char *d = (unsigned char *)dest;
   const unsigned char *s = (const unsigned char *)src;
 
-  while (n--)
-    *d++ = *s++;
+  while (n--) *d++ = *s++;
 
   return dest;
 }
 
 /**
- * @brief Moves `n` bytes from the source memory area to the destination memory area, handling overlapping regions safely.
+ * @brief Moves `n` bytes from the source memory area to the destination memory
+ * area, handling overlapping regions safely.
  * @param dest Pointer to the destination memory area.
  * @param src Pointer to the source memory area.
  * @param n Number of bytes to move.
@@ -629,21 +645,20 @@ void *vlibc_memmove(void *dest, const void *src, vlibc_size_t n) {
   const unsigned char *s = (const unsigned char *)src;
 
   if (d < s)
-    while (n--)
-      *d++ = *s++;
+    while (n--) *d++ = *s++;
   else {
     d += n;
     s += n;
 
-    while (n--)
-      *--d = *--s;
+    while (n--) *--d = *--s;
   }
 
   return dest;
 }
 
 /**
- * @brief Copies the string pointed to by `src` to `dest`, including the terminating null byte.
+ * @brief Copies the string pointed to by `src` to `dest`, including the
+ * terminating null byte.
  * @param dest Pointer to the destination buffer.
  * @param src Pointer to the source null-terminated string.
  * @return Pointer to the destination buffer.
@@ -651,15 +666,15 @@ void *vlibc_memmove(void *dest, const void *src, vlibc_size_t n) {
 char *vlibc_strcpy(char *dest, const char *src) {
   char *d = dest;
 
-  while ((*d++ = *src++))
-    ;
+  while ((*d++ = *src++));
 
   return dest;
 }
 
 /**
- * @brief Copies up to `n` characters from the string pointed to by `src` to `dest`.
- * If `src` is shorter than `n`, the remaining characters in `dest` will be null-padded.
+ * @brief Copies up to `n` characters from the string pointed to by `src` to
+ * `dest`. If `src` is shorter than `n`, the remaining characters in `dest` will
+ * be null-padded.
  * @param dest Pointer to the destination buffer.
  * @param src Pointer to the source null-terminated string.
  * @param n Maximum number of characters to copy.
@@ -668,18 +683,17 @@ char *vlibc_strcpy(char *dest, const char *src) {
 char *vlibc_strncpy(char *dest, const char *src, vlibc_size_t n) {
   char *d = dest;
 
-  while (n && (*d++ = *src++))
-    n--;
+  while (n && (*d++ = *src++)) n--;
 
-  while (n--)
-    *d++ = '\0';
+  while (n--) *d++ = '\0';
 
   return dest;
 }
 
 /**
- * @brief Concatenates the string pointed to by `src` to the end of the string pointed to by `dest`.
- * The destination buffer must be large enough to hold both strings and the terminating null byte.
+ * @brief Concatenates the string pointed to by `src` to the end of the string
+ * pointed to by `dest`. The destination buffer must be large enough to hold
+ * both strings and the terminating null byte.
  * @param dest Pointer to the destination buffer containing the initial string.
  * @param src Pointer to the source null-terminated string to append.
  * @return Pointer to the destination buffer.
@@ -687,19 +701,17 @@ char *vlibc_strncpy(char *dest, const char *src, vlibc_size_t n) {
 char *vlibc_strcat(char *dest, const char *src) {
   char *d = dest;
 
-  while (*d)
-    d++;
+  while (*d) d++;
 
-  while ((*d++ = *src++))
-    ;
+  while ((*d++ = *src++));
 
   return dest;
 }
 
 /**
- * @brief Concatenates up to `n` characters from the string pointed to by `src` to the end of
- * the string pointed to by `dest`. The destination buffer must be large enough to hold the
- * result, including the terminating null byte.
+ * @brief Concatenates up to `n` characters from the string pointed to by `src`
+ * to the end of the string pointed to by `dest`. The destination buffer must be
+ * large enough to hold the result, including the terminating null byte.
  * @param dest Pointer to the destination buffer containing the initial string.
  * @param src Pointer to the source null-terminated string to append.
  * @param n Maximum number of characters to append from `src`.
@@ -708,11 +720,9 @@ char *vlibc_strcat(char *dest, const char *src) {
 char *vlibc_strncat(char *dest, const char *src, vlibc_size_t n) {
   char *d = dest;
 
-  while (*d)
-    d++;
+  while (*d) d++;
 
-  while (n-- && (*d++ = *src++))
-    ;
+  while (n-- && (*d++ = *src++));
 
   *d = '\0';
 
@@ -724,18 +734,18 @@ char *vlibc_strncat(char *dest, const char *src, vlibc_size_t n) {
  * @param s1 Pointer to the first memory area.
  * @param s2 Pointer to the second memory area.
  * @param n Number of bytes to compare.
- * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
- *         to be less than, equal to, or greater than `s2`.
+ * @return An integer less than, equal to, or greater than zero if `s1` is
+ * found, respectively, to be less than, equal to, or greater than `s2`.
  *
- * @note The comparison is done byte-by-byte and stops at the first difference found or after `n` bytes.
+ * @note The comparison is done byte-by-byte and stops at the first difference
+ * found or after `n` bytes.
  */
 int vlibc_memcmp(const void *s1, const void *s2, vlibc_size_t n) {
   const unsigned char *p1 = (const unsigned char *)s1;
   const unsigned char *p2 = (const unsigned char *)s2;
 
   while (n--) {
-    if (*p1 != *p2)
-      return *p1 - *p2;
+    if (*p1 != *p2) return *p1 - *p2;
 
     p1++;
     p2++;
@@ -748,8 +758,8 @@ int vlibc_memcmp(const void *s1, const void *s2, vlibc_size_t n) {
  * @brief Compares two null-terminated strings lexicographically.
  * @param s1 Pointer to the first string.
  * @param s2 Pointer to the second string.
- * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
- *         to be less than, equal to, or greater than `s2`.
+ * @return An integer less than, equal to, or greater than zero if `s1` is
+ * found, respectively, to be less than, equal to, or greater than `s2`.
  */
 int vlibc_strcmp(const char *s1, const char *s2) {
   while (*s1 && (*s1 == *s2)) {
@@ -761,12 +771,14 @@ int vlibc_strcmp(const char *s1, const char *s2) {
 }
 
 /**
- * @brief Compares up to `n` characters of two null-terminated strings lexicographically.
+ * @brief Compares up to `n` characters of two null-terminated strings
+ * lexicographically.
  * @param s1 Pointer to the first string.
  * @param s2 Pointer to the second string.
  * @param n Maximum number of characters to compare.
- * @return An integer less than, equal to, or greater than zero if `s1` is found, respectively,
- *         to be less than, equal to, or greater than `s2` within the first `n` characters.
+ * @return An integer less than, equal to, or greater than zero if `s1` is
+ * found, respectively, to be less than, equal to, or greater than `s2` within
+ * the first `n` characters.
  */
 int vlibc_strncmp(const char *s1, const char *s2, vlibc_size_t n) {
   while (n && *s1 && (*s1 == *s2)) {
@@ -779,7 +791,8 @@ int vlibc_strncmp(const char *s1, const char *s2, vlibc_size_t n) {
 }
 
 /**
- * @brief Fills the first `n` bytes of the memory area pointed to by `s` with the constant byte `c`.
+ * @brief Fills the first `n` bytes of the memory area pointed to by `s` with
+ * the constant byte `c`.
  * @param s Pointer to the memory area to be filled.
  * @param c The byte to be set in each byte of the memory area.
  * @param n Number of bytes to set.
@@ -788,8 +801,7 @@ int vlibc_strncmp(const char *s1, const char *s2, vlibc_size_t n) {
 void *vlibc_memset(void *s, int c, vlibc_size_t n) {
   unsigned char *p = (unsigned char *)s;
 
-  while (n--)
-    *p++ = (unsigned char)c;
+  while (n--) *p++ = (unsigned char)c;
 
   return s;
 }
@@ -797,28 +809,28 @@ void *vlibc_memset(void *s, int c, vlibc_size_t n) {
 /**
  * @brief Computes the length of a null-terminated string.
  * @param s Pointer to the null-terminated string.
- * @return The number of characters in the string, excluding the null terminator.
+ * @return The number of characters in the string, excluding the null
+ * terminator.
  */
 vlibc_size_t vlibc_strlen(const char *s) {
   const char *p = s;
 
-  while (*p)
-    p++;
+  while (*p) p++;
 
   return p - s;
 }
 
 /**
- * @brief Searches for the first occurrence of the character `c` in the string pointed to by `s`.
+ * @brief Searches for the first occurrence of the character `c` in the string
+ * pointed to by `s`.
  * @param s Pointer to the null-terminated string to be searched.
  * @param c The character to locate (converted to an unsigned char).
- * @return A pointer to the first occurrence of `c` in the string, or `NULL` if not found. If `c`
- *         is `'\0'`, returns a pointer to the null terminator.
+ * @return A pointer to the first occurrence of `c` in the string, or `NULL` if
+ * not found. If `c` is `'\0'`, returns a pointer to the null terminator.
  */
 char *vlibc_strchr(const char *s, int c) {
   while (*s) {
-    if (*s == (char)c)
-      return (char *)s;
+    if (*s == (char)c) return (char *)s;
 
     s++;
   }
@@ -827,17 +839,18 @@ char *vlibc_strchr(const char *s, int c) {
 }
 
 /**
- * @brief Searches for the last occurrence of the character `c` in the string pointed to by `s`.
+ * @brief Searches for the last occurrence of the character `c` in the string
+ * pointed to by `s`.
  * @param s Pointer to the null-terminated string to be searched.
  * @param c The character to locate (converted to an unsigned char).
- * @return A pointer to the last occurrence of `c` in the string, or `NULL` if not found.
+ * @return A pointer to the last occurrence of `c` in the string, or `NULL` if
+ * not found.
  */
 char *vlibc_strrchr(const char *s, int c) {
   const char *p = s + vlibc_strlen(s);
 
   while (p >= s) {
-    if (*p == (char)c)
-      return (char *)p;
+    if (*p == (char)c) return (char *)p;
 
     p--;
   }
@@ -846,45 +859,51 @@ char *vlibc_strrchr(const char *s, int c) {
 }
 
 /**
- * @brief Calculates the length of the initial segment of `s` that consists entirely of characters in `accept`.
+ * @brief Calculates the length of the initial segment of `s` that consists
+ * entirely of characters in `accept`.
  * @param s Pointer to the null-terminated string to be checked.
- * @param accept Pointer to a null-terminated string containing characters to match in `s`.
- * @return The number of characters in the initial segment of `s` which consist only of characters from `accept`.
+ * @param accept Pointer to a null-terminated string containing characters to
+ * match in `s`.
+ * @return The number of characters in the initial segment of `s` which consist
+ * only of characters from `accept`.
  */
 vlibc_size_t vlibc_strspn(const char *s, const char *accept) {
   const char *p = s;
 
-  while (*p && vlibc_strchr(accept, *p))
-    p++;
+  while (*p && vlibc_strchr(accept, *p)) p++;
 
   return p - s;
 }
 
 /**
- * @brief Calculates the length of the initial segment of `s` that consists entirely of characters not in `reject`.
+ * @brief Calculates the length of the initial segment of `s` that consists
+ * entirely of characters not in `reject`.
  * @param s Pointer to the null-terminated string to be checked.
- * @param reject Pointer to a null-terminated string containing characters to exclude from `s`.
- * @return The number of characters in the initial segment of `s` which do not contain any characters from `reject`.
+ * @param reject Pointer to a null-terminated string containing characters to
+ * exclude from `s`.
+ * @return The number of characters in the initial segment of `s` which do not
+ * contain any characters from `reject`.
  */
 vlibc_size_t vlibc_strcspn(const char *s, const char *reject) {
   const char *p = s;
 
-  while (*p && !vlibc_strchr(reject, *p))
-    p++;
+  while (*p && !vlibc_strchr(reject, *p)) p++;
 
   return p - s;
 }
 
 /**
- * @brief Searches for the first occurrence of any character from the string `accept` in the string `s`.
+ * @brief Searches for the first occurrence of any character from the string
+ * `accept` in the string `s`.
  * @param s Pointer to the null-terminated string to be searched.
- * @param accept Pointer to a null-terminated string containing characters to match.
- * @return A pointer to the first occurrence in `s` of any character from `accept`, or `NULL` if none are found.
+ * @param accept Pointer to a null-terminated string containing characters to
+ * match.
+ * @return A pointer to the first occurrence in `s` of any character from
+ * `accept`, or `NULL` if none are found.
  */
 char *vlibc_strpbrk(const char *s, const char *accept) {
   while (*s) {
-    if (vlibc_strchr(accept, *s))
-      return (char *)s;
+    if (vlibc_strchr(accept, *s)) return (char *)s;
 
     s++;
   }
@@ -893,17 +912,18 @@ char *vlibc_strpbrk(const char *s, const char *accept) {
 }
 
 /**
- * @brief Searches for the first occurrence of the substring `needle` in the string `haystack`.
+ * @brief Searches for the first occurrence of the substring `needle` in the
+ * string `haystack`.
  * @param haystack Pointer to the null-terminated string to be searched.
  * @param needle Pointer to the null-terminated substring to search for.
- * @return A pointer to the first occurrence of `needle` in `haystack`, or `NULL` if `needle` is not found.
+ * @return A pointer to the first occurrence of `needle` in `haystack`, or
+ * `NULL` if `needle` is not found.
  */
 char *vlibc_strstr(const char *haystack, const char *needle) {
   vlibc_size_t needle_len = vlibc_strlen(needle);
 
   while (*haystack) {
-    if (!vlibc_strncmp(haystack, needle, needle_len))
-      return (char *)haystack;
+    if (!vlibc_strncmp(haystack, needle, needle_len)) return (char *)haystack;
 
     haystack++;
   }
@@ -912,24 +932,25 @@ char *vlibc_strstr(const char *haystack, const char *needle) {
 }
 
 /**
- * @brief Splits a string into tokens based on the specified delimiter characters.
- * Successive calls with `str` set to `NULL` will continue tokenizing the same string.
- * @param str Pointer to the null-terminated string to be tokenized, or `NULL` to continue tokenizing
- *            the previous string.
- * @param delim Pointer to a null-terminated string containing delimiter characters.
- * @return A pointer to the next token found in `str`, or `NULL` if no more tokens are found.
+ * @brief Splits a string into tokens based on the specified delimiter
+ * characters. Successive calls with `str` set to `NULL` will continue
+ * tokenizing the same string.
+ * @param str Pointer to the null-terminated string to be tokenized, or `NULL`
+ * to continue tokenizing the previous string.
+ * @param delim Pointer to a null-terminated string containing delimiter
+ * characters.
+ * @return A pointer to the next token found in `str`, or `NULL` if no more
+ * tokens are found.
  *
- * @note This function modifies the input string by inserting null characters at delimiter positions.
- *       It maintains internal state, so it is NOT thread-safe!
+ * @note This function modifies the input string by inserting null characters at
+ * delimiter positions. It maintains internal state, so it is NOT thread-safe!
  */
 char *vlibc_strtok(char *str, const char *delim) {
   static char *last;
 
-  if (!str)
-    str = last;
+  if (!str) str = last;
 
-  if (!str)
-    return VLIBC_NULL;
+  if (!str) return VLIBC_NULL;
 
   str += vlibc_strspn(str, delim);
 
@@ -940,16 +961,16 @@ char *vlibc_strtok(char *str, const char *delim) {
 
   char *end = str + vlibc_strcspn(str, delim);
 
-  if (*end)
-    *end++ = '\0';
+  if (*end) *end++ = '\0';
 
   last = end;
 
   return str;
 }
 
-// ps: most of the functionality from this point are specific to kernel space routines,
-// e.g. syscalls & ABI compatibility, we will not document non-user-facing library functions
+// ps: most of the functionality from this point are specific to kernel space
+// routines, e.g. syscalls & ABI compatibility, we will not document
+// non-user-facing library functions
 // clang-format off
 
 #if defined(__GNUC__) || defined(__clang__)
@@ -1138,6 +1159,8 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #define VLIBC_SYS_fcntl       72
 #define VLIBC_SYS_getuid      102
 #define VLIBC_SYS_getgid      104
+#define VLIBC_SYS_setuid      105
+#define VLIBC_SYS_setgid      106
 #define VLIBC_SYS_gettimeofday 96
 
 #endif // __x86_64__
@@ -1206,7 +1229,7 @@ struct vlibc_flock {
 // fcntl & unistd prototypes
 int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode);
 int vlibc_creat(const char *pathname, vlibc_mode_t mode);
-int vlibc_fcntl(int fd, int cmd, ...); // requires va_args (stdarg.h)
+int vlibc_fcntl(int fd, int cmd, ...);  // requires va_args (stdarg.h)
 // clang-format off
 
 int vlibc_open(const char *pathname, int flags, vlibc_mode_t mode) {
@@ -1327,7 +1350,78 @@ int vlibc_close(int fd) {
   return (int)syscall_1(VLIBC_SYS_close, (vlibc_int64_t)fd);
 }
 
+vlibc_off_t vlibc_lseek(int fd, vlibc_off_t offset, int whence) {
+  return (vlibc_off_t)syscall_3(
+    VLIBC_SYS_lseek, (vlibc_int64_t)fd, (vlibc_int64_t)offset, 
+    (vlibc_int64_t)whence);
+}
+
+void *vlibc_brk(void *addr) {
+  return (void *)syscall_1(VLIBC_SYS_brk, (vlibc_int64_t)addr);
+}
+
+int vlibc_pipe(int pipefd[2]) {
+  return (int)syscall_1(VLIBC_SYS_pipe, (vlibc_int64_t)pipefd);
+}
+
+int vlibc_dup(int oldfd) {
+  return (int)syscall_1(VLIBC_SYS_dup, (vlibc_int64_t)oldfd);
+}
+
+int vlibc_dup2(int oldfd, int newfd) {
+  return (int)syscall_2(VLIBC_SYS_dup2, (vlibc_int64_t)oldfd, 
+    (vlibc_int64_t)newfd);
+}
+
+vlibc_pid_t vlibc_fork(void) {
+  return (vlibc_pid_t)syscall_0(VLIBC_SYS_fork);
+}
+
+int vlibc_execve(const char *pathname, char *const argv[], char *const envp[]) {
+  return (int)syscall_3(VLIBC_SYS_execve, (vlibc_int64_t)pathname,
+    (vlibc_int64_t)argv, (vlibc_int64_t)envp);
+}
+
+void vlibc_exit(int status) {
+  syscall_1(VLIBC_SYS_exit, (vlibc_int64_t)status);
+  while (1);
+}
+
+vlibc_pid_t vlibc_waitpid(vlibc_pid_t pid, int *wstatus, int options) {
+  return (vlibc_pid_t)syscall_4(VLIBC_SYS_wait4, (vlibc_int64_t)pid,
+    (vlibc_int64_t)wstatus, (vlibc_int64_t)options, 0);
+}
+
+int vlibc_kill(vlibc_pid_t pid, int sig) {
+  return (int)syscall_2(VLIBC_SYS_kill, (vlibc_int64_t)pid, 
+    (vlibc_int64_t)sig);
+}
+
+vlibc_pid_t vlibc_getpid(void) {
+  return (vlibc_pid_t)syscall_0(VLIBC_SYS_getpid);
+}
+
+vlibc_pid_t vlibc_getppid(void) {
+  return (vlibc_pid_t)syscall_0(VLIBC_SYS_getpid);
+}
+
+vlibc_uid_t vlibc_getuid(void) {
+  return (vlibc_uid_t)syscall_0(VLIBC_SYS_getuid);
+}
+
+vlibc_gid_t vlibc_getgid(void) {
+  return (vlibc_gid_t)syscall_0(VLIBC_SYS_getgid);
+}
+
+int vlibc_setuid(vlibc_uid_t uid) {
+  return (int)syscall_1(VLIBC_SYS_setuid, (vlibc_int64_t)uid);
+}
+
+int vlibc_setgid(vlibc_gid_t gid) {
+  return (int)syscall_1(VLIBC_SYS_setgid, (vlibc_int64_t)gid);
+}
+
 // clang-format on
 
-#endif // __x86_64__
-#endif // __linux__
+#endif  // __x86_64__
+#endif  // __linux__
