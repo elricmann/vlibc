@@ -1831,7 +1831,113 @@ void vlibc_qsort(void *base, vlibc_size_t nmemb, vlibc_size_t size,
 
 int vlibc_rand(void) {
   vlibc_rand_seed = vlibc_rand_seed * 1103515245 + 12345;  // ??
-  return (int)((vlibc_rand_seed >> 16) & VLIBC_RAND_MAX);
+
+  return (int)((vlibc_rand_seed >> 16) &
+               VLIBC_RAND_MAX);  // skip -Winteger-overflow?
 }
 
 void vlibc_srand(unsigned int seed) { vlibc_rand_seed = seed; }
+
+double vlibc_strtod(const char *nptr, char **endptr) {
+  while (vlibc_isspace(*nptr)) nptr++;
+
+  int sign = 1;
+
+  if (*nptr == '-') {
+    sign = -1;
+    nptr++;
+  } else if (*nptr == '+') {
+    nptr++;
+  }
+
+  double out = 0.0;
+
+  while (vlibc_isdigit(*nptr)) {
+    out = out * 10.0 + (*nptr - '0');
+    nptr++;
+  }
+
+  if (*nptr == '.') {
+    nptr++;
+
+    double frac = 0.1;
+
+    while (vlibc_isdigit(*nptr)) {
+      out += (*nptr - '0') * frac;
+      frac *= 0.1;
+      nptr++;
+    }
+  }
+
+  if (endptr) *endptr = (char *)nptr;
+
+  return sign * out;
+}
+
+float vlibc_strtof(const char *nptr, char **endptr) {
+  return (float)vlibc_strtod(nptr, endptr);
+}
+
+long vlibc_strtol(const char *nptr, char **endptr, int base) {
+  while (vlibc_isspace(*nptr)) nptr++;
+
+  int sign = 1;
+
+  if (*nptr == '-') {
+    sign = -1;
+    nptr++;
+  } else if (*nptr == '+') {
+    nptr++;
+  }
+
+  if (base == 0) {
+    if (*nptr == '0') {
+      nptr++;
+      if (*nptr == 'x' || *nptr == 'X') {
+        base = 16;
+        nptr++;
+      } else {
+        base = 8;
+      }
+    } else {
+      base = 10;
+    }
+  } else if (base == 16 && *nptr == '0' &&
+             (*(nptr + 1) == 'x' || *(nptr + 1) == 'X')) {
+    nptr += 2;
+  }
+
+  long out = 0;
+
+  while (1) {
+    int digit;
+
+    if (vlibc_isdigit(*nptr))
+      digit = *nptr - '0';
+    else if (vlibc_isalpha(*nptr))
+      digit = vlibc_toupper(*nptr) - 'A' + 10;
+    else
+      break;
+
+    if (digit >= base) break;
+
+    out = out * base + digit;
+    nptr++;
+  }
+
+  if (endptr) *endptr = (char *)nptr;
+
+  return sign * out;
+}
+
+long long vlibc_strtoll(const char *nptr, char **endptr, int base) {
+  return (long long)vlibc_strtol(nptr, endptr, base);
+}
+
+unsigned long vlibc_strtoul(const char *nptr, char **endptr, int base) {
+  return (unsigned long)vlibc_strtol(nptr, endptr, base);
+}
+
+unsigned long long vlibc_strtoull(const char *nptr, char **endptr, int base) {
+  return (unsigned long long)vlibc_strtoll(nptr, endptr, base);
+}
