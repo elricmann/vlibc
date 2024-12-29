@@ -1335,15 +1335,14 @@ int vlibc_unlink(const char *pathname);
 vlibc_pid_t vlibc_waitpid(vlibc_pid_t pid, int *wstatus, int options);
 vlibc_ssize_t vlibc_write(int fd, const void *buf, vlibc_size_t count);
 
-// clang-format off
-
 vlibc_ssize_t vlibc_read(int fd, void *buf, vlibc_size_t count) {
-  return (vlibc_ssize_t)syscall_3(
-    VLIBC_SYS_read, (vlibc_int64_t)fd, (vlibc_int64_t)buf, (vlibc_int64_t)count);
+  return (vlibc_ssize_t)syscall_3(VLIBC_SYS_read, (vlibc_int64_t)fd,
+                                  (vlibc_int64_t)buf, (vlibc_int64_t)count);
 }
 
 vlibc_ssize_t vlibc_write(int fd, const void *buf, vlibc_size_t count) {
-  return (vlibc_ssize_t)syscall_3(VLIBC_SYS_write, (vlibc_int64_t)fd, (vlibc_int64_t)buf, (vlibc_int64_t)count);
+  return (vlibc_ssize_t)syscall_3(VLIBC_SYS_write, (vlibc_int64_t)fd,
+                                  (vlibc_int64_t)buf, (vlibc_int64_t)count);
 }
 
 int vlibc_close(int fd) {
@@ -1351,9 +1350,8 @@ int vlibc_close(int fd) {
 }
 
 vlibc_off_t vlibc_lseek(int fd, vlibc_off_t offset, int whence) {
-  return (vlibc_off_t)syscall_3(
-    VLIBC_SYS_lseek, (vlibc_int64_t)fd, (vlibc_int64_t)offset, 
-    (vlibc_int64_t)whence);
+  return (vlibc_off_t)syscall_3(VLIBC_SYS_lseek, (vlibc_int64_t)fd,
+                                (vlibc_int64_t)offset, (vlibc_int64_t)whence);
 }
 
 void *vlibc_brk(void *addr) {
@@ -1369,17 +1367,15 @@ int vlibc_dup(int oldfd) {
 }
 
 int vlibc_dup2(int oldfd, int newfd) {
-  return (int)syscall_2(VLIBC_SYS_dup2, (vlibc_int64_t)oldfd, 
-    (vlibc_int64_t)newfd);
+  return (int)syscall_2(VLIBC_SYS_dup2, (vlibc_int64_t)oldfd,
+                        (vlibc_int64_t)newfd);
 }
 
-vlibc_pid_t vlibc_fork(void) {
-  return (vlibc_pid_t)syscall_0(VLIBC_SYS_fork);
-}
+vlibc_pid_t vlibc_fork(void) { return (vlibc_pid_t)syscall_0(VLIBC_SYS_fork); }
 
 int vlibc_execve(const char *pathname, char *const argv[], char *const envp[]) {
   return (int)syscall_3(VLIBC_SYS_execve, (vlibc_int64_t)pathname,
-    (vlibc_int64_t)argv, (vlibc_int64_t)envp);
+                        (vlibc_int64_t)argv, (vlibc_int64_t)envp);
 }
 
 void vlibc_exit(int status) {
@@ -1389,12 +1385,12 @@ void vlibc_exit(int status) {
 
 vlibc_pid_t vlibc_waitpid(vlibc_pid_t pid, int *wstatus, int options) {
   return (vlibc_pid_t)syscall_4(VLIBC_SYS_wait4, (vlibc_int64_t)pid,
-    (vlibc_int64_t)wstatus, (vlibc_int64_t)options, 0);
+                                (vlibc_int64_t)wstatus, (vlibc_int64_t)options,
+                                0);
 }
 
 int vlibc_kill(vlibc_pid_t pid, int sig) {
-  return (int)syscall_2(VLIBC_SYS_kill, (vlibc_int64_t)pid, 
-    (vlibc_int64_t)sig);
+  return (int)syscall_2(VLIBC_SYS_kill, (vlibc_int64_t)pid, (vlibc_int64_t)sig);
 }
 
 vlibc_pid_t vlibc_getpid(void) {
@@ -1420,8 +1416,6 @@ int vlibc_setuid(vlibc_uid_t uid) {
 int vlibc_setgid(vlibc_gid_t gid) {
   return (int)syscall_1(VLIBC_SYS_setgid, (vlibc_int64_t)gid);
 }
-
-// clang-format on
 
 #endif  // __x86_64__
 #endif  // __linux__
