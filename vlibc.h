@@ -1417,5 +1417,36 @@ int vlibc_setgid(vlibc_gid_t gid) {
   return (int)syscall_1(VLIBC_SYS_setgid, (vlibc_int64_t)gid);
 }
 
+struct vlibc_timeval {
+  vlibc_int64_t tv_sec;
+  vlibc_int64_t tv_usec;
+};
+
+struct vlibc_timezone {
+  int tz_minuteswest;
+  int tz_dsttime;
+};
+
+int vlibc_gettimeofday(struct vlibc_timeval *tv, struct vlibc_timezone *tz) {
+  return (int)syscall_2(VLIBC_SYS_gettimeofday, (vlibc_int64_t)tv,
+                        (vlibc_int64_t)tz);
+}
+
+struct vlibc_timespec {
+  vlibc_int64_t tv_sec;
+  vlibc_int64_t tv_nsec;
+};
+
+unsigned int vlibc_sleep(unsigned int seconds) {
+  struct vlibc_timespec ts = {.tv_sec = seconds, .tv_nsec = 0};
+
+  if (syscall_2(VLIBC_SYS_nanosleep, (vlibc_int64_t)&ts,
+                (vlibc_int64_t)VLIBC_NULL) == 0) {
+    return 0;
+  }
+
+  return seconds;
+}
+
 #endif  // __x86_64__
 #endif  // __linux__
