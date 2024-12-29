@@ -1154,6 +1154,7 @@ syscall_6(vlibc_int64_t n, vlibc_int64_t arg1, vlibc_int64_t arg2,
 #define VLIBC_SYS_wait4       61
 #define VLIBC_SYS_kill        62
 #define VLIBC_SYS_uname       63
+#define VLIBC_SYS_chdir       80
 #define VLIBC_SYS_getpid      39
 #define VLIBC_SYS_chown       92
 #define VLIBC_SYS_fcntl       72
@@ -1288,6 +1289,23 @@ int vlibc_fcntl(int fd, int cmd, ...) {
 // clang-format on
 
 // VLIBC_UNISTD_H
+
+#define S_IFMT 0170000
+#define S_IFSOCK 0140000
+#define S_IFLNK 0120000
+#define S_IFREG 0100000
+#define S_IFBLK 0060000
+#define S_IFDIR 0040000
+#define S_IFCHR 0020000
+#define S_IFIFO 0010000
+
+#define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+#define S_ISCHR(m) (((m) & S_IFMT) == S_IFCHR)
+#define S_ISBLK(m) (((m) & S_IFMT) == S_IFBLK)
+#define S_ISFIFO(m) (((m) & S_IFMT) == S_IFIFO)
+#define S_ISLNK(m) (((m) & S_IFMT) == S_IFLNK)
+#define S_ISSOCK(m) (((m) & S_IFMT) == S_IFSOCK)
 
 // standard fds
 #define VLIBC_STDIN_FILENO 0
@@ -1446,6 +1464,90 @@ unsigned int vlibc_sleep(unsigned int seconds) {
   }
 
   return seconds;
+}
+
+// inode file attrs <sys/stat.h>
+
+struct vlibc_stat {
+  vlibc_uint64_t st_dev;
+  vlibc_uint64_t st_ino;
+  vlibc_uint64_t st_nlink;
+  vlibc_uint32_t st_mode;
+  vlibc_uid_t st_uid;
+  vlibc_gid_t st_gid;
+  vlibc_uint32_t __pad0;
+  vlibc_uint64_t st_rdev;
+  vlibc_int64_t st_size;
+  vlibc_int64_t st_blksize;
+  vlibc_int64_t st_blocks;
+  struct vlibc_timespec st_atim;
+  struct vlibc_timespec st_mtim;
+  struct vlibc_timespec st_ctim;
+  vlibc_int64_t __unused[3];
+};
+
+int vlibc_stat(const char *pathname, struct vlibc_stat *statbuf) {
+  return (int)syscall_2(VLIBC_SYS_stat, (vlibc_int64_t)pathname,
+                        (vlibc_int64_t)statbuf);
+}
+
+int vlibc_fstat(int fd, struct vlibc_stat *statbuf) {
+  return (int)syscall_2(VLIBC_SYS_fstat, (vlibc_int64_t)fd,
+                        (vlibc_int64_t)statbuf);
+}
+
+int vlibc_access(const char *pathname, int mode) {
+  struct vlibc_stat st;
+  if (vlibc_stat(pathname, &st) < 0) {
+    return -1;
+  }
+
+  vlibc_uid_t uid = vlibc_getuid();
+  vlibc_gid_t gid = vlibc_getgid();
+
+  if (uid == 0) {
+    return 0;
+  }
+
+  if (st.st_uid == uid) {
+    st.st_mode >>= 6;
+  } else if (st.st_gid == gid) {
+    st.st_mode >>= 3;
+  }
+
+  if ((st.st_mode & mode) == mode) {
+    return 0;
+  }
+
+  return -1;
+}
+
+int vlibc_chdir(const char *path) {
+  struct vlibc_stat st;
+  if (vlibc_stat(path, &st) < 0) {
+    return -1;
+  }
+
+  if (!S_ISDIR(st.st_mode)) {
+    return -1;
+  }
+
+  return syscall_1(VLIBC_SYS_chdir, (vlibc_int64_t)path);
+}
+
+int vlibc_chmod(const char *pathname, vlibc_mode_t mode) {
+  struct vlibc_stat st;
+  if (vlibc_stat(pathname, &st) < 0) {
+    return -1;
+  }
+
+  st.st_mode = mode;
+  return vlibc_stat(pathname, &st);
+}
+
+int vlibc_chown(const char *pathname, vlibc_uid_t owner, vlibc_gid_t group) {
+  return (int)syscall_3(VLIBC_SYS_chown, (vlibc_int64_t)pathname,
+                        (vlibc_int64_t)owner, (vlibc_int64_t)group);
 }
 
 #endif  // __x86_64__
