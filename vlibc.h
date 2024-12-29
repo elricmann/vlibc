@@ -1743,23 +1743,32 @@ struct vlibc_lldiv_t vlibc_lldiv(long long numer, long long denom);
 #endif  // __x86_64__
 #endif  // __linux__
 
+// clang-format on
+
 static unsigned int vlibc_rand_seed = 1;
 static void (*vlibc_atexit_funcs[1 << 5])(void);
 static int vlibc_atexit_count = 0;
+
+int vlibc_atexit(void (*func)(void)) {
+  if (vlibc_atexit_count >= 32) return -1;
+
+  vlibc_atexit_funcs[vlibc_atexit_count++] = func;
+
+  return 0;
+}
 
 int vlibc_atoi(const char *nptr) {
   return (int)vlibc_strtol(nptr, VLIBC_NULL, 10);
 }
 
-long vlibc_atol(const char *nptr) {
-  return vlibc_strtol(nptr, VLIBC_NULL, 10);
-}
+long vlibc_atol(const char *nptr) { return vlibc_strtol(nptr, VLIBC_NULL, 10); }
 
 long long vlibc_atoll(const char *nptr) {
   return vlibc_strtoll(nptr, VLIBC_NULL, 10);
 }
 
-void *vlibc_bsearch(const void *key, const void *base, vlibc_size_t nmemb, vlibc_size_t size,
+void *vlibc_bsearch(const void *key, const void *base, vlibc_size_t nmemb,
+                    vlibc_size_t size,
                     int (*compar)(const void *, const void *)) {
   const char *base_ptr = (const char *)base;
   vlibc_size_t left = 0;
@@ -1789,24 +1798,22 @@ static void vlibc_qsort_swap(char *a, char *b, vlibc_size_t size) {
   }
 }
 
-static void vlibc_qsort_recursive(char *base, vlibc_size_t nmemb, vlibc_size_t size,
-                                int (*compar)(const void *, const void *)) {
-  if (nmemb <= 1)
-    return;
+static void vlibc_qsort_recursive(char *base, vlibc_size_t nmemb,
+                                  vlibc_size_t size,
+                                  int (*compar)(const void *, const void *)) {
+  if (nmemb <= 1) return;
 
   char *pivot = base + (nmemb - 1) * size;
   char *store = base;
-  
+
   for (char *i = base; i < pivot; i += size) {
     if (compar(i, pivot) <= 0) {
-      if (i != store)
-        vlibc_qsort_swap(i, store, size);
+      if (i != store) vlibc_qsort_swap(i, store, size);
       store += size;
     }
   }
-  
-  if (store != pivot)
-    vlibc_qsort_swap(store, pivot, size);
+
+  if (store != pivot) vlibc_qsort_swap(store, pivot, size);
 
   vlibc_size_t left_size = (store - base) / size;
   vlibc_size_t right_size = nmemb - left_size - 1;
@@ -1817,17 +1824,14 @@ static void vlibc_qsort_recursive(char *base, vlibc_size_t nmemb, vlibc_size_t s
 
 void vlibc_qsort(void *base, vlibc_size_t nmemb, vlibc_size_t size,
                  int (*compar)(const void *, const void *)) {
-  if (!base || !size)
-    return;
+  if (!base || !size) return;
 
   vlibc_qsort_recursive((char *)base, nmemb, size, compar);
 }
 
 int vlibc_rand(void) {
-  vlibc_rand_seed = vlibc_rand_seed * 1103515245 + 12345; // ??
+  vlibc_rand_seed = vlibc_rand_seed * 1103515245 + 12345;  // ??
   return (int)((vlibc_rand_seed >> 16) & VLIBC_RAND_MAX);
 }
 
-void vlibc_srand(unsigned int seed) {
-  vlibc_rand_seed = seed;
-}
+void vlibc_srand(unsigned int seed) { vlibc_rand_seed = seed; }
