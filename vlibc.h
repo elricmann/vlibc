@@ -1683,3 +1683,43 @@ int vlibc_unlink(const char *pathname) {
 
 #endif  // __x86_64__
 #endif  // __linux__
+
+// We will only declare <stdlib.h> but define for each platform, the rest will
+// be implementation-specific since NT has different memory routines from POSIX.
+
+// VLIBC_STDLIB_H
+
+#define VLIBC_EXIT_SUCCESS 0
+#define VLIBC_EXIT_FAILURE 1
+#define VLIBC_RAND_MAX ((1 << 31) - 1)
+
+void *vlibc_malloc(vlibc_size_t size);
+void vlibc_free(void *ptr);
+void *vlibc_calloc(vlibc_size_t nmemb, vlibc_size_t size);
+void *vlibc_realloc(void *ptr, vlibc_size_t size);
+void vlibc_abort(void);
+int vlibc_atexit(void (*func)(void));
+int vlibc_atoi(const char *nptr);
+long vlibc_atol(const char *nptr);
+long long vlibc_atoll(const char *nptr);
+void *vlibc_bsearch(const void *key, const void *base, vlibc_size_t nmemb,
+                    vlibc_size_t size,
+                    int (*compar)(const void *, const void *));
+void vlibc_qsort(void *base, vlibc_size_t nmemb, vlibc_size_t size,
+                 int (*compar)(const void *, const void *));
+int vlibc_rand(void);
+void vlibc_srand(unsigned int seed);
+double vlibc_strtod(const char *nptr, char **endptr);
+float vlibc_strtof(const char *nptr, char **endptr);
+long vlibc_strtol(const char *nptr, char **endptr, int base);
+long long vlibc_strtoll(const char *nptr, char **endptr, int base);
+unsigned long vlibc_strtoul(const char *nptr, char **endptr, int base);
+unsigned long long vlibc_strtoull(const char *nptr, char **endptr, int base);
+
+#ifdef __linux__
+#ifdef __x86_64__
+
+  // clang-format off
+
+#endif  // __x86_64__
+#endif  // __linux__
