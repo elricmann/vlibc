@@ -1742,3 +1742,37 @@ struct vlibc_lldiv_t vlibc_lldiv(long long numer, long long denom);
 
 #endif  // __x86_64__
 #endif  // __linux__
+
+int vlibc_atoi(const char *nptr) {
+  return (int)vlibc_strtol(nptr, VLIBC_NULL, 10);
+}
+
+long vlibc_atol(const char *nptr) {
+  return vlibc_strtol(nptr, VLIBC_NULL, 10);
+}
+
+long long vlibc_atoll(const char *nptr) {
+  return vlibc_strtoll(nptr, VLIBC_NULL, 10);
+}
+
+void *vlibc_bsearch(const void *key, const void *base, vlibc_size_t nmemb, vlibc_size_t size,
+                    int (*compar)(const void *, const void *)) {
+  const char *base_ptr = (const char *)base;
+  vlibc_size_t left = 0;
+  vlibc_size_t right = nmemb;
+
+  while (left < right) {
+    vlibc_size_t mid = left + (right - left) / 2;
+    const void *mid_ptr = base_ptr + mid * size;
+    int result = compar(key, mid_ptr);
+
+    if (result < 0)
+      right = mid;
+    else if (result > 0)
+      left = mid + 1;
+    else
+      return (void *)mid_ptr;
+  }
+
+  return VLIBC_NULL;
+}
