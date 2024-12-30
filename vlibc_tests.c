@@ -3,9 +3,9 @@
 
 #include "vlibc.h"
 
-int main(int argc, char const *argv[]) {
-  // printf("vlibc_sqrt(2.0): %f\nVLIBC_M_SQRT2: %f\n", vlibc_sqrt(2.0f), VLIBC_M_SQRT2);
-  // printf("vlibc_sqrt(4.0): %f\n", vlibc_sqrt(4.0f));
+int main(int argc, char const* argv[]) {
+  // printf("vlibc_sqrt(2.0): %f\nVLIBC_M_SQRT2: %f\n", vlibc_sqrt(2.0f),
+  // VLIBC_M_SQRT2); printf("vlibc_sqrt(4.0): %f\n", vlibc_sqrt(4.0f));
   // printf("vlibc_sin((VLIBC_M_PI/2)): %f\n", vlibc_sin((VLIBC_M_PI / 2)));
   // printf("vlibc_cos((90.0)): %f\n", vlibc_cos((90.0)));
   // printf("vlibc_tan((60.0)): %f\n", vlibc_tan((60.0)));
@@ -55,10 +55,11 @@ int main(int argc, char const *argv[]) {
   // const char *a1 = "test vlibc_strcmp";
   // const char *a2 = "test vlibc_strcmp";
   // const char *a3 = "test vlibc_str";
-  // printf("strcmp (a1 vs a2): %d\n", vlibc_strcmp(a1, a2));           // expected 0
-  // printf("strcmp (a1 vs a3): %d\n", vlibc_strcmp(a1, a3));           // expected non-zero
-  // printf("strncmp (a1 vs a3, 10): %d\n", vlibc_strncmp(a1, a3, 10)); // expected 0
-  // printf("strncmp (a1 vs a3, 15): %d\n", vlibc_strncmp(a1, a3, 15)); // expected non-zero
+  // printf("strcmp (a1 vs a2): %d\n", vlibc_strcmp(a1, a2));           //
+  // expected 0 printf("strcmp (a1 vs a3): %d\n", vlibc_strcmp(a1, a3)); //
+  // expected non-zero printf("strncmp (a1 vs a3, 10): %d\n", vlibc_strncmp(a1,
+  // a3, 10)); // expected 0 printf("strncmp (a1 vs a3, 15): %d\n",
+  // vlibc_strncmp(a1, a3, 15)); // expected non-zero
 
   // char buf[20];
 
@@ -68,14 +69,16 @@ int main(int argc, char const *argv[]) {
 
   // const char *str = "test vlibc_strlen";
   // vlibc_size_t len = vlibc_strlen(str);
-  // printf("strlen result: %llu\n", len); // expected length of "test vlibc_strlen" & null char
+  // printf("strlen result: %llu\n", len); // expected length of "test
+  // vlibc_strlen" & null char
 
   // const char *str2 = "test vlibc_strchr";
   // char *found = vlibc_strchr(str2, 'c');
   // printf("strchr result: %s\n", found); // expected "c_strchr"
 
   // char *not_found = vlibc_strchr(str2, 'z');
-  // printf("strchr not found result: %s\n", not_found ? not_found : "NULL"); // expected NULL
+  // printf("strchr not found result: %s\n", not_found ? not_found : "NULL"); //
+  // expected NULL
 
   // const char *str1 = "test vlibc_strrchr example";
   // char *last_e = vlibc_strrchr(str1, 'e');
@@ -89,17 +92,18 @@ int main(int argc, char const *argv[]) {
   // const char *accept = "te";
   // const char *reject = " ";
   // vlibc_size_t span_length = vlibc_strspn(str3, accept);
-  // printf("length of initial segment containing only 't' or 'e': %llu\n", span_length); // expected 2
-  // vlibc_size_t cspan_length = vlibc_strcspn(str3, reject);
-  // printf("length of initial segment not containing a space: %llu\n", cspan_length); // expected 4
+  // printf("length of initial segment containing only 't' or 'e': %llu\n",
+  // span_length); // expected 2 vlibc_size_t cspan_length = vlibc_strcspn(str3,
+  // reject); printf("length of initial segment not containing a space: %llu\n",
+  // cspan_length); // expected 4
 
   // const char *str4 = "test vlibc_strpbrk and vlibc_strstr examples";
   // const char *accept2 = "aeiou";
   // const char *needle = "vlibc_strstr";
   // char *first_vowel = vlibc_strpbrk(str4, accept2);
-  // printf("first vowel in string: %c\n", first_vowel ? *first_vowel : 'N'); // expected 'e'
-  // char *substr = vlibc_strstr(str4, needle);
-  // printf("substring: %s\n", substr ? substr : "NULL"); // expected "vlibc_strstr examples"
+  // printf("first vowel in string: %c\n", first_vowel ? *first_vowel : 'N'); //
+  // expected 'e' char *substr = vlibc_strstr(str4, needle); printf("substring:
+  // %s\n", substr ? substr : "NULL"); // expected "vlibc_strstr examples"
 
   // char str5[] = "test,vlibc,strtok,example";
   // const char *delim = ",";
@@ -114,27 +118,48 @@ int main(int argc, char const *argv[]) {
   // printf("is num: %d\n", vlibc_isdigit('9'));
   // printf("is alphanum: %d\n", vlibc_isalnum('2'));
 
-  int _fd = vlibc_open(".gitignore", VLIBC_O_RDONLY, 0);
-  printf(".gitignore fd: %d\n", _fd);
-  int fd2 = vlibc_open("doesntexist.txt", VLIBC_O_RDONLY, 0);
-  printf("doesntexist.txt fd: %d\n", fd2);
+  // int _fd = vlibc_open(".gitignore", VLIBC_O_RDONLY, 0);
+  // printf(".gitignore fd: %d\n", _fd);
+  // int fd2 = vlibc_open("doesntexist.txt", VLIBC_O_RDONLY, 0);
+  // printf("doesntexist.txt fd: %d\n", fd2);
 
-  int fd = vlibc_open("README.md", VLIBC_O_RDWR | VLIBC_O_APPEND, 0);
-  if (fd >= 0) {
-    char buffer[128];
-    vlibc_ssize_t bytes_read = vlibc_read(fd, buffer, sizeof(buffer) - 1);
-    if (bytes_read > 0) {
-      buffer[bytes_read] = '\0';
-      printf("%s", buffer);
-    }
+  // int fd = vlibc_open("README.md", VLIBC_O_RDWR | VLIBC_O_APPEND, 0);
+  // if (fd >= 0) {
+  //   char buffer[128];
+  //   vlibc_ssize_t bytes_read = vlibc_read(fd, buffer, sizeof(buffer) - 1);
+  //   if (bytes_read > 0) {
+  //     buffer[bytes_read] = '\0';
+  //     printf("%s", buffer);
+  //   }
 
-    const char *write_data = "write data";
-    vlibc_ssize_t bytes_written = vlibc_write(fd, write_data, vlibc_strlen(write_data));
-    if (bytes_written > 0) {
-      printf("wrote: %s\n", write_data);
-    }
+  //   const char *write_data = "write data";
+  //   vlibc_ssize_t bytes_written = vlibc_write(fd, write_data,
+  //   vlibc_strlen(write_data)); if (bytes_written > 0) {
+  //     printf("wrote: %s\n", write_data);
+  //   }
 
-    vlibc_close(fd);
+  //   vlibc_close(fd);
+  // }
+
+  // clang -o main.o vlibc_tests.c && ./main.o
+  // strace -e trace=mmap ./main.o
+
+  int* ptr = (int*)vlibc_malloc(4 * sizeof(int));
+  int* _ptr = (int*)vlibc_malloc(4 * sizeof(int));
+  int* __ptr = (int*)vlibc_malloc(4 * sizeof(int));
+  int* ___ptr = (int*)vlibc_malloc(4 * sizeof(int));
+  int* ____ptr = (int*)vlibc_malloc(4 * sizeof(int));
+
+  printf("ptr address: %p\n", ptr);
+  printf("ptr address: %p\n", _ptr);
+  printf("ptr address: %p\n", __ptr);
+  printf("ptr address: %p\n", ___ptr);
+  printf("ptr address: %p\n", ____ptr);
+
+  *(char*)ptr = 0xFF;
+
+  if (*(char*)ptr != 0xFF) {
+    return 1;
   }
 
   return 0;

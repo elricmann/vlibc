@@ -968,9 +968,11 @@ char *vlibc_strtok(char *str, const char *delim) {
   return str;
 }
 
-// ps: most of the functionality from this point are specific to kernel space
-// routines, e.g. syscalls & ABI compatibility, we will not document
-// non-user-facing library functions
+// PS: Most of the functionality from this point are specific to kernel space
+// routines, e.g. syscalls & ABI compatibility.
+
+// @todo Only document library functions after conclusive tests.
+
 // clang-format off
 
 #if defined(__GNUC__) || defined(__clang__)
@@ -1735,14 +1737,21 @@ struct vlibc_div_t vlibc_div(int numer, int denom);
 struct vlibc_ldiv_t vlibc_ldiv(long numer, long denom);
 struct vlibc_lldiv_t vlibc_lldiv(long long numer, long long denom);
 
-// Memory routines for POSIX are defined here for VLIBC_STDLIB_H.
+// POSIX memory routines are defined here for VLIBC_STDLIB_H.
 // Most of the details should remain the same when porting.
 
 #ifdef __linux__
 #ifdef __x86_64__
 
 #define VLIBC_PAGE_SIZE (1 << 12)
-#define VLIBC_ALIGN(x, align) (((x) + ((align) - 1)) & ~((align) - 1))
+#define __VLIBC_ALIGN__(x, align) (((x) + ((align) - 1)) & ~((align) - 1))
+
+#define VLIBC_PROT_READ 0x1
+#define VLIBC_PROT_WRITE 0x2
+#define VLIBC_MAP_PRIVATE 0x2
+#define VLIBC_MAP_ANONYMOUS 0x20
+
+#define VLIBC_MAP_FAILED ((void *)-1)
 
 struct vlibc_block_header {
   vlibc_size_t size;
@@ -1751,7 +1760,98 @@ struct vlibc_block_header {
 };
 
 static struct vlibc_block_header *vlibc_heap_start = VLIBC_NULL;
-static unsigned char vlibc_initialized = 0;
+__vlibc_deprecated unsigned char vlibc_initialized =
+    0;  // required in sbrk implementation
+
+// We now implement a basic best-fit algorithm for memory allocation.
+// Alternatively, there could be other algorithms that could be
+// applied with a definition in user programs but that may not be
+// necessary. __VLIBC_ALIGN__ aligns a size up to a specific byte boundary.
+// __vlibc_platform_* internal functions wrap system-related memory routines.
+
+__vlibc_force_inline static void *__vlibc_platform_alloc(size_t size) {
+  void *ptr = (void *)syscall_6(VLIBC_SYS_mmap, 0, size,
+                                VLIBC_PROT_READ | VLIBC_PROT_WRITE,
+                                VLIBC_MAP_PRIVATE | VLIBC_MAP_ANONYMOUS, -1, 0);
+  return (ptr == VLIBC_MAP_FAILED) ? VLIBC_NULL : ptr;
+}
+
+__vlibc_force_inline static int __vlibc_platform_free(void *ptr) {
+  struct vlibc_block_header *header = (struct vlibc_block_header *)ptr;
+  return (int)syscall_2(VLIBC_SYS_munmap, (vlibc_int64_t)ptr,
+                        header->size + sizeof(struct vlibc_block_header));
+}
+
+void *vlibc_malloc(vlibc_size_t size) {
+  if (size == 0) return VLIBC_NULL;
+
+  vlibc_size_t total_size =
+      __VLIBC_ALIGN__(size + sizeof(struct vlibc_block_header), 8);
+
+  if (!vlibc_heap_start) {
+    vlibc_size_t initial_size = __VLIBC_ALIGN__(total_size, VLIBC_PAGE_SIZE);
+    vlibc_heap_start = __vlibc_platform_alloc(initial_size);
+
+    if (!vlibc_heap_start) return VLIBC_NULL;
+
+    vlibc_heap_start->size = initial_size - sizeof(struct vlibc_block_header);
+    vlibc_heap_start->next = VLIBC_NULL;
+    vlibc_heap_start->used = 0;
+  }
+
+  struct vlibc_block_header *current = vlibc_heap_start;
+  struct vlibc_block_header *best_fit = VLIBC_NULL;
+  vlibc_size_t min_size = (vlibc_size_t)-1;
+
+  while (current) {
+    if (!current->used && current->size >= total_size) {
+      if (current->size < min_size) {
+        best_fit = current;
+        min_size = current->size;
+      }
+    }
+
+    current = current->next;
+  }
+
+  if (!best_fit) {
+    vlibc_size_t alloc_size = __VLIBC_ALIGN__(total_size, VLIBC_PAGE_SIZE);
+    struct vlibc_block_header *new_block = __vlibc_platform_alloc(alloc_size);
+
+    if (!new_block) return VLIBC_NULL;
+
+    new_block->size = alloc_size - sizeof(struct vlibc_block_header);
+    new_block->used = 0;
+    new_block->next = VLIBC_NULL;
+
+    // skip older blocks, start at base of heap
+    current = vlibc_heap_start;
+
+    // advance block
+    while (current->next) current = current->next;
+
+    current->next = new_block;
+    best_fit = new_block;
+  }
+
+  if (best_fit->size >= total_size + sizeof(struct vlibc_block_header) + 8) {
+    struct vlibc_block_header *partition_block =
+        (struct vlibc_block_header *)((char *)best_fit +
+                                      sizeof(struct vlibc_block_header) +
+                                      total_size);
+    partition_block->size =  // match the least possible size
+        best_fit->size - total_size - sizeof(struct vlibc_block_header);
+    partition_block->next = best_fit->next;
+    partition_block->used = 0;
+
+    best_fit->size = total_size;
+    best_fit->next = partition_block;
+  }
+
+  best_fit->used = 1;
+
+  return (void *)((char *)best_fit + sizeof(struct vlibc_block_header));
+}
 
 #endif  // __x86_64__
 #endif  // __linux__
