@@ -1735,15 +1735,26 @@ struct vlibc_div_t vlibc_div(int numer, int denom);
 struct vlibc_ldiv_t vlibc_ldiv(long numer, long denom);
 struct vlibc_lldiv_t vlibc_lldiv(long long numer, long long denom);
 
+// Memory routines for POSIX are defined here for VLIBC_STDLIB_H.
+// Most of the details should remain the same when porting.
+
 #ifdef __linux__
 #ifdef __x86_64__
 
-// clang-format off
+#define VLIBC_PAGE_SIZE (1 << 12)
+#define VLIBC_ALIGN(x, align) (((x) + ((align) - 1)) & ~((align) - 1))
+
+struct vlibc_block_header {
+  vlibc_size_t size;
+  struct vlibc_block_header *next;
+  unsigned char used;
+};
+
+static struct vlibc_block_header *vlibc_heap_start = VLIBC_NULL;
+static unsigned char vlibc_initialized = 0;
 
 #endif  // __x86_64__
 #endif  // __linux__
-
-// clang-format on
 
 static unsigned int vlibc_rand_seed = 1;
 static void (*vlibc_atexit_funcs[1 << 5])(void);
