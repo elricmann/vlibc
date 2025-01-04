@@ -1860,6 +1860,26 @@ void *vlibc_malloc(vlibc_size_t size) {
   return (void *)((char *)best_fit + sizeof(struct vlibc_block_header));
 }
 
+void vlibc_free(void *ptr) {
+  if (!ptr) return;
+
+  struct vlibc_block_header *header =
+      (struct vlibc_block_header *)((char *)ptr -
+                                    sizeof(struct vlibc_block_header));
+  header->used = 0;
+
+  struct vlibc_block_header *current = vlibc_heap_start;
+
+  while (current && current->next) {
+    if (!current->used && !current->next->used) {
+      current->size += current->next->size + sizeof(struct vlibc_block_header);
+      current->next = current->next->next;
+    } else {
+      current = current->next;
+    }
+  }
+}
+
 #endif  // __x86_64__
 #endif  // __linux__
 
