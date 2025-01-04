@@ -1880,6 +1880,47 @@ void vlibc_free(void *ptr) {
   }
 }
 
+void *vlibc_calloc(vlibc_size_t nmemb, vlibc_size_t size) {
+  vlibc_size_t total_size;
+
+#if __has_builtin(__builtin_mul_overflow)
+  if (__builtin_mul_overflow(nmemb, size, &total_size)) return VLIBC_NULL;
+#else
+  total_size = nmemb * size;
+  if (nmemb != 0 && total_size / nmemb != size) return VLIBC_NULL;
+#endif
+
+  void *ptr = vlibc_malloc(total_size);
+
+  if (ptr) vlibc_memset(ptr, 0, total_size);
+
+  return ptr;
+}
+
+void *vlibc_realloc(void *ptr, vlibc_size_t size) {
+  if (!ptr) return vlibc_malloc(size);
+
+  if (size == 0) {
+    vlibc_free(ptr);
+
+    return VLIBC_NULL;
+  }
+
+  struct vlibc_block_header *header =
+      (struct vlibc_block_header *)((char *)ptr -
+                                    sizeof(struct vlibc_block_header));
+  if (size <= header->size) return ptr;
+
+  void *new_ptr = vlibc_malloc(size);
+
+  if (!new_ptr) return VLIBC_NULL;
+
+  vlibc_memcpy(new_ptr, ptr, header->size);
+  vlibc_free(ptr);
+
+  return new_ptr;
+}
+
 #endif  // __x86_64__
 #endif  // __linux__
 
