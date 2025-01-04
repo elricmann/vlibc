@@ -150,6 +150,8 @@ int main(int argc, char const* argv[]) {
   int* ___ptr = (int*)vlibc_malloc(4 * sizeof(int));
   int* ____ptr = (int*)vlibc_malloc(4 * sizeof(int));
 
+  (int*)vlibc_malloc(1000000);
+
   printf("ptr address: %p\n", ptr);
   printf("ptr address: %p\n", _ptr);
   printf("ptr address: %p\n", __ptr);
